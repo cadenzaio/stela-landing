@@ -40,12 +40,18 @@ test("server-renders the Stela landing page", async () => {
   assert.match(html, /Machine identity verified/);
   assert.match(html, /Marked/);
   assert.match(html, /Recovered/);
+  assert.match(html, /Stela gives the record a physical point of origin\./);
+  assert.match(html, /Identity should not depend on something temporary\./);
+  assert.match(html, /Where asset identity needs to hold\./);
   assert.match(html, /Not a generic engraver\. A controlled marking system\./);
   assert.match(html, /Built carefully\./);
   assert.match(html, /Validated openly\./);
   assert.match(html, /Build trust into the asset itself\./);
   assert.match(html, /property="og:image" content="http:\/\/localhost(?::3000)?\/og\.png"/);
-  assert.doesNotMatch(html, /Verid|safeSingleMark|codex-preview|react-loading-skeleton/i);
+  assert.doesNotMatch(
+    html,
+    /Verid|safeSingleMark|codex-preview|react-loading-skeleton|Every mark becomes part of an asset trust history|A physical anchor for digital confidence/i,
+  );
 });
 
 test("keeps the starter preview removed from the finished site", async () => {
@@ -63,8 +69,9 @@ test("keeps the starter preview removed from the finished site", async () => {
   assert.match(landing, /lifecycle-timeline/);
   assert.match(landing, /sequence-track/);
   assert.match(landing, /device-module/);
-  assert.match(landing, /history-stack/);
+  assert.match(landing, /FinalSection/);
   assert.match(landing, /pre-commercial development/);
+  assert.doesNotMatch(landing, /PhysicalAnchor|PlatformSection|AudiencePathways|CurrentStage|FinalCTA/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
   assert.doesNotMatch(page + layout + landing, /Verid|safeSingleMark|SkeletonPreview|codex-preview/i);
 
