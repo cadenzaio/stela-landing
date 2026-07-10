@@ -37,7 +37,12 @@ test("server-renders the Stela landing page", async () => {
   assert.match(html, /Trusted assets\./);
   assert.match(html, /Precision made permanent/);
   assert.match(html, /Mark\. Record\. Verify\./);
-  assert.match(html, /Built with ambition\. Presented with transparency\./);
+  assert.match(html, /Machine identity verified/);
+  assert.match(html, /Marked/);
+  assert.match(html, /Recovered/);
+  assert.match(html, /Not a generic engraver\. A controlled marking system\./);
+  assert.match(html, /Built carefully\./);
+  assert.match(html, /Validated openly\./);
   assert.match(html, /Build trust into the asset itself\./);
   assert.match(html, /property="og:image" content="http:\/\/localhost(?::3000)?\/og\.png"/);
   assert.doesNotMatch(html, /Verid|safeSingleMark|codex-preview|react-loading-skeleton/i);
@@ -55,6 +60,10 @@ test("keeps the starter preview removed from the finished site", async () => {
   assert.match(layout, /generateMetadata/);
   assert.match(layout, /\/og\.png/);
   assert.match(landing, /PrecisionMarkVisual/);
+  assert.match(landing, /lifecycle-timeline/);
+  assert.match(landing, /sequence-track/);
+  assert.match(landing, /device-module/);
+  assert.match(landing, /history-stack/);
   assert.match(landing, /pre-commercial development/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
   assert.doesNotMatch(page + layout + landing, /Verid|safeSingleMark|SkeletonPreview|codex-preview/i);

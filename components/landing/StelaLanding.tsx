@@ -1,17 +1,34 @@
 const navItems = ["Platform", "Marking System", "Use Cases", "Investors", "Contact"];
 
-const permanenceCards = [
+const evidenceRows = [
+  "Machine identity verified",
+  "Operator authorized",
+  "Timestamp recorded",
+  "Certificate issued",
+];
+
+const permanenceStages = [
+  "Marked",
+  "Registered",
+  "Insured",
+  "Maintained",
+  "Transferred",
+  "Recovered",
+  "Verified",
+];
+
+const permanenceConcepts = [
   {
     title: "Physical permanence",
-    body: "A precision mark becomes part of the asset, not a temporary label attached to it.",
+    body: "The identifier becomes part of the asset, not a temporary label attached to it.",
   },
   {
     title: "Digital permanence",
-    body: "Each marking event becomes a signed record that can be preserved, verified, and referenced later.",
+    body: "The marking event becomes a signed record that can be preserved and checked later.",
   },
   {
     title: "Lifecycle trust",
-    body: "Identity can remain verifiable across owners, operators, insurers, and systems.",
+    body: "Identity can remain verifiable as assets move across owners, insurers, operators, and systems.",
   },
 ];
 
@@ -23,13 +40,13 @@ const workflowSteps = [
   },
   {
     label: "Record",
-    title: "Signed event",
-    body: "The marking event is captured with machine, operator, asset, timestamp, location, and evidence.",
+    title: "Signed evidence event",
+    body: "The action is captured with machine, operator, asset, time, location, and proof.",
   },
   {
     label: "Verify",
     title: "Verifiable certificate",
-    body: "A digital certificate allows authorized parties to verify the asset identity and supporting proof.",
+    body: "A certificate lets authorized parties verify the asset identity and supporting record.",
   },
 ];
 
@@ -42,20 +59,32 @@ const markingFeatures = [
   "Digitally signed certificate",
 ];
 
+const historyEvents = [
+  { date: "T+0", title: "Marked", body: "Physical identity anchored" },
+  { date: "T+1", title: "Verified", body: "Certificate issued" },
+  { date: "T+90", title: "Maintained", body: "Service evidence added" },
+  { date: "T+240", title: "Transferred", body: "Ownership record checked" },
+  { date: "T+480", title: "Recovered", body: "Asset identity confirmed" },
+];
+
 const useCases = [
   {
+    signal: "Claims",
     title: "Vehicles and insurance",
     body: "Support theft deterrence, recovery, claims evidence, fraud prevention, and ownership verification.",
   },
   {
+    signal: "Field assets",
     title: "Solar and distributed energy assets",
     body: "Help connect panels, inverters, and field assets to lifecycle records, maintenance evidence, warranty, and recovery workflows.",
   },
   {
+    signal: "Traceability",
     title: "Industrial and high-value equipment",
     body: "Create durable identity for tools, machines, components, and equipment that must remain traceable over time.",
   },
   {
+    signal: "Surfaces",
     title: "Glass and architectural assets",
     body: "Enable permanent identification for glass installations, facades, panels, and high-value surfaces.",
   },
@@ -110,7 +139,7 @@ export function StelaLanding() {
 
 function Header() {
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#060607]/65 backdrop-blur-2xl">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#050506]/72 backdrop-blur-2xl">
       <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-5 sm:px-8">
         <a href="#top" className="group flex items-center gap-3" aria-label="Stela home">
           <span className="brand-mark" aria-hidden="true" />
@@ -118,19 +147,12 @@ function Header() {
         </a>
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Main navigation">
           {navItems.map((item) => (
-            <a
-              key={item}
-              href={`#${slugify(item)}`}
-              className="text-sm text-white/62 transition hover:text-white"
-            >
+            <a key={item} href={`#${slugify(item)}`} className="nav-link">
               {item}
             </a>
           ))}
         </nav>
-        <a
-          href="#contact"
-          className="rounded-full border border-white/18 bg-white/[0.07] px-4 py-2 text-sm font-medium text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] transition hover:border-white/32 hover:bg-white/[0.11]"
-        >
+        <a href="#contact" className="header-cta">
           Request brief
         </a>
       </div>
@@ -143,7 +165,7 @@ function Hero() {
     <section id="top" className="relative isolate min-h-screen overflow-hidden px-5 pt-28 sm:px-8 lg:pt-36">
       <div className="hero-grain" aria-hidden="true" />
       <div className="hero-grid" aria-hidden="true" />
-      <div className="mx-auto grid w-full max-w-7xl items-center gap-14 pb-20 lg:grid-cols-[1fr_0.92fr] lg:pb-28">
+      <div className="mx-auto grid w-full max-w-7xl items-center gap-14 pb-20 lg:grid-cols-[1fr_0.95fr] lg:pb-28">
         <div className="max-w-3xl">
           <p className="mb-5 text-sm font-medium uppercase tracking-[0.42em] text-[var(--stela-champagne)]">
             Precision made permanent
@@ -181,28 +203,25 @@ function Hero() {
 function PrecisionMarkVisual() {
   return (
     <div className="precision-wrap" aria-label="Permanent physical mark connected to a digital certificate">
-      <div className="precision-surface">
+      <div className="origin-surface">
         <div className="surface-glint" />
-        <div className="engraved-code">
-          <span />
-          <span />
-          <span />
-          <span />
-        </div>
-        <div className="engraved-mark">
+        <div className="surface-etch top" />
+        <div className="surface-etch bottom" />
+        <div className="engraved-origin">
           <div className="diamond-cut" />
+          <div className="engraved-beam" />
           <div className="mark-line mark-line-a" />
           <div className="mark-line mark-line-b" />
           <div className="mark-line mark-line-c" />
         </div>
-        <div className="evidence-pulse" />
+        <div className="origin-label">Physical origin</div>
       </div>
 
-      <div className="signal-line" />
+      <div className="proof-link" />
 
-      <div className="certificate-card">
+      <div className="proof-certificate">
         <div className="cert-top">
-          <span>Evidence event</span>
+          <span>Signed proof</span>
           <strong>Verified</strong>
         </div>
         <div className="cert-mark">
@@ -212,11 +231,15 @@ function PrecisionMarkVisual() {
             <h3>Asset identity linked</h3>
           </div>
         </div>
-        <div className="meta-grid">
-          {["Machine ID", "Operator", "Timestamp", "Certificate"].map((chip) => (
-            <span key={chip}>{chip}</span>
+        <div className="evidence-ledger">
+          {evidenceRows.map((row) => (
+            <div key={row}>
+              <span />
+              {row}
+            </div>
           ))}
         </div>
+        <div className="certificate-seal">Issued</div>
       </div>
     </div>
   );
@@ -239,7 +262,7 @@ function ProblemSection() {
             ownership, compliance, and asset value. But when the physical asset cannot be confidently linked to the
             record, every decision built on that record becomes weaker.
           </p>
-          <p className="mt-6 text-xl leading-8 text-white">
+          <p className="mt-6 max-w-3xl text-xl leading-8 text-white">
             Stela closes that gap with a permanent physical identifier and a durable digital record.
           </p>
         </div>
@@ -262,25 +285,38 @@ function ProblemSection() {
 
 function PermanenceSection() {
   return (
-    <Section id="permanence" eyebrow="Permanence">
-      <div className="max-w-4xl">
-        <SectionHeading>
-          A mark that remains.
-          <br />
-          A record that holds.
-        </SectionHeading>
-        <p className="section-copy mt-7">
-          Labels fall off. Records drift. Ownership changes. Components move. But important decisions still depend on
-          knowing whether the physical asset in front of you is the asset the record says it is.
-        </p>
-        <p className="section-copy mt-5">
-          Stela is built for assets that need to remain identifiable long after the first registration, sale,
-          inspection, claim, or transfer.
-        </p>
+    <Section id="permanence" eyebrow="Permanence" className="material-section">
+      <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+        <div>
+          <SectionHeading>
+            A mark that remains.
+            <br />
+            A record that holds.
+          </SectionHeading>
+          <p className="section-copy mt-7">
+            Labels fall off. Records drift. Ownership changes. Components move. But important decisions still depend
+            on knowing whether the physical asset in front of you is the asset the record says it is.
+          </p>
+          <p className="section-copy mt-5">
+            Stela is built for assets that need to remain identifiable long after the first registration, sale,
+            inspection, claim, or transfer.
+          </p>
+        </div>
+        <div className="permanence-concepts">
+          {permanenceConcepts.map((concept) => (
+            <article key={concept.title}>
+              <h3>{concept.title}</h3>
+              <p>{concept.body}</p>
+            </article>
+          ))}
+        </div>
       </div>
-      <div className="mt-12 grid gap-4 md:grid-cols-3">
-        {permanenceCards.map((card) => (
-          <GlassCard key={card.title} title={card.title} body={card.body} />
+      <div className="lifecycle-timeline" aria-label="Asset identity lifecycle">
+        {permanenceStages.map((stage, index) => (
+          <div className="lifecycle-stage" key={stage}>
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <strong>{stage}</strong>
+          </div>
         ))}
       </div>
     </Section>
@@ -289,8 +325,8 @@ function PermanenceSection() {
 
 function HowItWorks() {
   return (
-    <Section id="marking-system" eyebrow="How it works" className="relative">
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/24 to-transparent" />
+    <Section eyebrow="How it works" className="relative">
+      <div className="section-hairline" aria-hidden="true" />
       <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
         <SectionHeading>Mark. Record. Verify.</SectionHeading>
         <p className="max-w-xl text-lg leading-8 text-white/62">
@@ -298,13 +334,14 @@ function HowItWorks() {
           later by the people and systems that depend on it.
         </p>
       </div>
-      <div className="process-line mt-14">
+      <div className="sequence-track mt-14">
+        <div className="sequence-beam" aria-hidden="true" />
         {workflowSteps.map((step, index) => (
-          <article className="process-step" key={step.label}>
-            <span className="step-index">{String(index + 1).padStart(2, "0")}</span>
-            <p className="text-sm uppercase tracking-[0.32em] text-[var(--stela-champagne)]">{step.label}</p>
-            <h3 className="mt-5 text-2xl font-semibold text-white">{step.title}</h3>
-            <p className="mt-4 leading-7 text-white/62">{step.body}</p>
+          <article className="sequence-step" key={step.label}>
+            <div className="sequence-node">{String(index + 1).padStart(2, "0")}</div>
+            <p className="sequence-label">{step.label}</p>
+            <h3>{step.title}</h3>
+            <p>{step.body}</p>
           </article>
         ))}
       </div>
@@ -322,20 +359,24 @@ function PhysicalAnchor() {
             Digital records alone cannot prove that the asset in front of you is the correct asset. Stela strengthens
             existing systems by giving them a more trustworthy connection to the physical world.
           </p>
-          <p className="mt-7 text-2xl font-medium tracking-[-0.02em] text-white">
+          <p className="mt-7 max-w-2xl text-2xl font-medium tracking-[-0.02em] text-white">
             The mark anchors the asset. The record preserves the proof.
           </p>
         </div>
-        <div className="anchor-visual" aria-hidden="true">
-          <div className="anchor-slab">
-            <span />
-            <span />
-            <span />
+        <div className="mechanism-visual" aria-hidden="true">
+          <div className="mechanism-surface">
+            <div className="mechanism-mark" />
+            <span className="mechanism-cut a" />
+            <span className="mechanism-cut b" />
+            <span className="mechanism-cut c" />
           </div>
-          <div className="anchor-certificate">
-            <p>Certificate</p>
-            <strong>Verified origin</strong>
+          <div className="mechanism-link" />
+          <div className="mechanism-proof">
+            <span>Verified origin</span>
+            <strong>Certificate attached to physical mark</strong>
+            <p>Source identity, operator, machine, and evidence remain connected.</p>
           </div>
+          <div className="origin-badge">Trust link active</div>
         </div>
       </div>
     </Section>
@@ -345,21 +386,39 @@ function PhysicalAnchor() {
 function MarkingSystem() {
   return (
     <Section id="marking-system" eyebrow="Controlled field marking">
-      <div className="grid gap-12 lg:grid-cols-[0.9fr_1fr] lg:items-start">
+      <div className="marking-layout">
         <div>
           <SectionHeading>Built for controlled field marking.</SectionHeading>
           <p className="section-copy mt-7">
             Stela&apos;s marking system is designed for authorized, auditable operation - combining precision physical
             marking with controlled workflows, operator identity, machine identity, and signed event records.
           </p>
+          <p className="product-line">Not a generic engraver. A controlled marking system.</p>
         </div>
-        <div className="feature-grid">
-          {markingFeatures.map((feature) => (
-            <div key={feature} className="feature-chip">
-              {feature}
-            </div>
-          ))}
+        <div className="device-module" aria-label="Abstract controlled marking system visual">
+          <div className="device-head">
+            <span className="device-aperture" />
+            <span className="device-tip" />
+          </div>
+          <div className="device-surface">
+            <span />
+            <span />
+            <span />
+          </div>
+          <div className="session-panel">
+            <p>Controlled session</p>
+            <strong>Authorized</strong>
+            <div>Machine identity active</div>
+          </div>
         </div>
+      </div>
+      <div className="feature-rail">
+        {markingFeatures.map((feature) => (
+          <div key={feature} className="feature-chip">
+            <span />
+            {feature}
+          </div>
+        ))}
       </div>
     </Section>
   );
@@ -368,7 +427,7 @@ function MarkingSystem() {
 function PlatformSection() {
   return (
     <Section id="platform" eyebrow="Trust history">
-      <div className="grid gap-12 lg:grid-cols-[1fr_0.95fr] lg:items-center">
+      <div className="grid gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
         <div>
           <SectionHeading>Every mark becomes part of an asset trust history.</SectionHeading>
           <p className="section-copy mt-7">
@@ -380,10 +439,23 @@ function PlatformSection() {
             connection to the physical asset.
           </p>
         </div>
-        <div className="chain">
-          {["Asset", "Mark", "Evidence event", "Certificate", "Trust history"].map((item) => (
-            <span key={item}>{item}</span>
-          ))}
+        <div className="history-stack" aria-label="Durable trust history over time">
+          <div className="asset-chain">
+            {["Asset", "Mark", "Evidence event", "Certificate", "Trust history"].map((item) => (
+              <span key={item}>{item}</span>
+            ))}
+          </div>
+          <div className="history-ledger">
+            {historyEvents.map((event) => (
+              <article key={event.title}>
+                <span>{event.date}</span>
+                <div>
+                  <h3>{event.title}</h3>
+                  <p>{event.body}</p>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </Section>
@@ -401,9 +473,14 @@ function UseCases() {
           </p>
         </div>
       </div>
-      <div className="mt-12 grid gap-4 md:grid-cols-2">
-        {useCases.map((card) => (
-          <GlassCard key={card.title} title={card.title} body={card.body} />
+      <div className="use-case-panels">
+        {useCases.map((card, index) => (
+          <article className="case-panel" key={card.title}>
+            <span className="case-index">{String(index + 1).padStart(2, "0")}</span>
+            <p>{card.signal}</p>
+            <h3>{card.title}</h3>
+            <strong>{card.body}</strong>
+          </article>
         ))}
       </div>
     </Section>
@@ -414,9 +491,13 @@ function AudiencePathways() {
   return (
     <Section id="investors" eyebrow="Audience pathways">
       <SectionHeading>For organizations that need asset identity to hold.</SectionHeading>
-      <div className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-        {audiences.map((card) => (
-          <GlassCard key={card.title} title={card.title} body={card.body} compact />
+      <div className="audience-pathway">
+        {audiences.map((card, index) => (
+          <article key={card.title}>
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <h3>{card.title}</h3>
+            <p>{card.body}</p>
+          </article>
         ))}
       </div>
     </Section>
@@ -428,11 +509,15 @@ function CurrentStage() {
     <Section eyebrow="Current stage">
       <div className="stage-panel">
         <div>
-          <SectionHeading>Built with ambition. Presented with transparency.</SectionHeading>
+          <SectionHeading>
+            Built carefully.
+            <br />
+            Validated openly.
+          </SectionHeading>
           <p className="section-copy mt-7">
-            Stela is in pre-commercial development. The system architecture, technical validation plan, trust model,
-            and business model have been defined. The next milestones are prototype validation, formal IP filings,
-            pilot partnerships, and market-specific proof of value.
+            Stela is in pre-commercial development. The architecture, trust model, and validation path are defined.
+            The next milestones are prototype validation, IP filings, selected pilot partnerships, and
+            market-specific proof of value.
           </p>
         </div>
         <div className="milestone-stack">
@@ -459,8 +544,8 @@ function FinalCTA() {
           Build trust into the asset itself.
         </h2>
         <p className="mt-7 max-w-2xl text-xl leading-8 text-white/66">
-          Stela is preparing the next generation of physical-digital asset identity - permanent in the real world,
-          verifiable in the digital one.
+          Stela is preparing a physical-digital identity system for assets that need to remain verifiable beyond the
+          moment of registration.
         </p>
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
           <a href="mailto:brief@stela.example" className="button-primary">
@@ -507,7 +592,7 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section id={id} className={`px-5 py-24 sm:px-8 sm:py-32 ${className}`}>
+    <section id={id} className={`section-block px-5 py-24 sm:px-8 sm:py-32 ${className}`}>
       <div className="mx-auto w-full max-w-7xl">
         <p className="mb-6 text-sm font-medium uppercase tracking-[0.36em] text-[var(--stela-platinum)]/60">
           {eyebrow}
@@ -523,24 +608,6 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
     <h2 className="text-balance text-4xl font-semibold leading-[1.02] tracking-[-0.04em] text-white sm:text-5xl lg:text-6xl">
       {children}
     </h2>
-  );
-}
-
-function GlassCard({
-  title,
-  body,
-  compact = false,
-}: {
-  title: string;
-  body: string;
-  compact?: boolean;
-}) {
-  return (
-    <article className={`glass-card ${compact ? "min-h-56" : "min-h-64"}`}>
-      <span className="card-rule" aria-hidden="true" />
-      <h3 className="text-2xl font-semibold tracking-[-0.02em] text-white">{title}</h3>
-      <p className="mt-5 leading-7 text-white/62">{body}</p>
-    </article>
   );
 }
 
