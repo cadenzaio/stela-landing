@@ -93,7 +93,7 @@ function Header() {
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/[0.07] bg-[#050506]/70 backdrop-blur-2xl">
       <div className="mx-auto flex h-15 w-full max-w-7xl items-center justify-between px-5 sm:px-8">
         <a href="#top" className="group flex items-center gap-3" aria-label="Stela home">
-          <span className="brand-mark" aria-hidden="true" />
+          <span className="optical-mark" aria-hidden="true" />
           <span className="text-xs font-medium tracking-[0.42em] text-white">STELA</span>
         </a>
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Main navigation">
@@ -121,12 +121,12 @@ function Hero() {
           <p className="mb-5 text-sm font-medium uppercase tracking-[0.42em] text-[var(--stela-champagne)]">
             Precision made permanent
           </p>
-          <h1 className="text-balance text-6xl font-semibold leading-[0.93] tracking-[-0.045em] text-white sm:text-7xl lg:text-8xl">
-            Permanent marks.
+          <h1 className="hero-title text-balance text-6xl font-semibold leading-[0.93] tracking-[-0.045em] text-white sm:text-7xl lg:text-8xl">
+            <span>Permanent marks.</span>
             <br />
-            Verified records.
+            <span>Verified records.</span>
             <br />
-            Trusted assets.
+            <span>Trusted assets.</span>
           </h1>
           <p className="mt-8 max-w-2xl text-pretty text-xl leading-8 text-white/76 sm:text-2xl sm:leading-9">
             Stela creates a lasting link between physical assets and digital proof - through precision marking, signed
@@ -154,8 +154,10 @@ function Hero() {
 function PrecisionMarkVisual() {
   return (
     <div className="precision-wrap" aria-label="Permanent physical mark connected to a digital certificate">
+      <div className="glass-reflection" aria-hidden="true" />
       <div className="origin-surface">
         <div className="surface-glint" />
+        <div className="surface-refraction" />
         <div className="surface-etch top" />
         <div className="surface-etch bottom" />
         <div className="engraved-origin">
@@ -176,7 +178,7 @@ function PrecisionMarkVisual() {
           <strong>Verified</strong>
         </div>
         <div className="cert-mark">
-          <span className="brand-mark small" />
+          <span className="optical-mark small" />
           <div>
             <p>STELA CERTIFICATE</p>
             <h3>Asset identity linked</h3>
@@ -219,12 +221,12 @@ function TrustGap() {
         <div className="trust-diagram">
           <div className="diagram-row muted">
             <span>Physical asset</span>
-            <em>weak link</em>
+            <em><i />weak link<i /></em>
             <span>Digital record</span>
           </div>
           <div className="diagram-row strong">
             <span>Physical asset</span>
-            <em>Stela trust anchor</em>
+            <em><i />Stela trust anchor<i /></em>
             <span>Digital record</span>
           </div>
         </div>
@@ -273,6 +275,7 @@ function PermanenceLifecycle() {
         <p className="mt-6 text-xl leading-8 text-white">Identity should not depend on something temporary.</p>
       </div>
       <div className="lifecycle-timeline etched" aria-label="Asset identity lifecycle">
+        <span className="persistent-mark" aria-hidden="true" />
         {permanenceStages.map((stage, index) => (
           <div className="lifecycle-stage" key={stage}>
             <span>{String(index + 1).padStart(2, "0")}</span>
@@ -297,6 +300,7 @@ function MarkingSystem() {
           </p>
         </div>
         <div className="device-module" aria-label="Abstract controlled marking system visual">
+          <div className="device-trust-line" aria-hidden="true" />
           <div className="device-head">
             <span className="device-aperture" />
             <span className="device-tip" />
@@ -354,6 +358,7 @@ function FinalSection() {
   return (
     <section id="contact" className="px-5 py-20 sm:px-8 sm:py-28">
       <div className="final-panel mx-auto max-w-7xl">
+        <div className="final-trust-line" aria-hidden="true" />
         <div>
           <p className="mb-5 text-sm font-medium uppercase tracking-[0.42em] text-[var(--stela-champagne)]">
             Current stage
@@ -404,7 +409,7 @@ function Footer() {
     <footer className="border-t border-white/10 px-5 py-10 sm:px-8">
       <div className="mx-auto flex max-w-7xl flex-col gap-5 text-sm text-white/44 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3">
-          <span className="brand-mark small" aria-hidden="true" />
+          <span className="optical-mark small" aria-hidden="true" />
           <span>Stela</span>
         </div>
         <div className="flex flex-wrap gap-x-6 gap-y-2">

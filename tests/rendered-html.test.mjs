@@ -66,6 +66,11 @@ test("keeps the starter preview removed from the finished site", async () => {
   assert.match(layout, /generateMetadata/);
   assert.match(layout, /\/og\.png/);
   assert.match(landing, /PrecisionMarkVisual/);
+  assert.match(landing, /optical-mark/);
+  assert.match(landing, /glass-reflection/);
+  assert.match(landing, /proof-link/);
+  assert.match(landing, /device-trust-line/);
+  assert.match(landing, /final-trust-line/);
   assert.match(landing, /lifecycle-timeline/);
   assert.match(landing, /sequence-track/);
   assert.match(landing, /device-module/);
