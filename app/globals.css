@@ -107,47 +107,84 @@ body {
     transform 180ms ease;
 }
 
-.optical-mark {
+.stela-mark {
   position: relative;
-  display: inline-block;
-  width: 22px;
-  height: 22px;
+  display: inline-grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
   flex: 0 0 auto;
-  opacity: 0.96;
-  background:
-    linear-gradient(135deg, transparent 0 45%, rgba(245, 240, 232, 0.68) 47%, rgba(245, 240, 232, 0.68) 51%, transparent 54%),
-    linear-gradient(45deg, transparent 0 48%, rgba(217, 198, 160, 0.34) 50%, transparent 53%);
-  clip-path: polygon(50% 0, 64% 36%, 100% 50%, 64% 64%, 50% 100%, 36% 64%, 0 50%, 36% 36%);
-  filter: drop-shadow(0 0 8px rgba(245, 240, 232, 0.16));
+  color: rgba(245, 240, 232, 0.9);
+  filter: drop-shadow(0 0 10px rgba(245, 240, 232, 0.14));
 }
 
-.optical-mark::before,
-.optical-mark::after {
+.stela-mark::before,
+.stela-mark::after,
+.stela-mark span {
   position: absolute;
   content: "";
   pointer-events: none;
 }
 
-.optical-mark::before {
+.stela-mark::before {
   inset: 4px;
-  border: 1px solid rgba(245, 240, 232, 0.42);
   transform: rotate(45deg);
-  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(245, 240, 232, 0.62);
+  background:
+    linear-gradient(135deg, transparent 43%, rgba(245, 240, 232, 0.18) 47%, transparent 52%),
+    rgba(255, 255, 255, 0.018);
 }
 
-.optical-mark::after {
-  top: -1px;
+.stela-mark::after {
+  top: 50%;
   left: 50%;
-  width: 1px;
-  height: 24px;
-  transform: translateX(-50%) rotate(45deg);
-  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.72), transparent);
-  opacity: 0.58;
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(245, 240, 232, 0.92);
+  box-shadow: 0 0 12px rgba(217, 198, 160, 0.42);
+  transform: translate(-50%, -50%);
 }
 
-.optical-mark.small {
+.stela-mark span:nth-child(1) {
+  left: 2px;
+  right: 2px;
+  top: 50%;
+  height: 1px;
+  transform: translateY(-50%) rotate(-18deg);
+  background: linear-gradient(90deg, transparent, rgba(245, 240, 232, 0.72), transparent);
+}
+
+.stela-mark span:nth-child(2) {
+  inset: 8px;
+  transform: rotate(45deg);
+  border: 1px solid rgba(245, 240, 232, 0.26);
+}
+
+.stela-mark span:nth-child(3) {
+  left: 50%;
+  top: 1px;
+  width: 1px;
+  height: 22px;
+  transform: translateX(-50%) rotate(38deg);
+  background: linear-gradient(to bottom, transparent, rgba(217, 198, 160, 0.34), transparent);
+}
+
+.stela-mark-small {
   width: 16px;
   height: 16px;
+}
+
+.stela-mark-small::before {
+  inset: 3px;
+}
+
+.stela-mark-small span:nth-child(2) {
+  inset: 6px;
+}
+
+.stela-mark-small span:nth-child(3) {
+  height: 15px;
 }
 
 .header-cta:hover {
@@ -276,13 +313,14 @@ body {
 
 .glass-reflection {
   position: absolute;
-  inset: 44px 4% 18%;
+  inset: 26px 0 12%;
   border-radius: 3px;
   background:
-    linear-gradient(122deg, transparent 12%, rgba(255, 255, 255, 0.08), transparent 28%),
-    linear-gradient(160deg, transparent 60%, rgba(217, 198, 160, 0.035), transparent 72%);
-  transform: rotate(-4deg) skewX(-8deg);
-  opacity: 0.76;
+    linear-gradient(122deg, transparent 9%, rgba(255, 255, 255, 0.072), transparent 24%),
+    linear-gradient(158deg, transparent 58%, rgba(217, 198, 160, 0.03), transparent 71%),
+    radial-gradient(ellipse at 28% 52%, rgba(245, 240, 232, 0.08), transparent 38%);
+  transform: rotate(-3deg) skewX(-7deg);
+  opacity: 0.68;
   pointer-events: none;
 }
 
@@ -297,31 +335,48 @@ body {
 
 .origin-surface {
   position: absolute;
-  inset: 104px 72px auto 0;
-  height: 352px;
+  inset: 72px 34px auto -18px;
+  height: 410px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.11);
+  border: 1px solid rgba(255, 255, 255, 0.135);
   border-radius: 3px;
   background:
-    linear-gradient(126deg, rgba(255, 255, 255, 0.13), transparent 24%),
-    linear-gradient(104deg, transparent 0 64%, rgba(255, 255, 255, 0.055) 64.2%, transparent 65%),
-    radial-gradient(circle at 24% 22%, rgba(255, 255, 255, 0.075), transparent 26%),
-    repeating-linear-gradient(98deg, rgba(255, 255, 255, 0.024), rgba(255, 255, 255, 0.024) 1px, transparent 1px, transparent 11px),
-    linear-gradient(145deg, #151719, #060707 72%);
+    linear-gradient(126deg, rgba(255, 255, 255, 0.16), transparent 23%),
+    linear-gradient(104deg, transparent 0 64%, rgba(255, 255, 255, 0.045) 64.2%, transparent 65%),
+    radial-gradient(circle at 25% 34%, rgba(245, 240, 232, 0.095), transparent 24%),
+    repeating-linear-gradient(98deg, rgba(255, 255, 255, 0.018), rgba(255, 255, 255, 0.018) 1px, transparent 1px, transparent 13px),
+    linear-gradient(145deg, #181a1c, #070808 72%);
   box-shadow:
-    0 38px 90px rgba(0, 0, 0, 0.62),
-    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 42px 110px rgba(0, 0, 0, 0.66),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
     inset 0 -1px 0 rgba(255, 255, 255, 0.08);
-  transform: rotateX(2deg) rotateY(-7deg);
+  transform: rotateX(2deg) rotateY(-6deg);
+}
+
+.surface-depth {
+  position: absolute;
+  inset: 9% 8% 11%;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 2px;
+  background: linear-gradient(112deg, rgba(255, 255, 255, 0.025), transparent 56%);
+}
+
+.surface-horizon {
+  position: absolute;
+  left: 7%;
+  right: 9%;
+  top: 43%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(245, 240, 232, 0.18), transparent);
 }
 
 .surface-refraction {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(132deg, transparent 0 36%, rgba(245, 240, 232, 0.09) 36.2%, transparent 36.8%),
-    linear-gradient(132deg, transparent 0 73%, rgba(217, 198, 160, 0.055) 73.2%, transparent 73.7%);
-  opacity: 0.65;
+    linear-gradient(132deg, transparent 0 36%, rgba(245, 240, 232, 0.076) 36.2%, transparent 36.75%),
+    linear-gradient(132deg, transparent 0 73%, rgba(217, 198, 160, 0.042) 73.2%, transparent 73.65%);
+  opacity: 0.62;
 }
 
 .surface-glint {
@@ -353,7 +408,7 @@ body {
 
 .engraved-origin {
   position: absolute;
-  inset: 98px 62px 70px 52px;
+  inset: 114px 70px 86px 58px;
   border: 1px solid rgba(255, 255, 255, 0.085);
   border-radius: 3px;
   background:
@@ -363,37 +418,51 @@ body {
 
 .diamond-cut {
   position: absolute;
-  left: 44px;
+  left: 52px;
   top: 50%;
-  width: 86px;
-  height: 86px;
+  width: 112px;
+  height: 112px;
   transform: translateY(-50%) rotate(45deg);
-  border: 1px solid rgba(245, 240, 232, 0.78);
+  border: 1px solid rgba(245, 240, 232, 0.84);
   box-shadow:
-    inset 0 0 24px rgba(245, 240, 232, 0.16),
-    0 0 22px rgba(217, 198, 160, 0.16);
+    inset 0 0 34px rgba(245, 240, 232, 0.16),
+    0 0 28px rgba(217, 198, 160, 0.18);
 }
 
 .diamond-cut::after {
   position: absolute;
   content: "";
-  inset: 19px;
-  border: 1px solid rgba(245, 240, 232, 0.3);
+  inset: 25px;
+  border: 1px solid rgba(245, 240, 232, 0.28);
+}
+
+.incision-core {
+  position: absolute;
+  left: 108px;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: rgba(245, 240, 232, 0.95);
+  box-shadow:
+    0 0 20px rgba(217, 198, 160, 0.44),
+    0 0 0 1px rgba(245, 240, 232, 0.24);
+  transform: translate(-50%, -50%);
 }
 
 .engraved-beam {
   position: absolute;
-  left: 98px;
+  left: 118px;
   top: calc(50% - 1px);
-  width: 284px;
+  width: 312px;
   height: 1px;
-  background: linear-gradient(90deg, rgba(245, 240, 232, 0.9), rgba(217, 198, 160, 0.3), transparent);
-  box-shadow: 0 0 12px rgba(217, 198, 160, 0.24);
+  background: linear-gradient(90deg, rgba(245, 240, 232, 0.95), rgba(217, 198, 160, 0.26), transparent);
+  box-shadow: 0 0 14px rgba(217, 198, 160, 0.25);
 }
 
 .mark-line {
   position: absolute;
-  left: 170px;
+  left: 188px;
   height: 1px;
   background: linear-gradient(90deg, rgba(245, 240, 232, 0.08), rgba(245, 240, 232, 0.78), rgba(245, 240, 232, 0.04));
   box-shadow: 0 0 16px rgba(245, 240, 232, 0.18);
@@ -427,30 +496,30 @@ body {
 
 .proof-link {
   position: absolute;
-  left: 50%;
-  top: 338px;
-  width: 164px;
+  left: 51%;
+  top: 384px;
+  width: 148px;
   height: 1px;
-  transform: rotate(-17deg);
-  background: linear-gradient(90deg, transparent, rgba(217, 198, 160, 0.8), transparent);
-  box-shadow: 0 0 16px rgba(217, 198, 160, 0.24);
+  transform: rotate(-14deg);
+  background: linear-gradient(90deg, transparent, rgba(217, 198, 160, 0.62), transparent);
+  box-shadow: 0 0 14px rgba(217, 198, 160, 0.18);
 }
 
 .proof-certificate {
   position: absolute;
-  right: 18px;
-  top: 264px;
-  width: min(78%, 308px);
+  right: 0;
+  top: 326px;
+  width: min(70%, 282px);
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.105);
+  border: 1px solid rgba(255, 255, 255, 0.09);
   border-radius: 3px;
-  padding: 17px;
+  padding: 16px;
   background:
-    linear-gradient(132deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.026)),
-    rgba(9, 10, 11, 0.72);
+    linear-gradient(132deg, rgba(255, 255, 255, 0.105), rgba(255, 255, 255, 0.02)),
+    rgba(9, 10, 11, 0.66);
   box-shadow:
-    0 24px 58px rgba(0, 0, 0, 0.42),
-    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+    0 20px 50px rgba(0, 0, 0, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(24px);
 }
 
@@ -1531,17 +1600,25 @@ body {
 
   .diamond-cut {
     left: 32px;
-    width: 56px;
-    height: 56px;
+    width: 64px;
+    height: 64px;
+  }
+
+  .diamond-cut::after {
+    inset: 14px;
+  }
+
+  .incision-core {
+    left: 64px;
   }
 
   .engraved-beam {
-    left: 66px;
+    left: 72px;
     width: 180px;
   }
 
   .mark-line {
-    left: 112px;
+    left: 122px;
   }
 
   .mark-line-a {
@@ -1557,7 +1634,7 @@ body {
   }
 
   .proof-certificate {
-    top: 304px;
+    top: 318px;
     right: 2px;
     width: calc(100% - 22px);
   }

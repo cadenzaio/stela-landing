@@ -93,7 +93,11 @@ function Header() {
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/[0.07] bg-[#050506]/70 backdrop-blur-2xl">
       <div className="mx-auto flex h-15 w-full max-w-7xl items-center justify-between px-5 sm:px-8">
         <a href="#top" className="group flex items-center gap-3" aria-label="Stela home">
-          <span className="optical-mark" aria-hidden="true" />
+          <span className="stela-mark stela-mark-nav" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </span>
           <span className="text-xs font-medium tracking-[0.42em] text-white">STELA</span>
         </a>
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Main navigation">
@@ -154,12 +158,15 @@ function PrecisionMarkVisual() {
     <div className="precision-wrap" aria-label="Permanent physical mark connected to a digital certificate">
       <div className="glass-reflection" aria-hidden="true" />
       <div className="origin-surface">
+        <div className="surface-depth" />
+        <div className="surface-horizon" />
         <div className="surface-glint" />
         <div className="surface-refraction" />
         <div className="surface-etch top" />
         <div className="surface-etch bottom" />
         <div className="engraved-origin">
           <div className="diamond-cut" />
+          <div className="incision-core" />
           <div className="engraved-beam" />
           <div className="mark-line mark-line-a" />
           <div className="mark-line mark-line-b" />
@@ -176,7 +183,11 @@ function PrecisionMarkVisual() {
           <strong>Verified</strong>
         </div>
         <div className="cert-mark">
-          <span className="optical-mark small" />
+          <span className="stela-mark stela-mark-small" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </span>
           <div>
             <p>STELA CERTIFICATE</p>
             <h3>Asset identity linked</h3>
@@ -407,7 +418,11 @@ function Footer() {
     <footer className="border-t border-white/10 px-5 py-10 sm:px-8">
       <div className="mx-auto flex max-w-7xl flex-col gap-5 text-sm text-white/44 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3">
-          <span className="optical-mark small" aria-hidden="true" />
+          <span className="stela-mark stela-mark-small" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </span>
           <span>Stela</span>
         </div>
         <div className="flex flex-wrap gap-x-6 gap-y-2">

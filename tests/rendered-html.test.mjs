@@ -69,8 +69,11 @@ test("keeps the starter preview removed from the finished site", async () => {
   assert.match(landing, /<h1 className="hero-title font-semibold text-white">/);
   assert.equal((landing.match(/<span>Permanent marks\.<\/span>|<span>Verified records\.<\/span>|<span>Trusted assets\.<\/span>/g) ?? []).length, 3);
   assert.doesNotMatch(landing, /hero-title text-balance|lg:text-8xl/);
-  assert.match(landing, /optical-mark/);
+  assert.match(landing, /stela-mark stela-mark-nav/);
+  assert.match(landing, /stela-mark stela-mark-small/);
   assert.match(landing, /glass-reflection/);
+  assert.match(landing, /surface-depth/);
+  assert.match(landing, /incision-core/);
   assert.match(landing, /proof-link/);
   assert.match(landing, /device-trust-line/);
   assert.match(landing, /final-trust-line/);
