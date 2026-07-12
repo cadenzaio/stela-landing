@@ -121,11 +121,9 @@ function Hero() {
           <p className="mb-5 text-sm font-medium uppercase tracking-[0.42em] text-[var(--stela-champagne)]">
             Precision made permanent
           </p>
-          <h1 className="hero-title text-balance text-6xl font-semibold leading-[0.93] tracking-[-0.045em] text-white sm:text-7xl lg:text-8xl">
+          <h1 className="hero-title font-semibold text-white">
             <span>Permanent marks.</span>
-            <br />
             <span>Verified records.</span>
-            <br />
             <span>Trusted assets.</span>
           </h1>
           <p className="mt-8 max-w-2xl text-pretty text-xl leading-8 text-white/76 sm:text-2xl sm:leading-9">

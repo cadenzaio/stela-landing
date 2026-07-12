@@ -180,6 +180,19 @@ body {
     linear-gradient(118deg, transparent 51%, rgba(255, 255, 255, 0.058), transparent 51.36%, transparent 64%, rgba(217, 198, 160, 0.028), transparent 64.34%);
 }
 
+.hero-title {
+  width: max-content;
+  max-width: 100%;
+  font-size: clamp(3.45rem, 6.1vw, 5rem);
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+}
+
+.hero-title span {
+  display: block;
+  white-space: nowrap;
+}
+
 .brand-mark {
   position: relative;
   display: inline-block;
