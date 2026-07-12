@@ -66,11 +66,14 @@ test("keeps the starter preview removed from the finished site", async () => {
   assert.match(layout, /generateMetadata/);
   assert.match(layout, /\/og\.png/);
   assert.match(landing, /PrecisionMarkVisual/);
+  assert.match(landing, /const LOGO_VARIANT: LogoVariant = "origin-lozenge"/);
+  assert.match(landing, /const HERO_VARIANT: HeroVariant = "etched-origin"/);
   assert.match(landing, /<h1 className="hero-title font-semibold text-white">/);
   assert.equal((landing.match(/<span>Permanent marks\.<\/span>|<span>Verified records\.<\/span>|<span>Trusted assets\.<\/span>/g) ?? []).length, 3);
   assert.doesNotMatch(landing, /hero-title text-balance|lg:text-8xl/);
-  assert.match(landing, /stela-mark stela-mark-nav/);
-  assert.match(landing, /stela-mark stela-mark-small/);
+  assert.match(landing, /function StelaMark/);
+  assert.match(landing, /stela-mark-\$\{size\}/);
+  assert.match(landing, /hero-variant-\$\{HERO_VARIANT\}/);
   assert.match(landing, /glass-reflection/);
   assert.match(landing, /surface-depth/);
   assert.match(landing, /incision-core/);

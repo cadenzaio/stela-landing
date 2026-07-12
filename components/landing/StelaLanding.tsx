@@ -1,5 +1,12 @@
 const navItems = ["Platform", "Marking System", "Use Cases", "Investors", "Contact"];
 
+type LogoVariant = "origin-lozenge" | "open-incision" | "refracted-origin";
+type HeroVariant = "etched-origin" | "refracted-surface" | "proof-emergence";
+
+// Development review switch. Keep production on the recommended defaults.
+const LOGO_VARIANT: LogoVariant = "origin-lozenge";
+const HERO_VARIANT: HeroVariant = "etched-origin";
+
 const evidenceRows = [
   "Machine identity verified",
   "Operator authorized",
@@ -92,13 +99,9 @@ function Header() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/[0.07] bg-[#050506]/70 backdrop-blur-2xl">
       <div className="mx-auto flex h-15 w-full max-w-7xl items-center justify-between px-5 sm:px-8">
-        <a href="#top" className="group flex items-center gap-3" aria-label="Stela home">
-          <span className="stela-mark stela-mark-nav" aria-hidden="true">
-            <span />
-            <span />
-            <span />
-          </span>
-          <span className="text-xs font-medium tracking-[0.42em] text-white">STELA</span>
+        <a href="#top" className="group flex items-center gap-3.5" aria-label="Stela home">
+          <StelaMark size="nav" />
+          <span className="stela-wordmark text-white">STELA</span>
         </a>
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Main navigation">
           {navItems.map((item) => (
@@ -131,7 +134,7 @@ function Hero() {
             <span>Trusted assets.</span>
           </h1>
           <p className="mt-8 max-w-2xl text-pretty text-xl leading-8 text-white/76 sm:text-2xl sm:leading-9">
-            Stela creates a lasting link between physical assets and digital proof - through precision marking, signed
+            Stela creates a lasting link between physical assets and digital proof — through precision marking, signed
             evidence events, and verifiable certificates.
           </p>
           <p className="mt-5 max-w-2xl text-base leading-7 text-white/54 sm:text-lg">
@@ -155,7 +158,10 @@ function Hero() {
 
 function PrecisionMarkVisual() {
   return (
-    <div className="precision-wrap" aria-label="Permanent physical mark connected to a digital certificate">
+    <div
+      className={`precision-wrap hero-variant-${HERO_VARIANT}`}
+      aria-label="Permanent physical mark connected to a digital certificate"
+    >
       <div className="glass-reflection" aria-hidden="true" />
       <div className="origin-surface">
         <div className="surface-depth" />
@@ -183,11 +189,7 @@ function PrecisionMarkVisual() {
           <strong>Verified</strong>
         </div>
         <div className="cert-mark">
-          <span className="stela-mark stela-mark-small" aria-hidden="true">
-            <span />
-            <span />
-            <span />
-          </span>
+          <StelaMark size="small" />
           <div>
             <p>STELA CERTIFICATE</p>
             <h3>Asset identity linked</h3>
@@ -203,6 +205,16 @@ function PrecisionMarkVisual() {
         </div>
       </div>
     </div>
+  );
+}
+
+function StelaMark({ size }: { size: "nav" | "small" }) {
+  return (
+    <span className={`stela-mark stela-mark-${size} stela-mark-${LOGO_VARIANT}`} aria-hidden="true">
+      <span />
+      <span />
+      <span />
+    </span>
   );
 }
 
@@ -418,11 +430,7 @@ function Footer() {
     <footer className="border-t border-white/10 px-5 py-10 sm:px-8">
       <div className="mx-auto flex max-w-7xl flex-col gap-5 text-sm text-white/44 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3">
-          <span className="stela-mark stela-mark-small" aria-hidden="true">
-            <span />
-            <span />
-            <span />
-          </span>
+          <StelaMark size="small" />
           <span>Stela</span>
         </div>
         <div className="flex flex-wrap gap-x-6 gap-y-2">

@@ -110,12 +110,12 @@ body {
 .stela-mark {
   position: relative;
   display: inline-grid;
-  width: 24px;
-  height: 24px;
+  width: 26px;
+  height: 26px;
   place-items: center;
   flex: 0 0 auto;
   color: rgba(245, 240, 232, 0.9);
-  filter: drop-shadow(0 0 10px rgba(245, 240, 232, 0.14));
+  filter: drop-shadow(0 0 10px rgba(245, 240, 232, 0.18));
 }
 
 .stela-mark::before,
@@ -129,9 +129,9 @@ body {
 .stela-mark::before {
   inset: 4px;
   transform: rotate(45deg);
-  border: 1px solid rgba(245, 240, 232, 0.62);
+  border: 1.25px solid rgba(245, 240, 232, 0.78);
   background:
-    linear-gradient(135deg, transparent 43%, rgba(245, 240, 232, 0.18) 47%, transparent 52%),
+    linear-gradient(135deg, transparent 43%, rgba(245, 240, 232, 0.22) 47%, transparent 52%),
     rgba(255, 255, 255, 0.018);
 }
 
@@ -142,7 +142,9 @@ body {
   height: 4px;
   border-radius: 999px;
   background: rgba(245, 240, 232, 0.92);
-  box-shadow: 0 0 12px rgba(217, 198, 160, 0.42);
+  box-shadow:
+    0 0 0 1px rgba(5, 5, 6, 0.72),
+    0 0 12px rgba(217, 198, 160, 0.48);
   transform: translate(-50%, -50%);
 }
 
@@ -152,22 +154,58 @@ body {
   top: 50%;
   height: 1px;
   transform: translateY(-50%) rotate(-18deg);
-  background: linear-gradient(90deg, transparent, rgba(245, 240, 232, 0.72), transparent);
+  background: linear-gradient(90deg, transparent, rgba(245, 240, 232, 0.86), rgba(217, 198, 160, 0.46), transparent);
 }
 
 .stela-mark span:nth-child(2) {
   inset: 8px;
   transform: rotate(45deg);
-  border: 1px solid rgba(245, 240, 232, 0.26);
+  border: 1px solid rgba(245, 240, 232, 0.32);
 }
 
 .stela-mark span:nth-child(3) {
   left: 50%;
   top: 1px;
   width: 1px;
-  height: 22px;
+  height: 24px;
   transform: translateX(-50%) rotate(38deg);
-  background: linear-gradient(to bottom, transparent, rgba(217, 198, 160, 0.34), transparent);
+  background: linear-gradient(to bottom, transparent, rgba(217, 198, 160, 0.42), transparent);
+}
+
+.stela-mark-nav {
+  width: 28px;
+  height: 28px;
+}
+
+.stela-mark-open-incision::before {
+  border-top-color: transparent;
+  border-left-color: rgba(245, 240, 232, 0.42);
+}
+
+.stela-mark-open-incision span:nth-child(1) {
+  left: 0;
+  right: -2px;
+  transform: translateY(-50%) rotate(-12deg);
+}
+
+.stela-mark-open-incision span:nth-child(2) {
+  border-right-color: transparent;
+  border-bottom-color: rgba(245, 240, 232, 0.18);
+}
+
+.stela-mark-refracted-origin::before {
+  inset: 5px;
+  transform: rotate(45deg) skew(-5deg, -5deg);
+}
+
+.stela-mark-refracted-origin span:nth-child(2) {
+  inset: 5px 7px 7px 5px;
+  transform: rotate(45deg) translate(2px, -1px);
+  border-color: rgba(245, 240, 232, 0.22);
+}
+
+.stela-mark-refracted-origin span:nth-child(3) {
+  transform: translateX(-50%) rotate(31deg);
 }
 
 .stela-mark-small {
@@ -185,6 +223,12 @@ body {
 
 .stela-mark-small span:nth-child(3) {
   height: 15px;
+}
+
+.stela-wordmark {
+  font-size: 0.78rem;
+  font-weight: 520;
+  letter-spacing: 0.34em;
 }
 
 .header-cta:hover {
@@ -212,9 +256,9 @@ body {
 
 .hero-grid {
   background:
-    radial-gradient(circle at 72% 28%, rgba(217, 198, 160, 0.075), transparent 17rem),
-    radial-gradient(circle at 82% 64%, rgba(216, 220, 224, 0.055), transparent 20rem),
-    linear-gradient(118deg, transparent 51%, rgba(255, 255, 255, 0.058), transparent 51.36%, transparent 64%, rgba(217, 198, 160, 0.028), transparent 64.34%);
+    radial-gradient(circle at 70% 34%, rgba(217, 198, 160, 0.082), transparent 16rem),
+    radial-gradient(circle at 84% 62%, rgba(216, 220, 224, 0.052), transparent 21rem),
+    linear-gradient(118deg, transparent 55%, rgba(255, 255, 255, 0.05), transparent 55.28%, transparent 68%, rgba(217, 198, 160, 0.022), transparent 68.32%);
 }
 
 .hero-title {
@@ -335,16 +379,16 @@ body {
 
 .origin-surface {
   position: absolute;
-  inset: 72px 34px auto -18px;
-  height: 410px;
+  inset: 66px 42px auto -26px;
+  height: 424px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.135);
   border-radius: 3px;
   background:
     linear-gradient(126deg, rgba(255, 255, 255, 0.16), transparent 23%),
     linear-gradient(104deg, transparent 0 64%, rgba(255, 255, 255, 0.045) 64.2%, transparent 65%),
-    radial-gradient(circle at 25% 34%, rgba(245, 240, 232, 0.095), transparent 24%),
-    repeating-linear-gradient(98deg, rgba(255, 255, 255, 0.018), rgba(255, 255, 255, 0.018) 1px, transparent 1px, transparent 13px),
+    radial-gradient(circle at 27% 49%, rgba(245, 240, 232, 0.12), transparent 21%),
+    repeating-linear-gradient(98deg, rgba(255, 255, 255, 0.014), rgba(255, 255, 255, 0.014) 1px, transparent 1px, transparent 15px),
     linear-gradient(145deg, #181a1c, #070808 72%);
   box-shadow:
     0 42px 110px rgba(0, 0, 0, 0.66),
@@ -356,7 +400,7 @@ body {
 .surface-depth {
   position: absolute;
   inset: 9% 8% 11%;
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.058);
   border-radius: 2px;
   background: linear-gradient(112deg, rgba(255, 255, 255, 0.025), transparent 56%);
 }
@@ -365,18 +409,18 @@ body {
   position: absolute;
   left: 7%;
   right: 9%;
-  top: 43%;
+  top: 47%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(245, 240, 232, 0.18), transparent);
+  background: linear-gradient(90deg, transparent, rgba(245, 240, 232, 0.14), transparent);
 }
 
 .surface-refraction {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(132deg, transparent 0 36%, rgba(245, 240, 232, 0.076) 36.2%, transparent 36.75%),
-    linear-gradient(132deg, transparent 0 73%, rgba(217, 198, 160, 0.042) 73.2%, transparent 73.65%);
-  opacity: 0.62;
+    linear-gradient(132deg, transparent 0 38%, rgba(245, 240, 232, 0.068) 38.2%, transparent 38.65%),
+    linear-gradient(132deg, transparent 0 76%, rgba(217, 198, 160, 0.034) 76.2%, transparent 76.58%);
+  opacity: 0.56;
 }
 
 .surface-glint {
@@ -408,8 +452,8 @@ body {
 
 .engraved-origin {
   position: absolute;
-  inset: 114px 70px 86px 58px;
-  border: 1px solid rgba(255, 255, 255, 0.085);
+  inset: 116px 70px 88px 58px;
+  border: 1px solid rgba(255, 255, 255, 0.065);
   border-radius: 3px;
   background:
     linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.035), transparent),
@@ -418,54 +462,74 @@ body {
 
 .diamond-cut {
   position: absolute;
-  left: 52px;
+  left: 46px;
   top: 50%;
-  width: 112px;
-  height: 112px;
+  width: 124px;
+  height: 124px;
   transform: translateY(-50%) rotate(45deg);
-  border: 1px solid rgba(245, 240, 232, 0.84);
+  border: 1px solid rgba(245, 240, 232, 0.88);
   box-shadow:
-    inset 0 0 34px rgba(245, 240, 232, 0.16),
-    0 0 28px rgba(217, 198, 160, 0.18);
+    inset 1px 0 0 rgba(255, 255, 255, 0.2),
+    inset -1px 0 0 rgba(0, 0, 0, 0.52),
+    inset 0 0 34px rgba(245, 240, 232, 0.12),
+    0 0 26px rgba(217, 198, 160, 0.14);
+}
+
+.diamond-cut::before {
+  position: absolute;
+  content: "";
+  inset: -2px;
+  border: 1px solid rgba(0, 0, 0, 0.42);
+  opacity: 0.68;
+  transform: translate(1px, 1px);
 }
 
 .diamond-cut::after {
   position: absolute;
   content: "";
-  inset: 25px;
-  border: 1px solid rgba(245, 240, 232, 0.28);
+  inset: 28px;
+  border: 1px solid rgba(245, 240, 232, 0.26);
+  box-shadow:
+    inset 1px 0 0 rgba(255, 255, 255, 0.12),
+    inset -1px 0 0 rgba(0, 0, 0, 0.34);
 }
 
 .incision-core {
   position: absolute;
   left: 108px;
   top: 50%;
-  width: 7px;
-  height: 7px;
+  width: 8px;
+  height: 8px;
   border-radius: 999px;
   background: rgba(245, 240, 232, 0.95);
   box-shadow:
-    0 0 20px rgba(217, 198, 160, 0.44),
-    0 0 0 1px rgba(245, 240, 232, 0.24);
+    0 0 0 1px rgba(5, 5, 6, 0.7),
+    0 0 22px rgba(217, 198, 160, 0.48),
+    0 0 0 4px rgba(245, 240, 232, 0.035);
   transform: translate(-50%, -50%);
+  animation: originPulse 7.5s ease-in-out infinite;
 }
 
 .engraved-beam {
   position: absolute;
   left: 118px;
   top: calc(50% - 1px);
-  width: 312px;
+  width: 294px;
   height: 1px;
-  background: linear-gradient(90deg, rgba(245, 240, 232, 0.95), rgba(217, 198, 160, 0.26), transparent);
-  box-shadow: 0 0 14px rgba(217, 198, 160, 0.25);
+  background:
+    linear-gradient(90deg, rgba(245, 240, 232, 0.9), rgba(217, 198, 160, 0.22), transparent),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.42), rgba(0, 0, 0, 0.46));
+  box-shadow: 0 0 12px rgba(217, 198, 160, 0.2);
+  transform-origin: left center;
+  animation: proofLineCatch 8.5s ease-in-out infinite;
 }
 
 .mark-line {
   position: absolute;
   left: 188px;
   height: 1px;
-  background: linear-gradient(90deg, rgba(245, 240, 232, 0.08), rgba(245, 240, 232, 0.78), rgba(245, 240, 232, 0.04));
-  box-shadow: 0 0 16px rgba(245, 240, 232, 0.18);
+  background: linear-gradient(90deg, rgba(245, 240, 232, 0.035), rgba(245, 240, 232, 0.32), rgba(245, 240, 232, 0.02));
+  box-shadow: 0 0 10px rgba(245, 240, 232, 0.08);
 }
 
 .mark-line-a {
@@ -496,30 +560,78 @@ body {
 
 .proof-link {
   position: absolute;
-  left: 51%;
-  top: 384px;
-  width: 148px;
+  left: 140px;
+  top: 292px;
+  width: 366px;
   height: 1px;
-  transform: rotate(-14deg);
-  background: linear-gradient(90deg, transparent, rgba(217, 198, 160, 0.62), transparent);
+  transform: rotate(9deg);
+  transform-origin: left center;
+  background: linear-gradient(90deg, rgba(245, 240, 232, 0.72), rgba(217, 198, 160, 0.22), transparent 86%);
   box-shadow: 0 0 14px rgba(217, 198, 160, 0.18);
+}
+
+.hero-variant-refracted-surface .glass-reflection {
+  opacity: 0.82;
+  background:
+    linear-gradient(120deg, transparent 8%, rgba(255, 255, 255, 0.092), transparent 24%),
+    linear-gradient(151deg, transparent 52%, rgba(217, 198, 160, 0.042), transparent 66%),
+    radial-gradient(ellipse at 30% 48%, rgba(245, 240, 232, 0.095), transparent 36%);
+}
+
+.hero-variant-refracted-surface .surface-refraction {
+  opacity: 0.76;
+}
+
+.hero-variant-refracted-surface .origin-surface {
+  background:
+    linear-gradient(126deg, rgba(255, 255, 255, 0.18), transparent 24%),
+    linear-gradient(104deg, transparent 0 61%, rgba(255, 255, 255, 0.062) 61.2%, transparent 61.7%),
+    radial-gradient(circle at 29% 49%, rgba(245, 240, 232, 0.13), transparent 22%),
+    repeating-linear-gradient(98deg, rgba(255, 255, 255, 0.012), rgba(255, 255, 255, 0.012) 1px, transparent 1px, transparent 16px),
+    linear-gradient(145deg, #191b1d, #070808 72%);
+}
+
+.hero-variant-refracted-surface .proof-certificate {
+  opacity: 0.9;
+}
+
+.hero-variant-proof-emergence .proof-link {
+  width: 404px;
+  background: linear-gradient(90deg, rgba(245, 240, 232, 0.78), rgba(217, 198, 160, 0.3), rgba(255, 255, 255, 0.08) 92%);
+}
+
+.hero-variant-proof-emergence .proof-certificate {
+  top: 332px;
+  opacity: 0.94;
+}
+
+.hero-variant-proof-emergence .engraved-beam {
+  width: 326px;
+}
+
+.hero-variant-proof-emergence .diamond-cut {
+  box-shadow:
+    inset 1px 0 0 rgba(255, 255, 255, 0.22),
+    inset -1px 0 0 rgba(0, 0, 0, 0.52),
+    inset 0 0 34px rgba(245, 240, 232, 0.14),
+    0 0 30px rgba(217, 198, 160, 0.18);
 }
 
 .proof-certificate {
   position: absolute;
-  right: 0;
-  top: 326px;
-  width: min(70%, 282px);
+  right: -6px;
+  top: 342px;
+  width: min(66%, 264px);
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.09);
   border-radius: 3px;
-  padding: 16px;
+  padding: 15px;
   background:
-    linear-gradient(132deg, rgba(255, 255, 255, 0.105), rgba(255, 255, 255, 0.02)),
-    rgba(9, 10, 11, 0.66);
+    linear-gradient(132deg, rgba(255, 255, 255, 0.085), rgba(255, 255, 255, 0.018)),
+    rgba(9, 10, 11, 0.58);
   box-shadow:
-    0 20px 50px rgba(0, 0, 0, 0.38),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    0 18px 44px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(24px);
 }
 
@@ -528,7 +640,7 @@ body {
   content: "";
   inset: 0;
   background:
-    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0.025) 1px, transparent 1px, transparent 14px);
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.018), rgba(255, 255, 255, 0.018) 1px, transparent 1px, transparent 16px);
   mask-image: linear-gradient(to bottom, transparent, black 22%, transparent 92%);
   pointer-events: none;
 }
@@ -543,7 +655,7 @@ body {
 }
 
 .cert-top {
-  color: rgba(255, 255, 255, 0.48);
+  color: rgba(255, 255, 255, 0.42);
   font-size: 0.78rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -557,7 +669,7 @@ body {
 
 .cert-mark {
   justify-content: flex-start;
-  margin-top: 30px;
+  margin-top: 26px;
 }
 
 .cert-mark p {
@@ -571,7 +683,7 @@ body {
 .cert-mark h3 {
   margin: 0;
   color: white;
-  font-size: 1.45rem;
+  font-size: 1.34rem;
   font-weight: 600;
   letter-spacing: -0.03em;
 }
@@ -579,23 +691,23 @@ body {
 .evidence-ledger {
   position: relative;
   display: grid;
-  gap: 8px;
-  margin-top: 22px;
+  gap: 6px;
+  margin-top: 20px;
 }
 
 .evidence-ledger div {
   display: flex;
   align-items: center;
   gap: 10px;
-  min-height: 32px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.075);
-  color: rgba(255, 255, 255, 0.66);
-  font-size: 0.88rem;
+  min-height: 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.84rem;
 }
 
 .evidence-ledger span {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   border-radius: 99px;
   background: var(--stela-champagne);
   box-shadow: 0 0 16px rgba(217, 198, 160, 0.42);
@@ -1519,6 +1631,33 @@ body {
   }
 }
 
+@keyframes proofLineCatch {
+  0%,
+  62%,
+  100% {
+    opacity: 0.82;
+    filter: none;
+  }
+
+  22%,
+  28% {
+    opacity: 1;
+    filter: drop-shadow(0 0 6px rgba(217, 198, 160, 0.22));
+  }
+}
+
+@keyframes originPulse {
+  0%,
+  68%,
+  100% {
+    opacity: 0.86;
+  }
+
+  24% {
+    opacity: 1;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -1550,6 +1689,14 @@ body {
 @media (max-width: 1024px) {
   .precision-wrap {
     min-height: 590px;
+  }
+
+  .proof-certificate {
+    width: min(62%, 250px);
+  }
+
+  .proof-link {
+    width: 330px;
   }
 
   .anchor-panel,
@@ -1584,6 +1731,11 @@ body {
 }
 
 @media (max-width: 760px) {
+  .hero-title {
+    font-size: 2.75rem;
+    letter-spacing: -0.04em;
+  }
+
   .precision-wrap {
     min-height: 540px;
   }
@@ -1636,11 +1788,14 @@ body {
   .proof-certificate {
     top: 318px;
     right: 2px;
-    width: calc(100% - 22px);
+    width: min(82%, 272px);
   }
 
   .proof-link {
-    display: none;
+    left: 64px;
+    top: 234px;
+    width: 244px;
+    transform: rotate(21deg);
   }
 
   .diagram-row,
