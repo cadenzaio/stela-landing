@@ -2,10 +2,12 @@ const navItems = ["Platform", "Marking System", "Use Cases", "Investors", "Conta
 
 type LogoVariant = "origin-lozenge" | "open-incision" | "refracted-origin";
 type HeroVariant = "etched-origin" | "refracted-surface" | "proof-emergence";
+type MaterialTreatment = "subtle-incision" | "optical-incision";
 
 // Development review switch. Keep production on the recommended defaults.
 const LOGO_VARIANT: LogoVariant = "origin-lozenge";
 const HERO_VARIANT: HeroVariant = "etched-origin";
+const MATERIAL_TREATMENT: MaterialTreatment = "optical-incision";
 
 const evidenceRows = [
   "Machine identity verified",
@@ -159,7 +161,7 @@ function Hero() {
 function PrecisionMarkVisual() {
   return (
     <div
-      className={`precision-wrap hero-variant-${HERO_VARIANT}`}
+      className={`precision-wrap hero-variant-${HERO_VARIANT} material-${MATERIAL_TREATMENT}`}
       aria-label="Permanent physical mark connected to a digital certificate"
     >
       <div className="glass-reflection" aria-hidden="true" />
@@ -169,14 +171,10 @@ function PrecisionMarkVisual() {
         <div className="surface-glint" />
         <div className="surface-refraction" />
         <div className="surface-etch top" />
-        <div className="surface-etch bottom" />
         <div className="engraved-origin">
           <div className="diamond-cut" />
           <div className="incision-core" />
-          <div className="engraved-beam" />
           <div className="mark-line mark-line-a" />
-          <div className="mark-line mark-line-b" />
-          <div className="mark-line mark-line-c" />
         </div>
         <div className="origin-label">Physical origin</div>
       </div>

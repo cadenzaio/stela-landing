@@ -173,8 +173,21 @@ body {
 }
 
 .stela-mark-nav {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
+}
+
+.stela-mark-nav::before {
+  inset: 5px;
+}
+
+.stela-mark-nav::after {
+  width: 4.5px;
+  height: 4.5px;
+}
+
+.stela-mark-nav span:nth-child(3) {
+  height: 29px;
 }
 
 .stela-mark-open-incision::before {
@@ -228,7 +241,7 @@ body {
 .stela-wordmark {
   font-size: 0.78rem;
   font-weight: 520;
-  letter-spacing: 0.34em;
+  letter-spacing: 0.31em;
 }
 
 .header-cta:hover {
@@ -256,9 +269,9 @@ body {
 
 .hero-grid {
   background:
-    radial-gradient(circle at 70% 34%, rgba(217, 198, 160, 0.082), transparent 16rem),
+    radial-gradient(circle at 71% 35%, rgba(217, 198, 160, 0.082), transparent 16rem),
     radial-gradient(circle at 84% 62%, rgba(216, 220, 224, 0.052), transparent 21rem),
-    linear-gradient(118deg, transparent 55%, rgba(255, 255, 255, 0.05), transparent 55.28%, transparent 68%, rgba(217, 198, 160, 0.022), transparent 68.32%);
+    linear-gradient(118deg, transparent 57%, rgba(255, 255, 255, 0.034), transparent 57.24%, transparent 70%, rgba(217, 198, 160, 0.016), transparent 70.28%);
 }
 
 .hero-title {
@@ -357,14 +370,13 @@ body {
 
 .glass-reflection {
   position: absolute;
-  inset: 26px 0 12%;
+  inset: 38px 3% 15%;
   border-radius: 3px;
   background:
-    linear-gradient(122deg, transparent 9%, rgba(255, 255, 255, 0.072), transparent 24%),
-    linear-gradient(158deg, transparent 58%, rgba(217, 198, 160, 0.03), transparent 71%),
-    radial-gradient(ellipse at 28% 52%, rgba(245, 240, 232, 0.08), transparent 38%);
-  transform: rotate(-3deg) skewX(-7deg);
-  opacity: 0.68;
+    linear-gradient(122deg, transparent 12%, rgba(255, 255, 255, 0.048), transparent 25%),
+    radial-gradient(ellipse at 30% 54%, rgba(245, 240, 232, 0.06), transparent 34%);
+  transform: rotate(-3deg) skewX(-6deg);
+  opacity: 0.46;
   pointer-events: none;
 }
 
@@ -379,48 +391,52 @@ body {
 
 .origin-surface {
   position: absolute;
-  inset: 66px 42px auto -26px;
-  height: 424px;
+  inset: 66px 30px auto -30px;
+  height: 432px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.135);
+  border: 1px solid rgba(255, 255, 255, 0.115);
   border-radius: 3px;
   background:
-    linear-gradient(126deg, rgba(255, 255, 255, 0.16), transparent 23%),
-    linear-gradient(104deg, transparent 0 64%, rgba(255, 255, 255, 0.045) 64.2%, transparent 65%),
-    radial-gradient(circle at 27% 49%, rgba(245, 240, 232, 0.12), transparent 21%),
-    repeating-linear-gradient(98deg, rgba(255, 255, 255, 0.014), rgba(255, 255, 255, 0.014) 1px, transparent 1px, transparent 15px),
-    linear-gradient(145deg, #181a1c, #070808 72%);
+    linear-gradient(126deg, rgba(255, 255, 255, 0.14), transparent 22%),
+    linear-gradient(103deg, transparent 0 69%, rgba(255, 255, 255, 0.032) 69.2%, transparent 69.6%),
+    radial-gradient(circle at 27% 50%, rgba(245, 240, 232, 0.095), transparent 19%),
+    repeating-linear-gradient(98deg, rgba(255, 255, 255, 0.009), rgba(255, 255, 255, 0.009) 1px, transparent 1px, transparent 18px),
+    linear-gradient(145deg, #17191a, #060707 72%);
   box-shadow:
-    0 42px 110px rgba(0, 0, 0, 0.66),
-    inset 0 1px 0 rgba(255, 255, 255, 0.22),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.08);
+    0 44px 120px rgba(0, 0, 0, 0.68),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.36),
+    inset -1px 0 0 rgba(255, 255, 255, 0.055);
   transform: rotateX(2deg) rotateY(-6deg);
 }
 
 .surface-depth {
   position: absolute;
-  inset: 9% 8% 11%;
-  border: 1px solid rgba(255, 255, 255, 0.058);
-  border-radius: 2px;
-  background: linear-gradient(112deg, rgba(255, 255, 255, 0.025), transparent 56%);
+  inset: 0;
+  border: 0;
+  border-radius: 0;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.055), transparent 16%, transparent 84%, rgba(255, 255, 255, 0.035)),
+    radial-gradient(ellipse at 36% 48%, transparent 0 26%, rgba(0, 0, 0, 0.18) 52%, transparent 76%);
+  opacity: 0.82;
 }
 
 .surface-horizon {
   position: absolute;
   left: 7%;
   right: 9%;
-  top: 47%;
+  top: 48%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(245, 240, 232, 0.14), transparent);
+  background: linear-gradient(90deg, transparent, rgba(245, 240, 232, 0.09), transparent);
 }
 
 .surface-refraction {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(132deg, transparent 0 38%, rgba(245, 240, 232, 0.068) 38.2%, transparent 38.65%),
-    linear-gradient(132deg, transparent 0 76%, rgba(217, 198, 160, 0.034) 76.2%, transparent 76.58%);
-  opacity: 0.56;
+    linear-gradient(132deg, transparent 0 41%, rgba(245, 240, 232, 0.05) 41.2%, transparent 41.55%),
+    linear-gradient(132deg, transparent 0 78%, rgba(217, 198, 160, 0.024) 78.2%, transparent 78.48%);
+  opacity: 0.5;
 }
 
 .surface-glint {
@@ -429,9 +445,9 @@ body {
   width: 76%;
   height: 18%;
   transform: rotate(-15deg);
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.34), transparent);
-  filter: blur(8px);
-  animation: glint 8s ease-in-out infinite;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.24), transparent);
+  filter: blur(10px);
+  animation: glint 12s ease-in-out infinite;
 }
 
 .surface-etch {
@@ -439,7 +455,7 @@ body {
   left: 42px;
   right: 70px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(245, 240, 232, 0.22), transparent);
+  background: linear-gradient(90deg, transparent, rgba(245, 240, 232, 0.1), transparent);
 }
 
 .surface-etch.top {
@@ -452,99 +468,100 @@ body {
 
 .engraved-origin {
   position: absolute;
-  inset: 116px 70px 88px 58px;
-  border: 1px solid rgba(255, 255, 255, 0.065);
-  border-radius: 3px;
+  inset: 112px 64px 90px 56px;
+  border: 0;
+  border-radius: 0;
   background:
-    linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.035), transparent),
-    rgba(255, 255, 255, 0.012);
+    linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.018), transparent);
 }
 
 .diamond-cut {
   position: absolute;
-  left: 46px;
+  left: 44px;
   top: 50%;
   width: 124px;
   height: 124px;
   transform: translateY(-50%) rotate(45deg);
-  border: 1px solid rgba(245, 240, 232, 0.88);
+  border: 1px solid rgba(245, 240, 232, 0.4);
   box-shadow:
-    inset 1px 0 0 rgba(255, 255, 255, 0.2),
-    inset -1px 0 0 rgba(0, 0, 0, 0.52),
-    inset 0 0 34px rgba(245, 240, 232, 0.12),
-    0 0 26px rgba(217, 198, 160, 0.14);
+    inset 1px 0 0 rgba(255, 255, 255, 0.22),
+    inset -1px 0 0 rgba(0, 0, 0, 0.6),
+    1px 1px 0 rgba(0, 0, 0, 0.5),
+    0 0 22px rgba(217, 198, 160, 0.08);
+  opacity: 0.96;
 }
 
 .diamond-cut::before {
   position: absolute;
   content: "";
-  inset: -2px;
-  border: 1px solid rgba(0, 0, 0, 0.42);
-  opacity: 0.68;
-  transform: translate(1px, 1px);
+  inset: -1px;
+  border: 1px solid rgba(0, 0, 0, 0.48);
+  opacity: 0.72;
+  transform: translate(1.5px, 1.5px);
 }
 
 .diamond-cut::after {
   position: absolute;
   content: "";
   inset: 28px;
-  border: 1px solid rgba(245, 240, 232, 0.26);
+  border: 1px solid rgba(245, 240, 232, 0.18);
   box-shadow:
-    inset 1px 0 0 rgba(255, 255, 255, 0.12),
-    inset -1px 0 0 rgba(0, 0, 0, 0.34);
+    inset 1px 0 0 rgba(255, 255, 255, 0.1),
+    inset -1px 0 0 rgba(0, 0, 0, 0.4),
+    1px 1px 0 rgba(0, 0, 0, 0.28);
+}
+
+.material-optical-incision .diamond-cut {
+  border-color: rgba(245, 240, 232, 0.5);
+  background:
+    linear-gradient(135deg, transparent 0 43%, rgba(245, 240, 232, 0.12) 47%, transparent 53%),
+    linear-gradient(45deg, transparent 0 48%, rgba(0, 0, 0, 0.18) 52%, transparent 56%);
+}
+
+.material-subtle-incision .diamond-cut {
+  border-color: rgba(245, 240, 232, 0.32);
+  box-shadow:
+    inset 1px 0 0 rgba(255, 255, 255, 0.14),
+    inset -1px 0 0 rgba(0, 0, 0, 0.56),
+    1px 1px 0 rgba(0, 0, 0, 0.44);
 }
 
 .incision-core {
   position: absolute;
-  left: 108px;
+  left: 106px;
   top: 50%;
-  width: 8px;
-  height: 8px;
+  width: 9px;
+  height: 9px;
   border-radius: 999px;
-  background: rgba(245, 240, 232, 0.95);
-  box-shadow:
-    0 0 0 1px rgba(5, 5, 6, 0.7),
-    0 0 22px rgba(217, 198, 160, 0.48),
-    0 0 0 4px rgba(245, 240, 232, 0.035);
-  transform: translate(-50%, -50%);
-  animation: originPulse 7.5s ease-in-out infinite;
-}
-
-.engraved-beam {
-  position: absolute;
-  left: 118px;
-  top: calc(50% - 1px);
-  width: 294px;
-  height: 1px;
+  border: 1px solid rgba(245, 240, 232, 0.48);
   background:
-    linear-gradient(90deg, rgba(245, 240, 232, 0.9), rgba(217, 198, 160, 0.22), transparent),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.42), rgba(0, 0, 0, 0.46));
-  box-shadow: 0 0 12px rgba(217, 198, 160, 0.2);
-  transform-origin: left center;
-  animation: proofLineCatch 8.5s ease-in-out infinite;
+    radial-gradient(circle at 36% 34%, rgba(255, 255, 255, 0.94), rgba(217, 198, 160, 0.42) 28%, rgba(5, 5, 6, 0.64) 54%, rgba(245, 240, 232, 0.22) 72%, transparent 74%);
+  box-shadow:
+    inset 1px 1px 0 rgba(255, 255, 255, 0.28),
+    inset -1px -1px 0 rgba(0, 0, 0, 0.78),
+    0 0 13px rgba(217, 198, 160, 0.24),
+    0 0 0 4px rgba(245, 240, 232, 0.022);
+  transform: translate(-50%, -50%);
+  animation: originGlint 13s ease-in-out infinite;
 }
 
 .mark-line {
   position: absolute;
-  left: 188px;
+  left: 106px;
   height: 1px;
-  background: linear-gradient(90deg, rgba(245, 240, 232, 0.035), rgba(245, 240, 232, 0.32), rgba(245, 240, 232, 0.02));
-  box-shadow: 0 0 10px rgba(245, 240, 232, 0.08);
+  background:
+    linear-gradient(90deg, rgba(245, 240, 232, 0.62), rgba(217, 198, 160, 0.24) 35%, rgba(245, 240, 232, 0.055) 67%, transparent),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.22), rgba(0, 0, 0, 0.44));
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.5),
+    0 0 10px rgba(217, 198, 160, 0.12);
+  transform-origin: left center;
+  animation: incisionCatch 12s ease-in-out infinite;
 }
 
 .mark-line-a {
-  top: 58px;
-  width: 210px;
-}
-
-.mark-line-b {
-  top: 91px;
-  width: 246px;
-}
-
-.mark-line-c {
-  top: 124px;
-  width: 148px;
+  top: calc(50% - 1px);
+  width: 320px;
 }
 
 .origin-label {
@@ -560,14 +577,17 @@ body {
 
 .proof-link {
   position: absolute;
-  left: 140px;
-  top: 292px;
-  width: 366px;
+  left: 132px;
+  top: 294px;
+  width: 360px;
   height: 1px;
   transform: rotate(9deg);
   transform-origin: left center;
-  background: linear-gradient(90deg, rgba(245, 240, 232, 0.72), rgba(217, 198, 160, 0.22), transparent 86%);
-  box-shadow: 0 0 14px rgba(217, 198, 160, 0.18);
+  background:
+    linear-gradient(90deg, rgba(245, 240, 232, 0.5), rgba(217, 198, 160, 0.18), rgba(245, 240, 232, 0.045) 78%, transparent 92%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(0, 0, 0, 0.36));
+  box-shadow: 0 0 10px rgba(217, 198, 160, 0.12);
+  animation: proofLineReveal 14s ease-in-out infinite;
 }
 
 .hero-variant-refracted-surface .glass-reflection {
@@ -596,17 +616,15 @@ body {
 }
 
 .hero-variant-proof-emergence .proof-link {
-  width: 404px;
-  background: linear-gradient(90deg, rgba(245, 240, 232, 0.78), rgba(217, 198, 160, 0.3), rgba(255, 255, 255, 0.08) 92%);
+  width: 392px;
+  background:
+    linear-gradient(90deg, rgba(245, 240, 232, 0.56), rgba(217, 198, 160, 0.22), rgba(255, 255, 255, 0.06) 88%, transparent 96%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(0, 0, 0, 0.36));
 }
 
 .hero-variant-proof-emergence .proof-certificate {
-  top: 332px;
-  opacity: 0.94;
-}
-
-.hero-variant-proof-emergence .engraved-beam {
-  width: 326px;
+  top: 334px;
+  opacity: 0.9;
 }
 
 .hero-variant-proof-emergence .diamond-cut {
@@ -619,20 +637,31 @@ body {
 
 .proof-certificate {
   position: absolute;
-  right: -6px;
-  top: 342px;
-  width: min(66%, 264px);
+  right: -2px;
+  top: 346px;
+  width: min(60%, 244px);
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 3px;
-  padding: 15px;
+  padding: 14px;
   background:
-    linear-gradient(132deg, rgba(255, 255, 255, 0.085), rgba(255, 255, 255, 0.018)),
-    rgba(9, 10, 11, 0.58);
+    linear-gradient(132deg, rgba(255, 255, 255, 0.066), rgba(255, 255, 255, 0.014)),
+    rgba(9, 10, 11, 0.52);
   box-shadow:
-    0 18px 44px rgba(0, 0, 0, 0.34),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    0 16px 38px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.075);
   backdrop-filter: blur(24px);
+}
+
+.proof-certificate::after {
+  position: absolute;
+  content: "";
+  left: -1px;
+  top: 46px;
+  width: 10px;
+  height: 1px;
+  background: rgba(217, 198, 160, 0.42);
+  box-shadow: 0 0 8px rgba(217, 198, 160, 0.16);
 }
 
 .proof-certificate::before {
@@ -655,26 +684,26 @@ body {
 }
 
 .cert-top {
-  color: rgba(255, 255, 255, 0.42);
-  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.38);
+  font-size: 0.72rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
 .cert-top strong {
   color: var(--stela-champagne);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 500;
 }
 
 .cert-mark {
   justify-content: flex-start;
-  margin-top: 26px;
+  margin-top: 24px;
 }
 
 .cert-mark p {
   margin: 0 0 4px;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.38);
   font-family: var(--font-geist-mono), monospace;
   font-size: 0.72rem;
   letter-spacing: 0.16em;
@@ -683,7 +712,7 @@ body {
 .cert-mark h3 {
   margin: 0;
   color: white;
-  font-size: 1.34rem;
+  font-size: 1.22rem;
   font-weight: 600;
   letter-spacing: -0.03em;
 }
@@ -691,23 +720,23 @@ body {
 .evidence-ledger {
   position: relative;
   display: grid;
-  gap: 6px;
-  margin-top: 20px;
+  gap: 5px;
+  margin-top: 18px;
 }
 
 .evidence-ledger div {
   display: flex;
   align-items: center;
   gap: 10px;
-  min-height: 30px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.055);
-  color: rgba(255, 255, 255, 0.58);
-  font-size: 0.84rem;
+  min-height: 28px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.044);
+  color: rgba(255, 255, 255, 0.52);
+  font-size: 0.8rem;
 }
 
 .evidence-ledger span {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
   border-radius: 99px;
   background: var(--stela-champagne);
   box-shadow: 0 0 16px rgba(217, 198, 160, 0.42);
@@ -1631,30 +1660,43 @@ body {
   }
 }
 
-@keyframes proofLineCatch {
+@keyframes incisionCatch {
   0%,
-  62%,
+  70%,
   100% {
-    opacity: 0.82;
+    opacity: 0.76;
     filter: none;
   }
 
-  22%,
-  28% {
+  18%,
+  23% {
     opacity: 1;
-    filter: drop-shadow(0 0 6px rgba(217, 198, 160, 0.22));
+    filter: drop-shadow(0 0 5px rgba(217, 198, 160, 0.16));
   }
 }
 
-@keyframes originPulse {
+@keyframes originGlint {
   0%,
-  68%,
+  72%,
   100% {
-    opacity: 0.86;
+    filter: none;
   }
 
-  24% {
-    opacity: 1;
+  20% {
+    filter: drop-shadow(0 0 5px rgba(245, 240, 232, 0.24));
+  }
+}
+
+@keyframes proofLineReveal {
+  0%,
+  58%,
+  100% {
+    opacity: 0.72;
+  }
+
+  24%,
+  30% {
+    opacity: 0.95;
   }
 }
 
@@ -1764,25 +1806,12 @@ body {
     left: 64px;
   }
 
-  .engraved-beam {
-    left: 72px;
-    width: 180px;
-  }
-
   .mark-line {
-    left: 122px;
+    left: 64px;
   }
 
   .mark-line-a {
-    width: 128px;
-  }
-
-  .mark-line-b {
-    width: 164px;
-  }
-
-  .mark-line-c {
-    width: 104px;
+    width: 176px;
   }
 
   .proof-certificate {
