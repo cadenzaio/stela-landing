@@ -172,14 +172,14 @@ function PrecisionMarkVisual() {
         <div className="surface-refraction" />
         <div className="surface-etch top" />
         <div className="engraved-origin">
-          <div className="diamond-cut" />
-          <div className="incision-core" />
-          <div className="mark-line mark-line-a" />
+          <StelaMark variant="full" size="hero" tone="etched" label="Stela mark engraved into the surface" />
         </div>
         <div className="origin-label">Physical origin</div>
       </div>
 
-      <div className="proof-link" />
+      <svg className="proof-link" viewBox="0 0 242 108" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M1 10 L62 1 L241 107" />
+      </svg>
 
       <div className="proof-certificate">
         <div className="cert-top">

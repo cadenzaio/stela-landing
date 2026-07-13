@@ -21,6 +21,17 @@ function LegacyBalancedMark() {
   );
 }
 
+function LegacyHeroMark() {
+  return (
+    <span className="legacy-hero-mark" aria-label="Previous atmospheric hero mark" role="img">
+      <span className="legacy-hero-outline" />
+      <span className="legacy-hero-inner" />
+      <span className="legacy-hero-trace" />
+      <span className="legacy-hero-point" />
+    </span>
+  );
+}
+
 export function StelaIdentity() {
   return (
     <main className="identity-page">
@@ -136,6 +147,23 @@ export function StelaIdentity() {
           <figure>
             <StelaMark variant="full" size="display" label="Refined Balanced Stela mark" />
             <figcaption>Refined master</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section className="identity-section" aria-labelledby="hero-alignment-title">
+        <div className="identity-section-heading">
+          <p>07</p>
+          <h2 id="hero-alignment-title">Hero mark alignment</h2>
+        </div>
+        <div className="hero-mark-comparison">
+          <figure className="hero-mark-specimen">
+            <LegacyHeroMark />
+            <figcaption>Previous surface mark</figcaption>
+          </figure>
+          <figure className="hero-mark-specimen">
+            <StelaMark variant="full" size="hero" tone="etched" label="Refined hero-scale Stela mark" />
+            <figcaption>Logo-derived surface mark</figcaption>
           </figure>
         </div>
       </section>

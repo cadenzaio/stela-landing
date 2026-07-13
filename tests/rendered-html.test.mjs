@@ -80,7 +80,8 @@ test("keeps the starter preview removed from the finished site", async () => {
   assert.match(landing, /material-\$\{MATERIAL_TREATMENT\}/);
   assert.match(landing, /glass-reflection/);
   assert.match(landing, /surface-depth/);
-  assert.match(landing, /incision-core/);
+  assert.match(landing, /<StelaMark variant="full" size="hero" tone="etched"/);
+  assert.doesNotMatch(landing, /diamond-cut|incision-core|mark-line-a/);
   assert.match(landing, /proof-link/);
   assert.match(landing, /device-trust-line/);
   assert.match(landing, /final-trust-line/);
@@ -98,6 +99,7 @@ test("keeps the starter preview removed from the finished site", async () => {
   assert.match(identity, /Favicon scale/);
   assert.match(identity, /Engraved material/);
   assert.match(identity, /Balanced refinement/);
+  assert.match(identity, /Hero mark alignment/);
   assert.match(favicon, /<circle cx="24" cy="24"/);
   assert.doesNotMatch(brand + identity, /arrow|shield|monogram/i);
 
@@ -116,4 +118,6 @@ test("server-renders the Stela identity validation surface", async () => {
   assert.match(html, /Dark architectural glass/);
   assert.match(html, /Selected concept/);
   assert.match(html, /Refined master/);
+  assert.match(html, /Previous surface mark/);
+  assert.match(html, /Logo-derived surface mark/);
 });

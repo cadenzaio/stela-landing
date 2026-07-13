@@ -1,5 +1,5 @@
 type StelaMarkVariant = "full" | "compact";
-type StelaMarkSize = "small" | "nav" | "display" | "favicon-16" | "favicon-24" | "favicon-32";
+type StelaMarkSize = "small" | "nav" | "display" | "hero" | "favicon-16" | "favicon-24" | "favicon-32";
 type StelaMarkTone = "light" | "dark" | "etched";
 
 export function StelaMark({
