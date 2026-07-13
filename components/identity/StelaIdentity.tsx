@@ -79,7 +79,7 @@ export function StelaIdentity() {
         </div>
         <div className="lockup-test dark-specimen">
           <Lockup />
-          <span>Compact optical master · 38px symbol</span>
+          <span>Compact optical master · 36px symbol</span>
         </div>
       </section>
 
