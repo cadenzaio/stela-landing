@@ -109,136 +109,108 @@ body {
 
 .stela-mark {
   position: relative;
-  display: inline-grid;
+  display: inline-block;
   width: 26px;
   height: 26px;
-  place-items: center;
   flex: 0 0 auto;
-  color: rgba(245, 240, 232, 0.9);
-  filter: drop-shadow(0 0 8px rgba(245, 240, 232, 0.12));
+  color: rgba(245, 240, 232, 0.92);
 }
 
-.stela-mark::before,
-.stela-mark::after,
 .stela-mark span {
   position: absolute;
-  content: "";
+  display: block;
   pointer-events: none;
 }
 
-.stela-mark::before {
-  inset: 4px;
-  transform: rotate(45deg);
-  border: 1.25px solid;
-  border-color:
-    rgba(245, 240, 232, 0.9)
-    rgba(245, 240, 232, 0.42)
-    rgba(245, 240, 232, 0.22)
-    rgba(217, 198, 160, 0.62);
-  background:
-    linear-gradient(135deg, transparent 43%, rgba(245, 240, 232, 0.16) 47%, rgba(0, 0, 0, 0.18) 52%, transparent 56%),
-    rgba(255, 255, 255, 0.018);
-  box-shadow:
-    inset 1px 1px 0 rgba(255, 255, 255, 0.08),
-    1px 1px 0 rgba(0, 0, 0, 0.42);
-}
-
-.stela-mark::after {
-  top: 50%;
-  left: 50%;
-  width: 4px;
-  height: 4px;
-  border-radius: 999px;
-  background: rgba(245, 240, 232, 0.92);
-  box-shadow:
-    0 0 0 1px rgba(5, 5, 6, 0.72),
-    0 0 12px rgba(217, 198, 160, 0.48);
-  transform: translate(-50%, -50%);
-}
-
-.stela-mark span:nth-child(1) {
-  left: 2px;
-  right: 2px;
-  top: 50%;
-  height: 1px;
-  transform: translateY(-50%) rotate(-18deg);
-  background: linear-gradient(90deg, transparent, rgba(245, 240, 232, 0.86), rgba(217, 198, 160, 0.46), transparent);
-}
-
-.stela-mark span:nth-child(2) {
-  inset: 8px;
+.stela-mark-outline,
+.stela-mark-inner {
   transform: rotate(45deg);
   border: 1px solid;
-  border-color: rgba(245, 240, 232, 0.42) rgba(245, 240, 232, 0.18) rgba(0, 0, 0, 0.52) rgba(217, 198, 160, 0.28);
+  box-shadow: 1px 1px 0 rgba(5, 5, 6, 0.36);
 }
 
-.stela-mark span:nth-child(3) {
-  left: 50%;
-  top: 1px;
-  width: 1px;
-  height: 24px;
-  transform: translateX(-50%) rotate(38deg);
-  background: linear-gradient(to bottom, transparent, rgba(217, 198, 160, 0.42), transparent);
+.stela-mark-outline {
+  inset: 20%;
+  border-color:
+    currentColor
+    rgba(245, 240, 232, 0.34)
+    rgba(245, 240, 232, 0.2)
+    rgba(217, 198, 160, 0.58);
+}
+
+.stela-mark-inner {
+  inset: 34%;
+  border-color:
+    rgba(245, 240, 232, 0.4)
+    rgba(245, 240, 232, 0.1)
+    rgba(245, 240, 232, 0.14)
+    rgba(217, 198, 160, 0.24);
+  box-shadow: 1px 1px 0 rgba(5, 5, 6, 0.18);
+}
+
+.stela-mark-trace {
+  left: 36%;
+  top: 50%;
+  width: 47%;
+  height: 1px;
+  transform: translateY(-50%) rotate(-9deg);
+  transform-origin: left center;
+  background: linear-gradient(90deg, rgba(245, 240, 232, 0.2), currentColor 30%, rgba(245, 240, 232, 0.78) 50%, rgba(217, 198, 160, 0.24) 78%, transparent);
+  box-shadow: 0 1px 0 rgba(5, 5, 6, 0.56);
+}
+
+.stela-mark-point {
+  left: 49%;
+  top: 50%;
+  width: 3px;
+  height: 3px;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(245, 240, 232, 0.88);
+  border-radius: 50%;
+  background: rgba(245, 240, 232, 0.82);
+  box-shadow: 0 0 0 1px rgba(5, 5, 6, 0.72);
 }
 
 .stela-mark-nav {
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
 }
 
-.stela-mark-nav::before {
-  inset: 6px;
+.stela-mark-display {
+  width: 116px;
+  height: 116px;
 }
 
-.stela-mark-nav::after {
-  width: 4px;
-  height: 4px;
+.stela-mark-display .stela-mark-outline,
+.stela-mark-full .stela-mark-outline {
+  inset: 18%;
 }
 
-.stela-mark-nav span:nth-child(2) {
-  inset: 11px;
+.stela-mark-display .stela-mark-inner,
+.stela-mark-full .stela-mark-inner {
+  inset: 31%;
 }
 
-.stela-mark-origin-lozenge span:nth-child(1) {
-  left: 4px;
-  right: 4px;
-  transform: translateY(-50%) rotate(-10deg);
-  background: linear-gradient(90deg, transparent, rgba(245, 240, 232, 0.22) 18%, rgba(245, 240, 232, 0.92) 48%, rgba(217, 198, 160, 0.36) 60%, transparent 86%);
+.stela-mark-display .stela-mark-trace,
+.stela-mark-full .stela-mark-trace {
+  left: 34%;
+  width: 50%;
 }
 
-.stela-mark-origin-lozenge span:nth-child(3) {
-  display: none;
+.stela-mark-display .stela-mark-point {
+  width: 5px;
+  height: 5px;
 }
 
-.stela-mark-open-incision::before {
-  border-top-color: transparent;
-  border-left-color: rgba(245, 240, 232, 0.42);
-}
-
-.stela-mark-open-incision span:nth-child(1) {
-  left: 0;
-  right: -2px;
-  transform: translateY(-50%) rotate(-12deg);
-}
-
-.stela-mark-open-incision span:nth-child(2) {
+.stela-mark-compact .stela-mark-inner {
+  inset: 35%;
   border-right-color: transparent;
-  border-bottom-color: rgba(245, 240, 232, 0.18);
+  border-bottom-color: transparent;
 }
 
-.stela-mark-refracted-origin::before {
-  inset: 5px;
-  transform: rotate(45deg) skew(-5deg, -5deg);
-}
-
-.stela-mark-refracted-origin span:nth-child(2) {
-  inset: 5px 7px 7px 5px;
-  transform: rotate(45deg) translate(2px, -1px);
-  border-color: rgba(245, 240, 232, 0.22);
-}
-
-.stela-mark-refracted-origin span:nth-child(3) {
-  transform: translateX(-50%) rotate(31deg);
+.stela-mark-compact .stela-mark-trace {
+  left: 38%;
+  width: 43%;
 }
 
 .stela-mark-small {
@@ -246,22 +218,76 @@ body {
   height: 16px;
 }
 
-.stela-mark-small::before {
+.stela-mark-small .stela-mark-outline {
   inset: 3px;
 }
 
-.stela-mark-small span:nth-child(2) {
-  inset: 6px;
+.stela-mark-small .stela-mark-inner {
+  display: none;
 }
 
-.stela-mark-small span:nth-child(3) {
-  height: 15px;
+.stela-mark-small .stela-mark-trace {
+  left: 34%;
+  width: 54%;
+}
+
+.stela-mark-small .stela-mark-point {
+  width: 2px;
+  height: 2px;
+  border: 0;
+}
+
+.stela-mark-favicon-16 {
+  width: 16px;
+  height: 16px;
+}
+
+.stela-mark-favicon-24 {
+  width: 24px;
+  height: 24px;
+}
+
+.stela-mark-favicon-32 {
+  width: 32px;
+  height: 32px;
+}
+
+.stela-mark-dark {
+  color: #09090a;
+}
+
+.stela-mark-dark .stela-mark-outline {
+  border-color: currentColor rgba(9, 9, 10, 0.44) rgba(9, 9, 10, 0.28) rgba(9, 9, 10, 0.62);
+  box-shadow: 1px 1px 0 rgba(245, 240, 232, 0.46);
+}
+
+.stela-mark-dark .stela-mark-inner {
+  border-color: rgba(9, 9, 10, 0.42) rgba(9, 9, 10, 0.1) rgba(9, 9, 10, 0.14) rgba(9, 9, 10, 0.28);
+}
+
+.stela-mark-dark .stela-mark-trace {
+  background: linear-gradient(90deg, rgba(9, 9, 10, 0.2), currentColor 30%, rgba(9, 9, 10, 0.74) 50%, rgba(9, 9, 10, 0.2) 78%, transparent);
+  box-shadow: 0 1px 0 rgba(245, 240, 232, 0.52);
+}
+
+.stela-mark-dark .stela-mark-point {
+  border-color: rgba(9, 9, 10, 0.88);
+  background: rgba(9, 9, 10, 0.82);
+  box-shadow: 0 0 0 1px rgba(245, 240, 232, 0.68);
+}
+
+.stela-mark-etched {
+  color: rgba(245, 240, 232, 0.54);
+}
+
+.stela-lockup {
+  gap: 0.68rem;
 }
 
 .stela-wordmark {
   font-size: 0.78rem;
   font-weight: 520;
-  letter-spacing: 0.31em;
+  letter-spacing: 0.27em;
 }
 
 .header-cta:hover {
@@ -1721,6 +1747,353 @@ body {
   top: -90px;
   display: block;
   height: 0;
+}
+
+.identity-page {
+  min-height: 100vh;
+  background:
+    linear-gradient(118deg, rgba(255, 255, 255, 0.025), transparent 22rem),
+    linear-gradient(180deg, #050506, #090a0b 62%, #050506);
+  color: var(--stela-ivory);
+}
+
+.identity-header,
+.identity-intro,
+.identity-section {
+  width: min(100% - 40px, 1180px);
+  margin-inline: auto;
+}
+
+.identity-header {
+  display: flex;
+  min-height: 72px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  color: rgba(255, 255, 255, 0.42);
+  font-size: 0.76rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.identity-header a {
+  color: var(--stela-ivory);
+  text-decoration: none;
+}
+
+.identity-lockup {
+  display: flex;
+  align-items: center;
+  gap: 0.68rem;
+}
+
+.identity-lockup > span:last-child {
+  color: var(--stela-ivory);
+  font-size: 0.78rem;
+  font-weight: 520;
+  letter-spacing: 0.27em;
+}
+
+.identity-intro {
+  padding-block: 88px 76px;
+}
+
+.identity-intro p,
+.identity-section-heading p {
+  margin: 0 0 12px;
+  color: var(--stela-champagne);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.identity-intro h1 {
+  max-width: 820px;
+  margin: 0;
+  color: white;
+  font-size: clamp(3rem, 6vw, 5.4rem);
+  font-weight: 560;
+  letter-spacing: 0;
+  line-height: 0.98;
+}
+
+.identity-section {
+  display: grid;
+  grid-template-columns: minmax(170px, 0.28fr) minmax(0, 1fr);
+  gap: 44px;
+  padding-block: 52px;
+  border-top: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.identity-section-heading h2 {
+  margin: 0;
+  color: white;
+  font-size: 1.05rem;
+  font-weight: 520;
+  letter-spacing: 0;
+}
+
+.master-grid,
+.contrast-grid,
+.material-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.dark-specimen,
+.light-specimen,
+.material-specimen {
+  position: relative;
+  overflow: hidden;
+}
+
+.dark-specimen {
+  background:
+    linear-gradient(132deg, rgba(255, 255, 255, 0.045), transparent 36%),
+    #08090a;
+}
+
+.light-specimen {
+  background: #f5f0e8;
+  color: #09090a;
+}
+
+.master-specimen {
+  display: grid;
+  min-height: 330px;
+  place-items: center;
+  padding: 38px;
+}
+
+.master-specimen > div {
+  position: absolute;
+  right: 24px;
+  bottom: 22px;
+  left: 24px;
+  display: grid;
+  gap: 5px;
+}
+
+.master-specimen strong {
+  color: white;
+  font-size: 0.84rem;
+  font-weight: 520;
+}
+
+.master-specimen div span,
+.lockup-test > span,
+.contrast-specimen > span,
+.material-specimen > span {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+}
+
+.lockup-test {
+  display: flex;
+  min-height: 150px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 34px 42px;
+}
+
+.favicon-row {
+  display: flex;
+  min-height: 150px;
+  align-items: center;
+  gap: clamp(34px, 8vw, 92px);
+  padding: 34px 42px;
+}
+
+.favicon-row figure,
+.comparison-row figure {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  margin: 0;
+}
+
+.favicon-row img {
+  display: block;
+  image-rendering: auto;
+}
+
+.favicon-row figcaption,
+.comparison-row figcaption {
+  color: rgba(255, 255, 255, 0.42);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.contrast-specimen,
+.material-specimen {
+  display: grid;
+  min-height: 290px;
+  place-items: center;
+  padding: 34px;
+}
+
+.contrast-specimen > span,
+.material-specimen > span {
+  position: absolute;
+  right: 22px;
+  bottom: 18px;
+  left: 22px;
+}
+
+.light-specimen > span {
+  color: rgba(9, 9, 10, 0.5);
+}
+
+.contrast-specimen .stela-mark-outline,
+.contrast-specimen .stela-mark-inner {
+  border-color: currentColor;
+  box-shadow: none;
+}
+
+.contrast-specimen .stela-mark-trace {
+  background: currentColor;
+  box-shadow: none;
+}
+
+.contrast-specimen .stela-mark-point {
+  border-color: currentColor;
+  background: currentColor;
+  box-shadow: none;
+}
+
+.contrast-specimen .stela-mark {
+  transform: translateY(-18px);
+}
+
+.material-glass {
+  background:
+    linear-gradient(122deg, transparent 8%, rgba(255, 255, 255, 0.11) 22%, transparent 35%),
+    linear-gradient(103deg, transparent 0 68%, rgba(255, 255, 255, 0.04) 68.4%, transparent 69%),
+    linear-gradient(145deg, #191b1d, #060707 72%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -3px 0 rgba(0, 0, 0, 0.58);
+}
+
+.material-metal {
+  background:
+    linear-gradient(116deg, transparent, rgba(255, 255, 255, 0.055) 28%, transparent 48%),
+    repeating-linear-gradient(96deg, rgba(255, 255, 255, 0.01) 0 1px, transparent 1px 7px),
+    linear-gradient(145deg, #171819, #090a0b 74%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.11),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.46);
+}
+
+.material-specimen .stela-mark-outline,
+.material-specimen .stela-mark-inner {
+  box-shadow:
+    inset 1px 1px 0 rgba(255, 255, 255, 0.08),
+    1px 1px 0 rgba(0, 0, 0, 0.72);
+}
+
+.material-specimen .stela-mark-trace {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.78);
+}
+
+.comparison-row {
+  display: grid;
+  min-height: 330px;
+  grid-template-columns: 1fr 1px 1fr;
+  align-items: center;
+  gap: 36px;
+  padding: 44px;
+}
+
+.comparison-divider {
+  width: 1px;
+  height: 72%;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.legacy-balanced-mark {
+  position: relative;
+  display: block;
+  width: 116px;
+  height: 116px;
+  color: rgba(245, 240, 232, 0.86);
+}
+
+.legacy-balanced-mark span {
+  position: absolute;
+  display: block;
+}
+
+.legacy-outline,
+.legacy-inner {
+  transform: rotate(45deg);
+  border: 1px solid;
+}
+
+.legacy-outline {
+  inset: 23%;
+  border-color: rgba(245, 240, 232, 0.72) rgba(245, 240, 232, 0.3) rgba(245, 240, 232, 0.34) rgba(217, 198, 160, 0.52);
+}
+
+.legacy-inner {
+  inset: 36%;
+  border-color: rgba(245, 240, 232, 0.38) transparent rgba(245, 240, 232, 0.18) rgba(217, 198, 160, 0.24);
+}
+
+.legacy-trace {
+  left: 24%;
+  top: 50%;
+  width: 64%;
+  height: 1px;
+  transform: rotate(-11deg);
+  background: rgba(245, 240, 232, 0.88);
+}
+
+.legacy-point {
+  left: 50%;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: rgba(245, 240, 232, 0.96);
+  box-shadow: 0 0 14px rgba(217, 198, 160, 0.34);
+}
+
+@media (max-width: 760px) {
+  .identity-intro {
+    padding-block: 68px 56px;
+  }
+
+  .identity-section {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding-block: 42px;
+  }
+
+  .master-grid,
+  .contrast-grid,
+  .material-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lockup-test {
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .comparison-row {
+    gap: 18px;
+    padding-inline: 20px;
+  }
 }
 
 @keyframes glint {

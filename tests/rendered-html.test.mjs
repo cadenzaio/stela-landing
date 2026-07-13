@@ -4,13 +4,13 @@ import test from "node:test";
 
 const projectRoot = new URL("../", import.meta.url);
 
-async function render() {
+async function render(pathname = "/") {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
   workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
 
   return worker.fetch(
-    new Request("http://localhost/", {
+    new Request(`http://localhost${pathname}`, {
       headers: { accept: "text/html" },
     }),
     {
@@ -55,25 +55,27 @@ test("server-renders the Stela landing page", async () => {
 });
 
 test("keeps the starter preview removed from the finished site", async () => {
-  const [page, layout, packageJson, landing] = await Promise.all([
+  const [page, layout, packageJson, landing, brand, identity, favicon] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
     readFile(new URL("../package.json", import.meta.url), "utf8"),
     readFile(new URL("../components/landing/StelaLanding.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../components/brand/StelaMark.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../components/identity/StelaIdentity.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../public/favicon.svg", import.meta.url), "utf8"),
   ]);
 
   assert.match(page, /<StelaLanding \/>/);
   assert.match(layout, /generateMetadata/);
   assert.match(layout, /\/og\.png/);
   assert.match(landing, /PrecisionMarkVisual/);
-  assert.match(landing, /const LOGO_VARIANT: LogoVariant = "origin-lozenge"/);
   assert.match(landing, /const HERO_VARIANT: HeroVariant = "etched-origin"/);
   assert.match(landing, /const MATERIAL_TREATMENT: MaterialTreatment = "optical-incision"/);
   assert.match(landing, /<h1 className="hero-title font-semibold text-white">/);
   assert.equal((landing.match(/<span>Permanent marks\.<\/span>|<span>Verified records\.<\/span>|<span>Trusted assets\.<\/span>/g) ?? []).length, 3);
   assert.doesNotMatch(landing, /hero-title text-balance|lg:text-8xl/);
-  assert.match(landing, /function StelaMark/);
-  assert.match(landing, /stela-mark-\$\{size\}/);
+  assert.match(landing, /import \{ StelaMark \}/);
+  assert.match(landing, /<StelaMark variant="compact" size="nav" \/>/);
   assert.match(landing, /hero-variant-\$\{HERO_VARIANT\}/);
   assert.match(landing, /material-\$\{MATERIAL_TREATMENT\}/);
   assert.match(landing, /glass-reflection/);
@@ -90,6 +92,28 @@ test("keeps the starter preview removed from the finished site", async () => {
   assert.doesNotMatch(landing, /PhysicalAnchor|PlatformSection|AudiencePathways|CurrentStage|FinalCTA/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
   assert.doesNotMatch(page + layout + landing, /Verid|safeSingleMark|SkeletonPreview|codex-preview/i);
+  assert.match(brand, /type StelaMarkVariant = "full" \| "compact"/);
+  assert.match(brand, /stela-mark-\$\{variant\}/);
+  assert.match(identity, /Production masters/);
+  assert.match(identity, /Favicon scale/);
+  assert.match(identity, /Engraved material/);
+  assert.match(identity, /Balanced refinement/);
+  assert.match(favicon, /<circle cx="24" cy="24"/);
+  assert.doesNotMatch(brand + identity, /arrow|shield|monogram/i);
 
   await assert.rejects(access(new URL("app/_sites-preview", projectRoot)));
+});
+
+test("server-renders the Stela identity validation surface", async () => {
+  const response = await render("/identity");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /Origin\. Incision\. Provenance\./);
+  assert.match(html, /Full Mark/);
+  assert.match(html, /Compact Mark/);
+  assert.match(html, /16(?:<!-- -->)?px/);
+  assert.match(html, /Dark architectural glass/);
+  assert.match(html, /Selected concept/);
+  assert.match(html, /Refined master/);
 });

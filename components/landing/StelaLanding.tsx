@@ -1,11 +1,11 @@
+import { StelaMark } from "@/components/brand/StelaMark";
+
 const navItems = ["Platform", "Marking System", "Use Cases", "Investors", "Contact"];
 
-type LogoVariant = "origin-lozenge" | "open-incision" | "refracted-origin";
 type HeroVariant = "etched-origin" | "refracted-surface" | "proof-emergence";
 type MaterialTreatment = "subtle-incision" | "optical-incision";
 
 // Development review switch. Keep production on the recommended defaults.
-const LOGO_VARIANT: LogoVariant = "origin-lozenge";
 const HERO_VARIANT: HeroVariant = "etched-origin";
 const MATERIAL_TREATMENT: MaterialTreatment = "optical-incision";
 
@@ -101,8 +101,8 @@ function Header() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/[0.07] bg-[#050506]/70 backdrop-blur-2xl">
       <div className="mx-auto flex h-15 w-full max-w-7xl items-center justify-between px-5 sm:px-8">
-        <a href="#top" className="group flex items-center gap-3.5" aria-label="Stela home">
-          <StelaMark size="nav" />
+        <a href="#top" className="stela-lockup group flex items-center" aria-label="Stela home">
+          <StelaMark variant="compact" size="nav" />
           <span className="stela-wordmark text-white">STELA</span>
         </a>
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Main navigation">
@@ -187,7 +187,7 @@ function PrecisionMarkVisual() {
           <strong>Verified</strong>
         </div>
         <div className="cert-mark">
-          <StelaMark size="small" />
+          <StelaMark variant="compact" size="small" />
           <div>
             <p>STELA CERTIFICATE</p>
             <h3>Asset identity linked</h3>
@@ -203,16 +203,6 @@ function PrecisionMarkVisual() {
         </div>
       </div>
     </div>
-  );
-}
-
-function StelaMark({ size }: { size: "nav" | "small" }) {
-  return (
-    <span className={`stela-mark stela-mark-${size} stela-mark-${LOGO_VARIANT}`} aria-hidden="true">
-      <span />
-      <span />
-      <span />
-    </span>
   );
 }
 
@@ -428,7 +418,7 @@ function Footer() {
     <footer className="border-t border-white/10 px-5 py-10 sm:px-8">
       <div className="mx-auto flex max-w-7xl flex-col gap-5 text-sm text-white/44 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3">
-          <StelaMark size="small" />
+          <StelaMark variant="compact" size="small" />
           <span>Stela</span>
         </div>
         <div className="flex flex-wrap gap-x-6 gap-y-2">
