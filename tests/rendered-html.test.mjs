@@ -100,7 +100,7 @@ test("keeps the starter preview removed from the finished site", async () => {
   assert.match(identity, /Engraved material/);
   assert.match(identity, /Balanced refinement/);
   assert.match(identity, /Hero mark alignment/);
-  assert.match(favicon, /<circle cx="24" cy="24"/);
+  assert.match(favicon, /<rect x="21\.45" y="22\.75"/);
   assert.doesNotMatch(brand + identity, /arrow|shield|monogram/i);
 
   await assert.rejects(access(new URL("app/_sites-preview", projectRoot)));

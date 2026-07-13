@@ -178,7 +178,7 @@ function PrecisionMarkVisual() {
       </div>
 
       <svg className="proof-link" viewBox="0 0 242 108" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M1 10 L62 1 L241 107" />
+        <path d="M1 10 L72 1 L241 107" />
       </svg>
 
       <div className="proof-certificate">
