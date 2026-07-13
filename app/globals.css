@@ -129,10 +129,18 @@ body {
 .stela-mark::before {
   inset: 4px;
   transform: rotate(45deg);
-  border: 1.25px solid rgba(245, 240, 232, 0.78);
+  border: 1.25px solid;
+  border-color:
+    rgba(245, 240, 232, 0.9)
+    rgba(245, 240, 232, 0.42)
+    rgba(245, 240, 232, 0.22)
+    rgba(217, 198, 160, 0.62);
   background:
-    linear-gradient(135deg, transparent 43%, rgba(245, 240, 232, 0.22) 47%, transparent 52%),
+    linear-gradient(135deg, transparent 43%, rgba(245, 240, 232, 0.16) 47%, rgba(0, 0, 0, 0.18) 52%, transparent 56%),
     rgba(255, 255, 255, 0.018);
+  box-shadow:
+    inset 1px 1px 0 rgba(255, 255, 255, 0.08),
+    1px 1px 0 rgba(0, 0, 0, 0.42);
 }
 
 .stela-mark::after {
@@ -160,7 +168,8 @@ body {
 .stela-mark span:nth-child(2) {
   inset: 8px;
   transform: rotate(45deg);
-  border: 1px solid rgba(245, 240, 232, 0.32);
+  border: 1px solid;
+  border-color: rgba(245, 240, 232, 0.42) rgba(245, 240, 232, 0.18) rgba(0, 0, 0, 0.52) rgba(217, 198, 160, 0.28);
 }
 
 .stela-mark span:nth-child(3) {
@@ -187,7 +196,28 @@ body {
 }
 
 .stela-mark-nav span:nth-child(3) {
-  height: 29px;
+  top: 4px;
+  left: 23px;
+  width: 1px;
+  height: 8px;
+  transform: rotate(45deg);
+  background: linear-gradient(to bottom, rgba(245, 240, 232, 0.72), transparent);
+}
+
+.stela-mark-origin-lozenge span:nth-child(1) {
+  left: 1px;
+  right: 1px;
+  transform: translateY(-50%) rotate(-14deg);
+  background: linear-gradient(90deg, transparent 4%, rgba(245, 240, 232, 0.18) 22%, rgba(245, 240, 232, 0.92) 49%, rgba(217, 198, 160, 0.4) 58%, transparent 82%);
+}
+
+.stela-mark-origin-lozenge span:nth-child(3) {
+  top: 13%;
+  left: 72%;
+  width: 1px;
+  height: 27%;
+  transform: rotate(45deg);
+  background: linear-gradient(to bottom, rgba(245, 240, 232, 0.72), transparent);
 }
 
 .stela-mark-open-incision::before {
@@ -475,19 +505,40 @@ body {
     linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.018), transparent);
 }
 
+.engraved-origin::before {
+  position: absolute;
+  content: "";
+  left: -12px;
+  top: 50%;
+  width: 250px;
+  height: 220px;
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse at 47% 46%, rgba(245, 240, 232, 0.075), transparent 31%),
+    radial-gradient(ellipse at 54% 56%, rgba(0, 0, 0, 0.3), transparent 56%);
+  transform: translateY(-50%) rotate(-8deg);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
 .diamond-cut {
   position: absolute;
-  left: 44px;
+  left: 36px;
   top: 50%;
-  width: 124px;
-  height: 124px;
+  width: 140px;
+  height: 140px;
   transform: translateY(-50%) rotate(45deg);
-  border: 1px solid rgba(245, 240, 232, 0.4);
+  border: 1px solid;
+  border-color:
+    rgba(245, 240, 232, 0.7)
+    rgba(245, 240, 232, 0.24)
+    rgba(0, 0, 0, 0.82)
+    rgba(217, 198, 160, 0.48);
   box-shadow:
-    inset 1px 0 0 rgba(255, 255, 255, 0.22),
-    inset -1px 0 0 rgba(0, 0, 0, 0.6),
-    1px 1px 0 rgba(0, 0, 0, 0.5),
-    0 0 22px rgba(217, 198, 160, 0.08);
+    inset 1px 1px 0 rgba(255, 255, 255, 0.12),
+    inset -1px -1px 0 rgba(0, 0, 0, 0.48),
+    1px 1px 0 rgba(0, 0, 0, 0.72),
+    -1px -1px 0 rgba(245, 240, 232, 0.12);
   opacity: 0.96;
 }
 
@@ -495,27 +546,28 @@ body {
   position: absolute;
   content: "";
   inset: -1px;
-  border: 1px solid rgba(0, 0, 0, 0.48);
-  opacity: 0.72;
-  transform: translate(1.5px, 1.5px);
+  border: 1px solid;
+  border-color: transparent rgba(0, 0, 0, 0.52) rgba(0, 0, 0, 0.86) transparent;
+  opacity: 0.9;
+  transform: translate(1.25px, 1.25px);
 }
 
 .diamond-cut::after {
   position: absolute;
   content: "";
-  inset: 28px;
-  border: 1px solid rgba(245, 240, 232, 0.18);
+  inset: 32px;
+  border: 1px solid;
+  border-color: rgba(245, 240, 232, 0.3) rgba(245, 240, 232, 0.11) rgba(0, 0, 0, 0.58) rgba(217, 198, 160, 0.18);
   box-shadow:
-    inset 1px 0 0 rgba(255, 255, 255, 0.1),
-    inset -1px 0 0 rgba(0, 0, 0, 0.4),
-    1px 1px 0 rgba(0, 0, 0, 0.28);
+    inset 1px 1px 0 rgba(255, 255, 255, 0.07),
+    inset -1px -1px 0 rgba(0, 0, 0, 0.42),
+    1px 1px 0 rgba(0, 0, 0, 0.46);
 }
 
 .material-optical-incision .diamond-cut {
-  border-color: rgba(245, 240, 232, 0.5);
   background:
-    linear-gradient(135deg, transparent 0 43%, rgba(245, 240, 232, 0.12) 47%, transparent 53%),
-    linear-gradient(45deg, transparent 0 48%, rgba(0, 0, 0, 0.18) 52%, transparent 56%);
+    linear-gradient(135deg, transparent 0 43%, rgba(245, 240, 232, 0.11) 47%, rgba(0, 0, 0, 0.22) 52%, transparent 57%),
+    linear-gradient(45deg, transparent 0 47%, rgba(0, 0, 0, 0.2) 51%, rgba(245, 240, 232, 0.04) 55%, transparent 59%);
 }
 
 .material-subtle-incision .diamond-cut {
@@ -530,17 +582,18 @@ body {
   position: absolute;
   left: 106px;
   top: 50%;
-  width: 9px;
-  height: 9px;
+  width: 11px;
+  height: 11px;
   border-radius: 999px;
-  border: 1px solid rgba(245, 240, 232, 0.48);
+  border: 1px solid rgba(245, 240, 232, 0.56);
   background:
-    radial-gradient(circle at 36% 34%, rgba(255, 255, 255, 0.94), rgba(217, 198, 160, 0.42) 28%, rgba(5, 5, 6, 0.64) 54%, rgba(245, 240, 232, 0.22) 72%, transparent 74%);
+    radial-gradient(circle at 34% 30%, rgba(255, 255, 255, 0.96), rgba(217, 198, 160, 0.46) 22%, rgba(5, 5, 6, 0.78) 49%, rgba(245, 240, 232, 0.2) 69%, transparent 72%);
   box-shadow:
     inset 1px 1px 0 rgba(255, 255, 255, 0.28),
     inset -1px -1px 0 rgba(0, 0, 0, 0.78),
-    0 0 13px rgba(217, 198, 160, 0.24),
-    0 0 0 4px rgba(245, 240, 232, 0.022);
+    1px 1px 0 rgba(0, 0, 0, 0.64),
+    0 0 0 4px rgba(245, 240, 232, 0.028),
+    0 0 12px rgba(217, 198, 160, 0.18);
   transform: translate(-50%, -50%);
   animation: originGlint 13s ease-in-out infinite;
 }
@@ -555,13 +608,14 @@ body {
   box-shadow:
     0 1px 0 rgba(0, 0, 0, 0.5),
     0 0 10px rgba(217, 198, 160, 0.12);
+  transform: rotate(15deg);
   transform-origin: left center;
   animation: incisionCatch 12s ease-in-out infinite;
 }
 
 .mark-line-a {
   top: calc(50% - 1px);
-  width: 320px;
+  width: 310px;
 }
 
 .origin-label {
@@ -579,12 +633,12 @@ body {
   position: absolute;
   left: 132px;
   top: 294px;
-  width: 360px;
+  width: 264px;
   height: 1px;
-  transform: rotate(9deg);
+  transform: rotate(15deg);
   transform-origin: left center;
   background:
-    linear-gradient(90deg, rgba(245, 240, 232, 0.5), rgba(217, 198, 160, 0.18), rgba(245, 240, 232, 0.045) 78%, transparent 92%),
+    linear-gradient(90deg, rgba(245, 240, 232, 0.5), rgba(217, 198, 160, 0.18) 42%, rgba(245, 240, 232, 0.045) 77%, rgba(217, 198, 160, 0.34) 96%, rgba(245, 240, 232, 0.38)),
     linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(0, 0, 0, 0.36));
   box-shadow: 0 0 10px rgba(217, 198, 160, 0.12);
   animation: proofLineReveal 14s ease-in-out infinite;
@@ -638,7 +692,7 @@ body {
 .proof-certificate {
   position: absolute;
   right: -2px;
-  top: 346px;
+  top: 338px;
   width: min(60%, 244px);
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.07);
@@ -657,11 +711,15 @@ body {
   position: absolute;
   content: "";
   left: -1px;
-  top: 46px;
-  width: 10px;
-  height: 1px;
-  background: rgba(217, 198, 160, 0.42);
-  box-shadow: 0 0 8px rgba(217, 198, 160, 0.16);
+  top: 20px;
+  width: 13px;
+  height: 3px;
+  border-radius: 0 2px 2px 0;
+  background:
+    linear-gradient(180deg, rgba(245, 240, 232, 0.5), rgba(217, 198, 160, 0.25) 45%, rgba(0, 0, 0, 0.48) 55%);
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.6),
+    0 0 7px rgba(217, 198, 160, 0.12);
 }
 
 .proof-certificate::before {
@@ -1738,7 +1796,7 @@ body {
   }
 
   .proof-link {
-    width: 330px;
+    width: 264px;
   }
 
   .anchor-panel,
@@ -1793,13 +1851,13 @@ body {
   }
 
   .diamond-cut {
-    left: 32px;
-    width: 64px;
-    height: 64px;
+    left: 24px;
+    width: 80px;
+    height: 80px;
   }
 
   .diamond-cut::after {
-    inset: 14px;
+    inset: 18px;
   }
 
   .incision-core {
@@ -1808,23 +1866,34 @@ body {
 
   .mark-line {
     left: 64px;
+    transform: rotate(27deg);
   }
 
   .mark-line-a {
-    width: 176px;
+    width: 190px;
   }
 
   .proof-certificate {
-    top: 318px;
+    top: 292px;
     right: 2px;
     width: min(82%, 272px);
   }
 
+  .proof-certificate::after {
+    top: -1px;
+    left: 52px;
+    width: 3px;
+    height: 12px;
+    border-radius: 0 0 2px 2px;
+    background:
+      linear-gradient(90deg, rgba(245, 240, 232, 0.5), rgba(217, 198, 160, 0.25) 45%, rgba(0, 0, 0, 0.48) 55%);
+  }
+
   .proof-link {
-    left: 64px;
-    top: 234px;
-    width: 244px;
-    transform: rotate(21deg);
+    left: 88px;
+    top: 250px;
+    width: 94px;
+    transform: rotate(27deg);
   }
 
   .diagram-row,
