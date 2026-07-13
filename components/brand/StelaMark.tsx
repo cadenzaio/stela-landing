@@ -22,7 +22,7 @@ export function StelaMark({
     >
       <span className="stela-mark-outline" />
       <span className="stela-mark-inner" />
-      <span className="stela-mark-trace" />
+      <span className="stela-mark-glare" />
       <span className="stela-mark-point" />
     </span>
   );

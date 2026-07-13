@@ -148,15 +148,15 @@ body {
   box-shadow: 1px 1px 0 rgba(5, 5, 6, 0.18);
 }
 
-.stela-mark-trace {
-  left: 36%;
-  top: 50%;
-  width: 47%;
+.stela-mark-glare {
+  left: 30%;
+  top: 48.5%;
+  width: 44%;
   height: 1px;
   transform: translateY(-50%) rotate(-9deg);
-  transform-origin: left center;
-  background: linear-gradient(90deg, rgba(245, 240, 232, 0.2), currentColor 30%, rgba(245, 240, 232, 0.78) 50%, rgba(217, 198, 160, 0.24) 78%, transparent);
-  box-shadow: 0 1px 0 rgba(5, 5, 6, 0.56);
+  background: linear-gradient(90deg, transparent, rgba(245, 240, 232, 0.18) 14%, rgba(255, 255, 255, 0.9) 48%, rgba(217, 198, 160, 0.34) 72%, transparent);
+  filter: blur(0.15px);
+  opacity: 0.9;
 }
 
 .stela-mark-point {
@@ -197,10 +197,10 @@ body {
   inset: 31%;
 }
 
-.stela-mark-display .stela-mark-trace,
-.stela-mark-full .stela-mark-trace {
-  left: 34%;
-  width: 50%;
+.stela-mark-display .stela-mark-glare,
+.stela-mark-full .stela-mark-glare {
+  left: 29%;
+  width: 46%;
 }
 
 .stela-mark-display .stela-mark-point {
@@ -231,13 +231,13 @@ body {
     rgba(217, 198, 160, 0.2);
 }
 
-.stela-mark-hero .stela-mark-trace {
-  left: 34%;
-  width: 50%;
-  background:
-    linear-gradient(90deg, rgba(245, 240, 232, 0.24), rgba(245, 240, 232, 0.88) 20%, rgba(217, 198, 160, 0.54) 48%, rgba(245, 240, 232, 0.16) 78%, transparent),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(0, 0, 0, 0.62));
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.7);
+.stela-mark-hero .stela-mark-glare {
+  left: 29%;
+  top: 48.5%;
+  width: 46%;
+  background: linear-gradient(90deg, transparent, rgba(245, 240, 232, 0.14) 12%, rgba(255, 255, 255, 0.94) 47%, rgba(217, 198, 160, 0.38) 68%, transparent);
+  filter: blur(0.25px) drop-shadow(0 0 2px rgba(245, 240, 232, 0.1));
+  opacity: 0.88;
 }
 
 .stela-mark-hero .stela-mark-point {
@@ -257,9 +257,9 @@ body {
   border-bottom-color: transparent;
 }
 
-.stela-mark-compact .stela-mark-trace {
-  left: 38%;
-  width: 43%;
+.stela-mark-compact .stela-mark-glare {
+  left: 31%;
+  width: 40%;
 }
 
 .stela-mark-small {
@@ -275,9 +275,9 @@ body {
   display: none;
 }
 
-.stela-mark-small .stela-mark-trace {
-  left: 34%;
-  width: 54%;
+.stela-mark-small .stela-mark-glare {
+  left: 28%;
+  width: 48%;
 }
 
 .stela-mark-small .stela-mark-point {
@@ -314,9 +314,8 @@ body {
   border-color: rgba(9, 9, 10, 0.42) rgba(9, 9, 10, 0.1) rgba(9, 9, 10, 0.14) rgba(9, 9, 10, 0.28);
 }
 
-.stela-mark-dark .stela-mark-trace {
-  background: linear-gradient(90deg, rgba(9, 9, 10, 0.2), currentColor 30%, rgba(9, 9, 10, 0.74) 50%, rgba(9, 9, 10, 0.2) 78%, transparent);
-  box-shadow: 0 1px 0 rgba(245, 240, 232, 0.52);
+.stela-mark-dark .stela-mark-glare {
+  background: linear-gradient(90deg, transparent, rgba(9, 9, 10, 0.16) 14%, rgba(9, 9, 10, 0.82) 48%, rgba(9, 9, 10, 0.28) 72%, transparent);
 }
 
 .stela-mark-dark .stela-mark-point {
@@ -654,15 +653,14 @@ body {
   height: 108px;
   overflow: visible;
   fill: none;
-  animation: proofLineReveal 14s ease-in-out infinite;
 }
 
 .proof-link path {
   fill: none;
-  stroke: rgba(217, 198, 160, 0.38);
+  stroke: rgba(217, 198, 160, 0.28);
   stroke-width: 1;
   vector-effect: non-scaling-stroke;
-  filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.64));
+  filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.72));
 }
 
 .hero-variant-refracted-surface .glass-reflection {
@@ -1929,9 +1927,9 @@ body {
   box-shadow: none;
 }
 
-.contrast-specimen .stela-mark-trace {
-  background: currentColor;
-  box-shadow: none;
+.contrast-specimen .stela-mark-glare {
+  background: linear-gradient(90deg, transparent, currentColor 48%, transparent);
+  filter: none;
 }
 
 .contrast-specimen .stela-mark-point {
@@ -1971,8 +1969,8 @@ body {
     1px 1px 0 rgba(0, 0, 0, 0.72);
 }
 
-.material-specimen .stela-mark-trace {
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.78);
+.material-specimen .stela-mark-glare {
+  filter: blur(0.2px);
 }
 
 .comparison-row {
@@ -2166,19 +2164,6 @@ body {
   30% {
     transform: translateX(92%) rotate(-15deg);
     opacity: 1;
-  }
-}
-
-@keyframes proofLineReveal {
-  0%,
-  58%,
-  100% {
-    opacity: 0.72;
-  }
-
-  24%,
-  30% {
-    opacity: 0.95;
   }
 }
 

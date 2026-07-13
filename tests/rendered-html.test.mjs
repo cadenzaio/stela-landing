@@ -83,6 +83,7 @@ test("keeps the starter preview removed from the finished site", async () => {
   assert.match(landing, /<StelaMark variant="full" size="hero" tone="etched"/);
   assert.doesNotMatch(landing, /diamond-cut|incision-core|mark-line-a/);
   assert.match(landing, /proof-link/);
+  assert.match(landing, /<path d="M1 10 L241 107"/);
   assert.match(landing, /device-trust-line/);
   assert.match(landing, /final-trust-line/);
   assert.match(landing, /lifecycle-timeline/);
@@ -95,6 +96,8 @@ test("keeps the starter preview removed from the finished site", async () => {
   assert.doesNotMatch(page + layout + landing, /Verid|safeSingleMark|SkeletonPreview|codex-preview/i);
   assert.match(brand, /type StelaMarkVariant = "full" \| "compact"/);
   assert.match(brand, /stela-mark-\$\{variant\}/);
+  assert.match(brand, /stela-mark-glare/);
+  assert.doesNotMatch(brand, /stela-mark-trace/);
   assert.match(identity, /Production masters/);
   assert.match(identity, /Favicon scale/);
   assert.match(identity, /Engraved material/);
