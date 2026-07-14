@@ -154,9 +154,9 @@ body {
   width: 44%;
   height: 1px;
   transform: translateY(-50%) rotate(-9deg);
-  background: linear-gradient(90deg, transparent, rgba(245, 240, 232, 0.18) 14%, rgba(255, 255, 255, 0.9) 48%, rgba(217, 198, 160, 0.34) 72%, transparent);
-  filter: blur(0.15px);
-  opacity: 0.9;
+  background: linear-gradient(90deg, transparent, rgba(245, 240, 232, 0.16) 18%, rgba(245, 240, 232, 0.34) 32%, rgba(255, 255, 255, 0.96) 48%, rgba(217, 198, 160, 0.3) 68%, transparent 86%);
+  filter: blur(0.12px);
+  opacity: 0.92;
 }
 
 .stela-mark-point {
@@ -212,10 +212,10 @@ body {
 .stela-mark-hero .stela-mark-inner {
   border-width: 1px;
   border-color:
-    rgba(245, 240, 232, 0.78)
+    rgba(245, 240, 232, 0.84)
     rgba(245, 240, 232, 0.24)
     rgba(0, 0, 0, 0.62)
-    rgba(217, 198, 160, 0.48);
+    rgba(217, 198, 160, 0.54);
   box-shadow:
     inset 1px 1px 0 rgba(255, 255, 255, 0.1),
     inset -1px -1px 0 rgba(0, 0, 0, 0.28),
@@ -225,19 +225,19 @@ body {
 
 .stela-mark-hero .stela-mark-inner {
   border-color:
-    rgba(245, 240, 232, 0.34)
+    rgba(245, 240, 232, 0.4)
     rgba(245, 240, 232, 0.11)
     rgba(0, 0, 0, 0.42)
-    rgba(217, 198, 160, 0.2);
+    rgba(217, 198, 160, 0.24);
 }
 
 .stela-mark-hero .stela-mark-glare {
   left: 29%;
   top: 48.5%;
   width: 46%;
-  background: linear-gradient(90deg, transparent, rgba(245, 240, 232, 0.14) 12%, rgba(255, 255, 255, 0.94) 47%, rgba(217, 198, 160, 0.38) 68%, transparent);
-  filter: blur(0.25px) drop-shadow(0 0 2px rgba(245, 240, 232, 0.1));
-  opacity: 0.88;
+  background: linear-gradient(90deg, transparent, rgba(245, 240, 232, 0.14) 16%, rgba(245, 240, 232, 0.38) 32%, rgba(255, 255, 255, 0.98) 47%, rgba(255, 255, 255, 0.54) 54%, rgba(217, 198, 160, 0.22) 70%, transparent 86%);
+  filter: blur(0.2px) drop-shadow(0 0 2px rgba(245, 240, 232, 0.08));
+  opacity: 0.92;
 }
 
 .stela-mark-hero .stela-mark-point {
@@ -649,7 +649,7 @@ body {
   position: absolute;
   left: 136px;
   top: 284px;
-  width: 242px;
+  width: 212px;
   height: 108px;
   overflow: visible;
   fill: none;
@@ -657,7 +657,7 @@ body {
 
 .proof-link path {
   fill: none;
-  stroke: rgba(217, 198, 160, 0.28);
+  stroke: rgba(217, 198, 160, 0.24);
   stroke-width: 1;
   vector-effect: non-scaling-stroke;
   filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.72));
@@ -725,17 +725,17 @@ body {
 .proof-certificate::after {
   position: absolute;
   content: "";
-  left: -1px;
-  top: 52px;
-  width: 17px;
-  height: 5px;
-  border-radius: 0 2px 2px 0;
-  background:
-    radial-gradient(circle at 76% 50%, rgba(245, 240, 232, 0.86) 0 1.5px, rgba(217, 198, 160, 0.24) 2px, transparent 3px),
-    linear-gradient(180deg, transparent 0 40%, rgba(217, 198, 160, 0.42) 42% 58%, transparent 60%);
+  left: -4px;
+  top: 49px;
+  width: 8px;
+  height: 8px;
+  transform: rotate(45deg);
+  border: 1px solid rgba(217, 198, 160, 0.46);
+  border-radius: 1px;
+  background: #0b0c0d;
   box-shadow:
-    0 1px 0 rgba(0, 0, 0, 0.42),
-    0 0 6px rgba(217, 198, 160, 0.1);
+    inset 1px 1px 0 rgba(245, 240, 232, 0.14),
+    0 0 0 1px rgba(0, 0, 0, 0.44);
 }
 
 .proof-certificate::before {
@@ -901,7 +901,7 @@ body {
 
 .diagram-row.strong em i {
   background: linear-gradient(90deg, transparent, rgba(217, 198, 160, 0.72));
-  box-shadow: 0 0 10px rgba(217, 198, 160, 0.16);
+  box-shadow: 0 0 8px rgba(217, 198, 160, 0.08);
 }
 
 .diagram-row.strong em i:last-child {
@@ -976,9 +976,21 @@ body {
   width: 16px;
   height: 16px;
   transform: rotate(45deg);
-  border-top: 1px solid rgba(245, 240, 232, 0.7);
-  border-right: 1px solid rgba(245, 240, 232, 0.5);
-  background: linear-gradient(135deg, transparent 42%, rgba(255, 255, 255, 0.6) 50%, transparent 58%);
+  border: 1px solid rgba(230, 214, 178, 0.56);
+  background: transparent;
+}
+
+.persistent-mark::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 3px;
+  height: 3px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: rgba(242, 229, 198, 0.9);
+  box-shadow: 0 0 0 1px rgba(5, 5, 6, 0.7);
 }
 
 .lifecycle-stage {
@@ -1005,7 +1017,7 @@ body {
   border: 1px solid rgba(245, 240, 232, 0.72);
   border-radius: 999px;
   background: #080909;
-  box-shadow: 0 0 12px rgba(217, 198, 160, 0.18);
+  box-shadow: 0 0 8px rgba(217, 198, 160, 0.08);
 }
 
 .lifecycle-stage span {
@@ -1044,7 +1056,7 @@ body {
   top: 52px;
   height: 1px;
   background: linear-gradient(90deg, rgba(245, 240, 232, 0.1), rgba(217, 198, 160, 0.72), rgba(245, 240, 232, 0.1));
-  box-shadow: 0 0 12px rgba(217, 198, 160, 0.16);
+  box-shadow: 0 0 8px rgba(217, 198, 160, 0.08);
 }
 
 .sequence-step {
@@ -1081,7 +1093,7 @@ body {
   color: rgba(245, 240, 232, 0.72);
   font-family: var(--font-geist-mono), monospace;
   font-size: 0.78rem;
-  box-shadow: 0 0 12px rgba(217, 198, 160, 0.12);
+  box-shadow: inset 0 1px 0 rgba(245, 240, 232, 0.06);
 }
 
 .sequence-label {
@@ -1330,7 +1342,7 @@ body {
   width: 2px;
   height: 126px;
   background: linear-gradient(to bottom, rgba(245, 240, 232, 0.08), rgba(245, 240, 232, 0.82), rgba(217, 198, 160, 0.2));
-  box-shadow: 0 0 22px rgba(217, 198, 160, 0.3);
+  box-shadow: 0 0 14px rgba(217, 198, 160, 0.12);
 }
 
 .device-tip::after {
@@ -1386,7 +1398,7 @@ body {
   top: 54px;
   width: 220px;
   border: 1px solid rgba(255, 255, 255, 0.13);
-  border-radius: 5px;
+  border-radius: 3px;
   padding: 20px;
   background: rgba(8, 9, 10, 0.72);
   backdrop-filter: blur(14px);
@@ -1446,7 +1458,7 @@ body {
   border-radius: 0;
   transform: rotate(45deg);
   background: var(--stela-champagne);
-  box-shadow: 0 0 16px rgba(217, 198, 160, 0.42);
+  box-shadow: 0 0 10px rgba(217, 198, 160, 0.12);
 }
 
 .history-stack {
@@ -1558,13 +1570,7 @@ body {
 }
 
 .case-panel::before {
-  position: absolute;
-  content: "";
-  left: 24px;
-  right: 24px;
-  bottom: 34px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(245, 240, 232, 0.34), transparent);
+  display: none;
 }
 
 .case-panel:hover {
@@ -1684,7 +1690,7 @@ body {
   border-radius: 0;
   transform: rotate(45deg);
   background: var(--stela-champagne);
-  box-shadow: 0 0 18px rgba(217, 198, 160, 0.48);
+  box-shadow: 0 0 10px rgba(217, 198, 160, 0.12);
 }
 
 .final-panel {
@@ -2268,13 +2274,12 @@ body {
   }
 
   .proof-certificate::after {
-    top: -1px;
-    left: 52px;
-    width: 3px;
-    height: 12px;
-    border-radius: 0 0 2px 2px;
-    background:
-      linear-gradient(90deg, rgba(245, 240, 232, 0.5), rgba(217, 198, 160, 0.25) 45%, rgba(0, 0, 0, 0.48) 55%);
+    top: -4px;
+    left: 48px;
+    width: 8px;
+    height: 8px;
+    border-radius: 1px;
+    background: #0b0c0d;
   }
 
   .proof-link {
