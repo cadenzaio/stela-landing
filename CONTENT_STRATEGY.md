@@ -44,3 +44,12 @@ Concrete claims about historical permanent-marking applications, completed miles
 - Let each page answer one visitor question.
 - End every supporting page with one clear next step.
 - Prefer honest specificity over broad claims.
+
+## Translation Standard
+
+- English is the source language for substantive content changes.
+- Spanish should remain neutral and internationally understandable; Portuguese should use European Portuguese unless the market strategy changes.
+- Preserve claim maturity, caveats, CTA intent, and technical meaning rather than translating word for word.
+- Keep the homepage headline as three authored lines in every language.
+- New public content is incomplete until all six language dictionaries have matching entries.
+- Founder or native-speaker review is required before public launch, especially for technical, legal, investor, and insurance terminology.

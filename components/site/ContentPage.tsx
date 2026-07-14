@@ -140,18 +140,20 @@ export function ConversionSection({
   copy,
   primary,
   secondary,
+  eyebrow = "Next conversation",
 }: {
   title: string;
   copy: string;
   primary: Action;
   secondary: Action;
+  eyebrow?: string;
 }) {
   return (
     <section className="conversion-section">
       <div className="conversion-line" aria-hidden="true" />
       <div className="content-shell conversion-inner">
         <div>
-          <p className="content-eyebrow">Next conversation</p>
+          <p className="content-eyebrow">{eyebrow}</p>
           <h2>{title}</h2>
         </div>
         <div>

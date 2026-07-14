@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { languageAlternates } from "@/lib/i18n/config";
 import {
   ContentPage,
   ContentSection,
@@ -10,6 +11,7 @@ import {
 export const metadata: Metadata = {
   title: "Platform | Stela",
   description: "How Stela connects a permanent physical mark to controlled evidence and a verifiable digital record.",
+  alternates: { canonical: "/platform", languages: languageAlternates("platform") },
 };
 
 export default function PlatformPage() {

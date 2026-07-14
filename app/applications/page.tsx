@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { languageAlternates } from "@/lib/i18n/config";
 import {
   ContentPage,
   ContentSection,
@@ -11,6 +12,7 @@ import {
 export const metadata: Metadata = {
   title: "Applications | Stela",
   description: "Potential Stela applications where physical asset identity must remain connected to the correct record.",
+  alternates: { canonical: "/applications", languages: languageAlternates("applications") },
 };
 
 const relevanceCriteria = [

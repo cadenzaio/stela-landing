@@ -73,7 +73,7 @@ test("keeps the starter preview removed from the finished site", async () => {
   assert.match(landing, /const HERO_VARIANT: HeroVariant = "etched-origin"/);
   assert.match(landing, /const MATERIAL_TREATMENT: MaterialTreatment = "optical-incision"/);
   assert.match(landing, /<h1 className="hero-title font-semibold text-white">/);
-  assert.equal((landing.match(/<span>Permanent marks\.<\/span>|<span>Verified records\.<\/span>|<span>Trusted assets\.<\/span>/g) ?? []).length, 3);
+  assert.match(landing, /messages\.hero\.title\.map/);
   assert.doesNotMatch(landing, /hero-title text-balance|lg:text-8xl/);
   assert.match(landing, /import \{ StelaMark \}/);
   assert.match(landing, /<SiteHeader \/>/);
@@ -92,7 +92,7 @@ test("keeps the starter preview removed from the finished site", async () => {
   assert.match(landing, /sequence-track/);
   assert.match(landing, /device-module/);
   assert.match(landing, /FinalSection/);
-  assert.match(landing, /pre-commercial development/);
+  assert.match(landing, /messages\.stageCopy/);
   assert.doesNotMatch(landing, /PhysicalAnchor|PlatformSection|AudiencePathways|CurrentStage|FinalCTA/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
   assert.doesNotMatch(page + layout + landing, /Verid|safeSingleMark|SkeletonPreview|codex-preview/i);
@@ -109,6 +109,45 @@ test("keeps the starter preview removed from the finished site", async () => {
   assert.doesNotMatch(brand + identity, /arrow|shield|monogram/i);
 
   await assert.rejects(access(new URL("app/_sites-preview", projectRoot)));
+});
+
+test("server-renders every public page in all supported languages", async () => {
+  const localeChecks = {
+    es: /Marcas permanentes\./,
+    fr: /Marques permanentes\./,
+    it: /Marcature permanenti\./,
+    de: /Dauerhafte Markierungen\./,
+    pt: /Marcas permanentes\./,
+  };
+  const slugs = ["platform", "applications", "partners", "investors", "contact"];
+
+  for (const [locale, expectedHomeCopy] of Object.entries(localeChecks)) {
+    const homeResponse = await render(`/${locale}`);
+    assert.equal(homeResponse.status, 200, `/${locale}`);
+    const homeHtml = await homeResponse.text();
+    assert.match(homeHtml, expectedHomeCopy);
+    assert.match(homeHtml, new RegExp(`href="/${locale}/platform"`));
+    assert.match(homeHtml, new RegExp(`hrefLang="${locale}" href="http://localhost(?::3000)?/${locale}"`));
+
+    for (const slug of slugs) {
+      const response = await render(`/${locale}/${slug}`);
+      assert.equal(response.status, 200, `/${locale}/${slug}`);
+      const html = await response.text();
+      assert.match(html, new RegExp(`href="/${locale}/contact"`));
+      assert.match(html, new RegExp(`<div lang="${locale}">`));
+    }
+  }
+});
+
+test("keeps the homepage headline at exactly three authored lines in every language", async () => {
+  const localeFiles = ["en", "es", "fr", "it", "de", "pt"];
+
+  for (const locale of localeFiles) {
+    const source = await readFile(new URL(`../lib/i18n/locales/${locale}.ts`, import.meta.url), "utf8");
+    const headline = source.match(/hero:\s*\{[\s\S]*?title:\s*\[([^\]]+)]/);
+    assert.ok(headline, `${locale} homepage headline not found`);
+    assert.equal((headline[1].match(/"/g) ?? []).length, 6, `${locale} headline must contain three strings`);
+  }
 });
 
 test("server-renders the Stela identity validation surface", async () => {
@@ -166,6 +205,17 @@ test("preselects supported contact intents without claiming delivery", async () 
   }
 });
 
+test("preselects contact intent on localized routes", async () => {
+  const response = await render("/de/contact?intent=pilot");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  const selectedInput = html.match(/<input[^>]*value="pilot"[^>]*>/i)?.[0];
+  assert.ok(selectedInput);
+  assert.match(selectedInput, /checked/i);
+  assert.match(html, /Es werden keine Informationen gesendet/);
+  assert.match(html, /href="\/de\/contact\?intent=brief"/);
+});
+
 test("documents the focused sitemap and conversion boundaries", async () => {
   const [siteMap, contentStrategy, conversionPaths] = await Promise.all([
     readFile(new URL("../SITE_MAP.md", import.meta.url), "utf8"),
@@ -177,8 +227,12 @@ test("documents the focused sitemap and conversion boundaries", async () => {
   assert.match(siteMap, /\/applications/);
   assert.match(siteMap, /\/partners/);
   assert.match(siteMap, /\/investors/);
+  assert.match(siteMap, /\/es\/platform/);
+  assert.match(siteMap, /Portuguese/);
   assert.match(contentStrategy, /Pre-commercial Claim Rules/);
   assert.match(contentStrategy, /Private Information/);
+  assert.match(contentStrategy, /Translation Standard/);
   assert.match(conversionPaths, /intent=technical-brief/);
+  assert.match(conversionPaths, /locale prefix/);
   assert.match(conversionPaths, /does not deliver data to a backend/);
 });

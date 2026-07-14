@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
+import { languageAlternates } from "@/lib/i18n/config";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { ContentPage } from "@/components/site/ContentPage";
+import { en } from "@/lib/i18n/locales/en";
 
 export const metadata: Metadata = {
   title: "Contact | Stela",
   description: "Start a focused conversation with Stela about a use case, pilot, partnership, or investor brief.",
+  alternates: { canonical: "/contact", languages: languageAlternates("contact") },
 };
 
 export default async function ContactPage({
@@ -37,7 +40,7 @@ export default async function ContactPage({
               can remain private until there is a relevant reason to continue.
             </p>
           </aside>
-          <ContactForm initialIntent={initialIntent} />
+          <ContactForm initialIntent={initialIntent} messages={en.contact.form} />
         </div>
       </section>
     </ContentPage>

@@ -16,6 +16,8 @@ The contact page reads the `intent` query parameter and preselects the relevant 
 
 Unknown or missing values default to the potential use-case path.
 
+All paths are locale-aware. Non-English routes retain their locale prefix, for example `/de/contact?intent=pilot` or `/pt/contact?intent=investor`. Changing language preserves both the current page and the contact query parameter.
+
 ## Primary Journeys
 
 ### Product evaluator

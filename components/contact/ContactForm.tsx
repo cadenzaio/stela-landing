@@ -1,20 +1,13 @@
 "use client";
 
 import { FormEvent, useMemo, useState } from "react";
+import type { ContactMessages } from "@/lib/i18n/types";
 
-const reasons = [
-  { value: "use-case", label: "I have a potential use case" },
-  { value: "pilot", label: "I am interested in a pilot" },
-  { value: "insurer", label: "I represent an insurer or asset owner" },
-  { value: "partner", label: "I am interested in partnership" },
-  { value: "investor", label: "I am an investor" },
-  { value: "brief", label: "I want to request a brief" },
-  { value: "other", label: "Other" },
-];
+const reasonValues = ["use-case", "pilot", "insurer", "partner", "investor", "brief", "other"] as const;
 
-const knownIntents = new Set(reasons.map((reason) => reason.value));
+const knownIntents = new Set<string>(reasonValues);
 
-export function ContactForm({ initialIntent }: { initialIntent?: string }) {
+export function ContactForm({ initialIntent, messages }: { initialIntent?: string; messages: ContactMessages["form"] }) {
   const normalizedIntent = initialIntent === "technical-brief" ? "brief" : initialIntent;
   const [reason, setReason] = useState(knownIntents.has(normalizedIntent ?? "") ? normalizedIntent! : "use-case");
   const [submitted, setSubmitted] = useState(false);
@@ -31,18 +24,12 @@ export function ContactForm({ initialIntent }: { initialIntent?: string }) {
     return (
       <div className="form-status" role="status" aria-live="polite">
         <span aria-hidden="true" />
-        <p className="content-eyebrow">Context validated</p>
-        <h2>Thank you.</h2>
-        <p>
-          We will review the context and respond directly if the request is relevant to Stela&apos;s current development
-          and validation work.
-        </p>
-        <p className="form-delivery-note">
-          Prototype notice: form delivery is not connected yet, so this submission has not been sent. The delivery
-          endpoint must be configured before launch.
-        </p>
+        <p className="content-eyebrow">{messages.validated}</p>
+        <h2>{messages.thanks}</h2>
+        <p>{messages.success}</p>
+        <p className="form-delivery-note">{messages.prototypeNotice}</p>
         <button type="button" className="button-secondary" onClick={() => setSubmitted(false)}>
-          Edit details
+          {messages.edit}
         </button>
       </div>
     );
@@ -51,35 +38,35 @@ export function ContactForm({ initialIntent }: { initialIntent?: string }) {
   return (
     <form className="contact-form" onSubmit={handleSubmit} noValidate>
       <fieldset className="intent-fieldset">
-        <legend>What would you like to discuss?</legend>
+        <legend>{messages.legend}</legend>
         <div className="intent-options">
-          {reasons.map((option) => (
-            <label key={option.value}>
+          {reasonValues.map((value) => (
+            <label key={value}>
               <input
                 type="radio"
                 name="contactReason"
-                value={option.value}
-                checked={reason === option.value}
-                onChange={() => setReason(option.value)}
+                value={value}
+                checked={reason === value}
+                onChange={() => setReason(value)}
               />
-              <span>{option.label}</span>
+              <span>{messages.reasons[value]}</span>
             </label>
           ))}
         </div>
       </fieldset>
 
       <div className="form-grid">
-        <Field label="Name" name="name" autoComplete="name" required />
-        <Field label="Organization" name="organization" autoComplete="organization" required />
-        <Field label="Role" name="role" autoComplete="organization-title" required />
-        <Field label="Work email" name="email" type="email" autoComplete="email" required />
-        <Field label="Country" name="country" autoComplete="country-name" required />
+        <Field label={messages.name} name="name" autoComplete="name" required />
+        <Field label={messages.organization} name="organization" autoComplete="organization" required />
+        <Field label={messages.role} name="role" autoComplete="organization-title" required />
+        <Field label={messages.email} name="email" type="email" autoComplete="email" required />
+        <Field label={messages.country} name="country" autoComplete="country-name" required />
         <label className="form-field">
-          <span>Contact reason</span>
+          <span>{messages.reason}</span>
           <select name="reason" value={reason} onChange={(event) => setReason(event.target.value)} required>
-            {reasons.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
+            {reasonValues.map((value) => (
+              <option key={value} value={value}>
+                {messages.reasons[value]}
               </option>
             ))}
           </select>
@@ -87,33 +74,33 @@ export function ContactForm({ initialIntent }: { initialIntent?: string }) {
       </div>
 
       <label className="form-field form-field-full">
-        <span>Short message</span>
+        <span>{messages.message}</span>
         <textarea
           name="message"
           rows={5}
           required
           minLength={20}
-          placeholder="Describe the asset, workflow, and decision that depends on its identity."
+          placeholder={messages.messagePlaceholder}
         />
       </label>
 
       {showWorkflowFields ? (
         <details className="optional-context">
-          <summary>Add optional workflow context</summary>
+          <summary>{messages.optionalSummary}</summary>
           <div className="form-grid">
-            <Field label="Asset type" name="assetType" />
-            <Field label="Current identification method" name="identificationMethod" />
-            <Field label="Workflow or decision affected" name="workflow" />
-            <Field label="Approximate number of assets" name="scale" />
-            <Field label="Current stage or urgency" name="urgency" />
+            <Field label={messages.assetType} name="assetType" />
+            <Field label={messages.identificationMethod} name="identificationMethod" />
+            <Field label={messages.workflow} name="workflow" />
+            <Field label={messages.scale} name="scale" />
+            <Field label={messages.urgency} name="urgency" />
           </div>
         </details>
       ) : null}
 
       <div className="form-submit-row">
-        <p>No information is sent until a delivery service is connected and disclosed.</p>
+        <p>{messages.deliveryDisclosure}</p>
         <button type="submit" className="button-primary">
-          Review request
+          {messages.review}
         </button>
       </div>
     </form>

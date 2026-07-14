@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { languageAlternates } from "@/lib/i18n/config";
 import {
   ContentPage,
   ContentSection,
@@ -11,6 +12,7 @@ import {
 export const metadata: Metadata = {
   title: "Partners and Pilots | Stela",
   description: "Explore pre-commercial Stela pilot, validation, technical, and market collaboration.",
+  alternates: { canonical: "/partners", languages: languageAlternates("partners") },
 };
 
 export default function PartnersPage() {
