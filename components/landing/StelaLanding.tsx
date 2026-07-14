@@ -1,6 +1,5 @@
 import { StelaMark } from "@/components/brand/StelaMark";
-
-const navItems = ["Platform", "Marking System", "Use Cases", "Investors", "Contact"];
+import { SiteFooter, SiteHeader } from "@/components/site/SiteShell";
 
 type HeroVariant = "etched-origin" | "refracted-surface" | "proof-emergence";
 type MaterialTreatment = "subtle-incision" | "optical-incision";
@@ -84,7 +83,7 @@ const milestones = [
 export function StelaLanding() {
   return (
     <main className="stela-page min-h-screen overflow-hidden bg-[var(--stela-black)] text-[var(--stela-ivory)]">
-      <Header />
+      <SiteHeader />
       <Hero />
       <TrustGap />
       <Mechanism />
@@ -92,31 +91,8 @@ export function StelaLanding() {
       <MarkingSystem />
       <UseCases />
       <FinalSection />
-      <Footer />
+      <SiteFooter />
     </main>
-  );
-}
-
-function Header() {
-  return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/[0.07] bg-[#050506]/70 backdrop-blur-2xl">
-      <div className="mx-auto flex h-15 w-full max-w-7xl items-center justify-between px-5 sm:px-8">
-        <a href="#top" className="stela-lockup group flex items-center" aria-label="Stela home">
-          <StelaMark variant="compact" size="nav" />
-          <span className="stela-wordmark text-white">STELA</span>
-        </a>
-        <nav className="hidden items-center gap-7 lg:flex" aria-label="Main navigation">
-          {navItems.map((item) => (
-            <a key={item} href={`#${slugify(item)}`} className="nav-link">
-              {item}
-            </a>
-          ))}
-        </nav>
-        <a href="#contact" className="header-cta">
-          Request brief
-        </a>
-      </div>
-    </header>
   );
 }
 
@@ -144,10 +120,10 @@ function Hero() {
             their lifecycle.
           </p>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <a href="#platform" className="button-primary">
+            <a href="/platform" className="button-primary">
               Explore Stela
             </a>
-            <a href="#investors" className="button-secondary">
+            <a href="/contact?intent=investor" className="button-secondary">
               Request investor brief
             </a>
           </div>
@@ -391,10 +367,10 @@ function FinalSection() {
               the moment of registration.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a href="mailto:brief@stela.example" className="button-primary">
+              <a href="/contact?intent=investor" className="button-primary">
                 Request investor brief
               </a>
-              <a href="mailto:pilot@stela.example" className="button-secondary">
+              <a href="/contact?intent=pilot" className="button-secondary">
                 Discuss a pilot use case
               </a>
             </div>
@@ -410,26 +386,6 @@ function FinalSection() {
         </div>
       </div>
     </section>
-  );
-}
-
-function Footer() {
-  return (
-    <footer className="border-t border-white/10 px-5 py-10 sm:px-8">
-      <div className="mx-auto flex max-w-7xl flex-col gap-5 text-sm text-white/44 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex items-center gap-3">
-          <StelaMark variant="compact" size="small" />
-          <span>Stela</span>
-        </div>
-        <div className="flex flex-wrap gap-x-6 gap-y-2">
-          {navItems.map((item) => (
-            <a key={item} href={`#${slugify(item)}`} className="transition hover:text-white">
-              {item}
-            </a>
-          ))}
-        </div>
-      </div>
-    </footer>
   );
 }
 
@@ -462,8 +418,4 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
       {children}
     </h2>
   );
-}
-
-function slugify(value: string) {
-  return value.toLowerCase().replace(/\s+/g, "-");
 }
