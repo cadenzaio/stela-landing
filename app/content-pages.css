@@ -1,0 +1,349 @@
+/* Shared material system for Stela's focused supporting pages. */
+.content-page .content-hero {
+  min-height: 720px;
+  display: flex;
+  align-items: end;
+  padding: 160px 0 96px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.content-page-platform .content-hero {
+  background-image:
+    linear-gradient(90deg, rgba(5, 6, 6, 0.96) 0 34%, rgba(5, 6, 6, 0.7) 54%, rgba(5, 6, 6, 0.13)),
+    url("/images/stela-controlled-marking.webp");
+  background-position: center, 64% center;
+}
+
+.content-page-applications .content-hero {
+  background-image:
+    linear-gradient(90deg, rgba(5, 6, 6, 0.94) 0 35%, rgba(5, 6, 6, 0.62) 56%, rgba(5, 6, 6, 0.08)),
+    url("/images/stela-application-vehicle.webp");
+  background-position: center, 60% center;
+}
+
+.content-page-partners .content-hero {
+  background-image:
+    linear-gradient(90deg, rgba(5, 6, 6, 0.94) 0 35%, rgba(5, 6, 6, 0.58) 56%, rgba(5, 6, 6, 0.1)),
+    url("/images/stela-application-solar.webp");
+  background-position: center, 60% center;
+}
+
+.content-page-investors .content-hero {
+  background-image:
+    linear-gradient(90deg, rgba(5, 6, 6, 0.94) 0 36%, rgba(5, 6, 6, 0.52) 58%, rgba(5, 6, 6, 0.05)),
+    url("/images/stela-luminous-atrium.webp");
+  background-position: center;
+}
+
+.content-page .content-hero-grid {
+  background:
+    linear-gradient(112deg, transparent 0 69%, rgba(255, 255, 255, 0.12) 69.1%, transparent 69.5%),
+    repeating-linear-gradient(90deg, transparent 0 190px, rgba(255, 255, 255, 0.025) 190px 191px);
+}
+
+.content-page .content-hero::after {
+  right: 3%;
+  bottom: 17%;
+  width: 48%;
+  transform: rotate(-9deg);
+}
+
+.content-page .content-hero-inner {
+  grid-template-columns: minmax(0, 1.18fr) minmax(340px, 0.7fr);
+  align-items: end;
+  gap: 76px;
+}
+
+.content-page .content-hero h1 {
+  max-width: 760px;
+  font-size: clamp(3.7rem, 5.8vw, 5.5rem);
+  line-height: 0.96;
+}
+
+.content-page .content-hero-copy {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  padding: 30px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.025)),
+    rgba(9, 10, 10, 0.62);
+  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(18px);
+}
+
+.content-page .content-hero-copy::before {
+  position: absolute;
+  content: "";
+  left: -9px;
+  top: 30px;
+  width: 16px;
+  height: 16px;
+  transform: rotate(45deg);
+  border: 1px solid rgba(217, 198, 160, 0.65);
+  background: #111313;
+}
+
+.content-page > .content-section {
+  overflow: hidden;
+  padding: 112px 0;
+}
+
+.content-page > .content-section::before {
+  position: absolute;
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(112deg, transparent 64%, rgba(255, 255, 255, 0.035) 64.2%, transparent 64.7%);
+}
+
+.content-page > .content-section:nth-of-type(even) {
+  background:
+    linear-gradient(90deg, rgba(239, 239, 235, 0.97), rgba(224, 225, 222, 0.9)),
+    url("/images/stela-material-light.webp") center / cover;
+  color: #131515;
+}
+
+.content-page > .content-section:nth-of-type(even) .content-eyebrow {
+  color: #706145;
+}
+
+.content-page > .content-section:nth-of-type(even) .content-section-heading h2,
+.content-page > .content-section:nth-of-type(even) .editorial-entries h2 {
+  color: #111313;
+}
+
+.content-page > .content-section:nth-of-type(even) .content-section-body > p,
+.content-page > .content-section:nth-of-type(even) .editorial-copy > p,
+.content-page > .content-section:nth-of-type(even) .content-note,
+.content-page > .content-section:nth-of-type(even) .content-aside,
+.content-page > .content-section:nth-of-type(even) .ruled-list li,
+.content-page > .content-section:nth-of-type(even) .content-sequence strong {
+  color: rgba(17, 19, 19, 0.7) !important;
+}
+
+.content-page > .content-section:nth-of-type(even) .content-emphasis {
+  color: #111313 !important;
+}
+
+.content-page > .content-section:nth-of-type(even) .ruled-list li,
+.content-page > .content-section:nth-of-type(even) .content-aside {
+  border-color: rgba(17, 19, 19, 0.18);
+}
+
+.content-page .content-section-grid {
+  position: relative;
+  z-index: 1;
+  grid-template-columns: minmax(260px, 0.72fr) minmax(0, 1.28fr);
+}
+
+.content-page .content-sequence {
+  gap: 10px;
+}
+
+.content-page .content-sequence::before {
+  display: none;
+}
+
+.content-page .content-sequence li {
+  min-height: 148px;
+  align-content: space-between;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  padding: 22px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.content-page .content-sequence li::before {
+  top: 24px;
+  left: auto;
+  right: 22px;
+}
+
+.content-page .content-sequence span {
+  padding: 0;
+}
+
+.content-page > .content-section:nth-of-type(even) .content-sequence li {
+  border-color: rgba(17, 19, 19, 0.16);
+  background: rgba(255, 255, 255, 0.32);
+}
+
+.content-page > .content-section:nth-of-type(even) .content-sequence li::before {
+  border-color: rgba(112, 97, 69, 0.72);
+  background: rgba(239, 239, 235, 0.94);
+}
+
+.content-page-applications .application-section {
+  background: #101212;
+}
+
+.content-page-applications .editorial-entries article {
+  grid-template-columns: 44px minmax(230px, 0.72fr) minmax(260px, 1fr) minmax(260px, 0.8fr);
+  align-items: center;
+}
+
+.editorial-media {
+  min-height: 230px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background-position: center;
+  background-size: cover;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+.editorial-entries article:nth-child(1) .editorial-media { background-image: url("/images/stela-application-vehicle.webp"); }
+.editorial-entries article:nth-child(2) .editorial-media { background-image: url("/images/stela-application-solar.webp"); }
+.editorial-entries article:nth-child(3) .editorial-media { background-image: url("/images/stela-application-equipment.webp"); }
+.editorial-entries article:nth-child(4) .editorial-media { background-image: url("/images/stela-application-glass.webp"); }
+
+.content-page .conversion-section {
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  background:
+    linear-gradient(90deg, rgba(6, 7, 7, 0.95), rgba(6, 7, 7, 0.55) 58%, rgba(6, 7, 7, 0.15)),
+    url("/images/stela-luminous-atrium.webp") center / cover;
+}
+
+.content-page .conversion-inner > div:last-child {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 28px;
+  background: rgba(10, 11, 11, 0.6);
+  backdrop-filter: blur(16px);
+}
+
+.content-page-contact .contact-hero {
+  min-height: 650px;
+  display: flex;
+  align-items: end;
+  background:
+    linear-gradient(90deg, rgba(5, 6, 6, 0.95) 0 38%, rgba(5, 6, 6, 0.5) 65%, rgba(5, 6, 6, 0.08)),
+    url("/images/stela-material-light.webp") center / cover;
+}
+
+.content-page-contact .contact-section {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.04), transparent 36%),
+    #111313;
+}
+
+.content-page-contact .contact-form {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: clamp(24px, 4vw, 44px);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+@media (max-width: 1180px) {
+  .content-page .content-hero-inner {
+    grid-template-columns: minmax(0, 1fr) minmax(310px, 0.78fr);
+    gap: 44px;
+  }
+
+  .content-page .content-hero h1 {
+    font-size: 4rem;
+  }
+
+  .content-page-applications .editorial-entries article {
+    grid-template-columns: 40px minmax(220px, 0.72fr) minmax(0, 1fr);
+  }
+
+  .content-page-applications .editorial-media {
+    grid-column: 2 / -1;
+  }
+}
+
+@media (max-width: 1024px) {
+  .content-page .content-hero {
+    min-height: 820px;
+    padding: 132px 0 72px;
+    background-position: center, 65% center;
+  }
+
+  .content-page .content-hero-inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 38px;
+  }
+
+  .content-page .content-hero h1 {
+    max-width: 720px;
+    font-size: 3.6rem;
+  }
+
+  .content-page .content-hero-copy {
+    max-width: 620px;
+  }
+
+  .content-page .content-section-grid,
+  .content-page .conversion-inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 46px;
+  }
+}
+
+@media (max-width: 760px) {
+  .content-page .content-hero {
+    min-height: 760px;
+    align-items: start;
+    padding: 116px 0 62px;
+    background-position: center, 68% center;
+  }
+
+  .content-page .content-hero h1 {
+    font-size: 2.7rem;
+  }
+
+  .content-page .content-hero-copy {
+    padding: 22px;
+  }
+
+  .content-page > .content-section {
+    padding: 78px 0;
+  }
+
+  .content-page .content-sequence {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .content-page .content-sequence li {
+    min-height: 104px;
+    grid-template-columns: 42px 1fr;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 20px;
+  }
+
+  .content-page .content-sequence li::before {
+    top: 18px;
+  }
+
+  .content-page .content-sequence strong {
+    padding: 0 22px 0 0;
+  }
+
+  .content-page-applications .editorial-entries article {
+    grid-template-columns: 30px minmax(0, 1fr);
+  }
+
+  .content-page-applications .editorial-copy,
+  .content-page-applications .editorial-media {
+    grid-column: 2;
+  }
+
+  .editorial-media {
+    min-height: 190px;
+  }
+
+  .content-page .conversion-section {
+    min-height: 620px;
+  }
+
+  .content-page-contact .contact-hero {
+    min-height: 600px;
+  }
+
+  .content-page-contact .contact-form {
+    border-inline: 0;
+    padding-inline: 0;
+  }
+}

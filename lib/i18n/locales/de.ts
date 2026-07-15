@@ -20,6 +20,7 @@ export const de: Dictionary = {
     hero: {
       eyebrow: "Präzision, dauerhaft gemacht",
       title: ["Dauerhafte Markierungen.", "Prüfbare Datensätze.", "Vertrauenswürdige Assets."],
+      concise: "Eine dauerhafte Verbindung zwischen physischen Assets und digitalen Nachweisen.",
       copy: "Stela schafft eine dauerhafte Verbindung zwischen physischen Assets und digitalen Nachweisen - durch Präzisionsmarkierung, signierte Nachweisereignisse und prüfbare Zertifikate.",
       note: "Für Assets, die über ihren gesamten Lebenszyklus identifiziert, versichert, gewartet, wiedergefunden, übertragen und verlässlich zugeordnet werden müssen.",
       explore: "Stela entdecken",
@@ -47,6 +48,7 @@ export const de: Dictionary = {
     },
     mechanism: {
       eyebrow: "Mechanismus",
+      howItWorks: "So funktioniert es",
       title: "Markieren. Erfassen. Verifizieren.",
       intro: "Eine kontrollierte Aktion erzeugt den physischen Anker, das signierte Ereignis und den Zertifikatspfad.",
       steps: [
@@ -68,7 +70,7 @@ export const de: Dictionary = {
       title: "Für kontrollierte Markierung im Feld entwickelt.",
       productLine: "Kein generisches Gravurgerät. Ein kontrolliertes Markierungssystem.",
       copy: "Stelas Markierungssystem ist für autorisierte und auditierbare Abläufe konzipiert. Es verbindet physische Präzisionsmarkierung mit kontrollierten Workflows, Bedieneridentität, Maschinenidentität und signierten Ereignisdatensätzen.",
-      visualAria: "Abstrakte Darstellung des kontrollierten Markierungssystems",
+      visualAria: "Konzeptansicht der an Glas befestigten tragbaren Stela-Markiermaschine",
       controlledSession: "Kontrollierte Sitzung",
       authorized: "Autorisiert",
       machineActive: "Maschinenidentität aktiv",

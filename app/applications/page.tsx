@@ -57,7 +57,7 @@ const applications = [
 
 export default function ApplicationsPage() {
   return (
-    <ContentPage>
+    <ContentPage variant="applications">
       <PageHero
         eyebrow="Applications"
         title="Where asset identity needs to hold."

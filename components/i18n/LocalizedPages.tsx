@@ -34,7 +34,7 @@ export function LocalizedPage({
 function LocalizedPlatform({ locale, dictionary }: { locale: Locale; dictionary: Dictionary }) {
   const page = dictionary.platform;
   return (
-    <ContentPage>
+    <ContentPage variant="platform">
       <PageHero
         {...page.hero}
         primary={{ label: page.hero.actions.primary, href: contactPath(locale, "use-case") }}
@@ -70,7 +70,7 @@ function LocalizedApplications({ locale, dictionary }: { locale: Locale; diction
   const page = dictionary.applications;
   const intents = ["insurer", "use-case", "use-case", "use-case"];
   return (
-    <ContentPage>
+    <ContentPage variant="applications">
       <PageHero
         {...page.hero}
         primary={{ label: page.hero.actions.primary, href: contactPath(locale, "use-case") }}
@@ -96,7 +96,7 @@ function LocalizedApplications({ locale, dictionary }: { locale: Locale; diction
 function LocalizedPartners({ locale, dictionary }: { locale: Locale; dictionary: Dictionary }) {
   const page = dictionary.partners;
   return (
-    <ContentPage>
+    <ContentPage variant="partners">
       <PageHero
         {...page.hero}
         primary={{ label: page.hero.actions.primary, href: contactPath(locale, "pilot") }}
@@ -126,7 +126,7 @@ function LocalizedPartners({ locale, dictionary }: { locale: Locale; dictionary:
 function LocalizedInvestors({ locale, dictionary }: { locale: Locale; dictionary: Dictionary }) {
   const page = dictionary.investors;
   return (
-    <ContentPage>
+    <ContentPage variant="investors">
       <PageHero
         {...page.hero}
         primary={{ label: page.hero.actions.primary, href: contactPath(locale, "investor") }}
@@ -157,7 +157,7 @@ function LocalizedInvestors({ locale, dictionary }: { locale: Locale; dictionary
 function LocalizedContact({ dictionary, intent }: { dictionary: Dictionary; intent?: string }) {
   const page = dictionary.contact;
   return (
-    <ContentPage>
+    <ContentPage variant="contact">
       <section className="contact-hero">
         <div className="content-shell contact-hero-inner">
           <p className="content-eyebrow">{page.hero.eyebrow}</p>

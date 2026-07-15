@@ -378,35 +378,73 @@ body {
   gap: 10px;
 }
 
-.desktop-language-select {
+.desktop-language-menu {
   position: relative;
 }
 
-.desktop-language-select > span {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  white-space: nowrap;
-}
-
-.desktop-language-select select {
+.desktop-language-menu summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
   width: 96px;
   border: 0;
+  padding: 8px 0;
   background: transparent;
   color: rgba(255, 255, 255, 0.54);
   font: inherit;
   font-size: 0.76rem;
-  outline: none;
   cursor: pointer;
-  color-scheme: dark;
+  list-style: none;
 }
 
-.desktop-language-select select:focus-visible {
+.desktop-language-menu summary::-webkit-details-marker {
+  display: none;
+}
+
+.desktop-language-menu summary::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+}
+
+.desktop-language-menu[open] summary::after {
+  transform: translateY(2px) rotate(225deg);
+}
+
+.desktop-language-menu summary:focus-visible {
   outline: 1px solid rgba(217, 198, 160, 0.55);
   outline-offset: 5px;
+}
+
+.desktop-language-options {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 20;
+  display: grid;
+  width: 132px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  padding: 6px;
+  background: rgba(10, 11, 11, 0.96);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.32);
+  backdrop-filter: blur(16px);
+}
+
+.desktop-language-options a {
+  padding: 9px 10px;
+  color: rgba(255, 255, 255, 0.66);
+  font-size: 0.78rem;
+}
+
+.desktop-language-options a:hover,
+.desktop-language-options a:focus-visible,
+.desktop-language-options a[aria-current="page"] {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--stela-ivory);
 }
 
 .header-cta-short { display: none; }
@@ -443,22 +481,31 @@ body {
 .site-footer {
   position: relative;
   border-top: 1px solid rgba(255, 255, 255, 0.09);
-  padding: 36px 20px;
+  padding: 0 20px;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025), transparent 34%, rgba(255, 255, 255, 0.035)),
+    rgba(8, 9, 9, 0.96);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(18px) saturate(0.72);
 }
 
 .site-footer-inner {
   display: grid;
-  width: min(100%, 1280px);
+  width: min(100%, 1480px);
+  min-height: 76px;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 36px;
+  gap: 48px;
   margin-inline: auto;
-  color: rgba(255, 255, 255, 0.44);
-  font-size: 0.84rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.78rem;
 }
 
-.site-footer-lockup { display: flex; align-items: center; gap: 10px; color: rgba(255, 255, 255, 0.72); }
-.site-footer nav { display: flex; justify-content: center; gap: 24px; }
+.site-footer-lockup { display: flex; align-items: center; gap: 12px; color: rgba(255, 255, 255, 0.82); }
+.site-footer-lockup .stela-wordmark { font-size: 0.78rem; }
+.site-footer nav { display: flex; justify-content: center; gap: 32px; }
+.site-footer nav a { color: rgba(255, 255, 255, 0.58); }
+.site-footer p { margin: 0; white-space: nowrap; }
 .site-footer a { transition: color 180ms ease; }
 .site-footer a:hover { color: white; }
 
@@ -2430,7 +2477,7 @@ body {
   box-shadow: 0 0 14px rgba(217, 198, 160, 0.34);
 }
 
-@media (max-width: 760px) {
+@media (max-width: 1024px) {
   .identity-intro {
     padding-block: 68px 56px;
   }
@@ -2777,7 +2824,7 @@ body {
 
 @media (max-width: 1024px) {
   .site-desktop-nav { display: none; }
-  .desktop-language-select { display: none; }
+  .desktop-language-menu { display: none; }
   .mobile-menu-toggle { display: block; }
   .site-mobile-nav {
     position: absolute;
@@ -2926,4 +2973,1965 @@ body {
   [lang="pt"] .hero-title { font-size: 1.7rem; }
   [lang="fr"] .hero-title { font-size: 1.55rem; }
   [lang="de"] .hero-title { font-size: 1.35rem; }
+}
+
+/* Homepage direction: Luminous Atrium */
+.stela-home-page {
+  background: #111313;
+}
+
+.stela-home-page .site-header {
+  background: rgba(14, 15, 15, 0.78);
+  backdrop-filter: blur(18px) saturate(0.8);
+}
+
+.luminous-hero {
+  height: clamp(760px, 84vh, 860px);
+  min-height: 0;
+  background-color: #171918;
+  background-image: url("/images/stela-luminous-atrium.webp");
+  background-position: center;
+  background-size: cover;
+}
+
+.luminous-hero-shade {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(5, 6, 6, 0.9) 0%, rgba(8, 9, 9, 0.68) 35%, rgba(9, 10, 10, 0.08) 68%, rgba(9, 10, 10, 0.03) 100%);
+  pointer-events: none;
+}
+
+.luminous-hero .hero-grid {
+  background: none;
+}
+
+.luminous-hero-layout {
+  position: relative;
+  min-height: calc(100% - 7rem);
+}
+
+.luminous-hero .hero-copy {
+  position: relative;
+  z-index: 2;
+}
+
+.luminous-hero .hero-title {
+  font-size: clamp(3.35rem, 5.65vw, 4.75rem);
+  letter-spacing: 0;
+}
+
+.luminous-hero-copy {
+  color: rgba(255, 255, 255, 0.74);
+}
+
+.hero-proof-steps {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-top: 34px;
+}
+
+.hero-proof-steps > div {
+  position: relative;
+  display: grid;
+  min-width: 116px;
+  justify-items: start;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.hero-proof-steps > div:not(:last-child)::after {
+  position: absolute;
+  content: "";
+  left: 48px;
+  right: 18px;
+  top: 17px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.26);
+}
+
+.hero-proof-steps svg {
+  color: rgba(241, 234, 219, 0.82);
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.12));
+}
+
+.hero-proof-steps span {
+  font-size: 0.82rem;
+}
+
+.luminous-hero .precision-wrap {
+  min-height: 620px;
+}
+
+.luminous-hero .glass-reflection,
+.luminous-hero .surface-depth,
+.luminous-hero .surface-horizon,
+.luminous-hero .surface-refraction,
+.luminous-hero .surface-etch {
+  display: none;
+}
+
+.luminous-hero .precision-wrap::before {
+  display: none;
+}
+
+.luminous-hero .origin-surface {
+  inset: 78px 4px auto 0;
+  height: 470px;
+  overflow: visible;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  transform: none;
+}
+
+.luminous-hero .origin-surface::before,
+.luminous-hero .origin-surface::after {
+  display: none;
+}
+
+.luminous-hero .engraved-origin {
+  inset: 108px 64px 92px 54px;
+  background: none;
+}
+
+.luminous-hero .engraved-origin::before {
+  background: radial-gradient(ellipse at 47% 46%, rgba(245, 240, 232, 0.1), transparent 34%);
+  opacity: 0.72;
+}
+
+.luminous-hero .engraved-origin::after {
+  display: none;
+}
+
+.luminous-hero .origin-label {
+  left: 38px;
+  bottom: 17px;
+  color: rgba(255, 255, 255, 0.58);
+  letter-spacing: 0.14em;
+}
+
+.luminous-hero .proof-link {
+  left: 142px;
+  top: 298px;
+  width: 224px;
+}
+
+.luminous-hero .proof-link path {
+  stroke: rgba(245, 240, 232, 0.48);
+}
+
+.luminous-hero .proof-certificate {
+  top: 354px;
+  right: -10px;
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(30, 32, 31, 0.48);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(18px) saturate(0.75);
+}
+
+.luminous-standard {
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid rgba(20, 22, 21, 0.16);
+  background: #c7c9c7;
+  color: #111313;
+}
+
+.luminous-standard-eyebrow {
+  margin: 0 0 16px;
+  color: rgba(17, 19, 19, 0.56);
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.luminous-standard h2 {
+  max-width: 600px;
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 620;
+  line-height: 1.02;
+  letter-spacing: 0;
+}
+
+.luminous-principles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-left: 1px solid rgba(17, 19, 19, 0.14);
+}
+
+.luminous-principles > div {
+  display: grid;
+  min-height: 132px;
+  place-items: center;
+  align-content: center;
+  gap: 12px;
+  border-right: 1px solid rgba(17, 19, 19, 0.14);
+  color: rgba(17, 19, 19, 0.78);
+}
+
+.luminous-principles span {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.stela-home-page .section-block {
+  border-top-color: rgba(255, 255, 255, 0.12);
+  background: #141616;
+}
+
+.stela-home-page .section-block:nth-of-type(even) {
+  background: #191b1a;
+}
+
+.stela-home-page .sequence-track,
+.stela-home-page .use-case-panels,
+.stela-home-page .feature-rail {
+  border-color: rgba(255, 255, 255, 0.13);
+}
+
+.stela-home-page .sequence-step {
+  min-height: 180px;
+}
+
+.stela-home-page .sequence-node {
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.stela-home-page .sequence-label {
+  margin-top: 38px;
+}
+
+.stela-home-page .feature-chip {
+  gap: 12px;
+}
+
+.stela-home-page .feature-chip > svg {
+  flex: 0 0 auto;
+  color: rgba(217, 198, 160, 0.78);
+}
+
+.stela-home-page .case-panel > svg {
+  margin-bottom: 34px;
+  color: rgba(217, 198, 160, 0.78);
+}
+
+.stela-home-page .case-panel {
+  min-height: 260px;
+  background: rgba(255, 255, 255, 0.018);
+}
+
+@media (min-width: 1025px) {
+  [lang="fr"] .luminous-hero .hero-title { font-size: 4.35rem; }
+  [lang="it"] .luminous-hero .hero-title { font-size: 4.45rem; }
+  [lang="de"] .luminous-hero .hero-title { font-size: 3.75rem; }
+}
+
+@media (max-width: 1024px) {
+  .luminous-hero {
+    height: auto;
+    min-height: 0;
+    background-position: 54% center;
+  }
+
+  .luminous-hero-shade {
+    background: linear-gradient(180deg, rgba(6, 7, 7, 0.84) 0%, rgba(8, 9, 9, 0.6) 48%, rgba(8, 9, 9, 0.22) 100%);
+  }
+
+  .luminous-hero-layout {
+    min-height: auto;
+  }
+
+  .luminous-hero .precision-wrap {
+    min-height: 560px;
+  }
+
+  .luminous-hero .origin-surface {
+    inset: 0 0 auto;
+    height: 390px;
+  }
+
+  .luminous-hero .engraved-origin {
+    inset: 24px 24px 100px;
+  }
+
+  .luminous-hero .origin-label {
+    left: 10px;
+    bottom: 36px;
+  }
+
+  .luminous-hero .proof-link {
+    left: 88px;
+    top: 156px;
+    width: 86px;
+    height: 62px;
+  }
+
+  .luminous-hero .proof-certificate {
+    top: 220px;
+  }
+}
+
+@media (max-width: 760px) {
+  .luminous-hero {
+    padding-top: 116px;
+  }
+
+  .luminous-hero {
+    background-position: 44% center;
+  }
+
+  .luminous-hero-shade {
+    background: linear-gradient(180deg, rgba(5, 6, 6, 0.91) 0%, rgba(8, 9, 9, 0.72) 47%, rgba(8, 9, 9, 0.34) 100%);
+  }
+
+  .hero-proof-steps {
+    justify-content: space-between;
+  }
+
+  .hero-proof-steps > div {
+    min-width: 0;
+    width: 32%;
+  }
+
+  .hero-proof-steps > div:not(:last-child)::after {
+    right: 8px;
+  }
+
+  .luminous-standard {
+    padding-block: 54px;
+  }
+
+  .luminous-principles {
+    border-top: 1px solid rgba(17, 19, 19, 0.14);
+    border-left: 0;
+  }
+
+  .luminous-principles > div {
+    min-height: 108px;
+  }
+}
+
+@media (max-width: 520px) {
+  .luminous-hero .hero-title {
+    font-size: 2rem;
+  }
+
+  [lang="fr"] .luminous-hero .hero-title,
+  [lang="de"] .luminous-hero .hero-title {
+    font-size: 1.7rem;
+  }
+
+  .luminous-hero-copy {
+    font-size: 1.05rem !important;
+    line-height: 1.6 !important;
+  }
+
+  .hero-proof-steps {
+    margin-top: 28px;
+  }
+
+  .hero-proof-steps svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .luminous-hero .precision-wrap {
+    min-height: 470px;
+  }
+
+  .luminous-hero .proof-certificate {
+    right: 0;
+  }
+
+  .luminous-principles {
+    grid-template-columns: 1fr;
+  }
+
+  .luminous-principles > div {
+    grid-template-columns: 36px 1fr;
+    min-height: 76px;
+    justify-items: start;
+    border-right: 0;
+    border-bottom: 1px solid rgba(17, 19, 19, 0.14);
+    padding-inline: 8px;
+  }
+}
+
+@media (max-width: 350px) {
+  .luminous-hero .hero-title { font-size: 1.85rem; }
+  [lang="es"] .luminous-hero .hero-title,
+  [lang="it"] .luminous-hero .hero-title { font-size: 1.6rem; }
+  [lang="pt"] .luminous-hero .hero-title { font-size: 1.7rem; }
+  [lang="fr"] .luminous-hero .hero-title { font-size: 1.55rem; }
+  [lang="de"] .luminous-hero .hero-title { font-size: 1.35rem; }
+}
+
+/* Homepage precision polish: fixed proof assembly and sustained material energy */
+.luminous-hero {
+  background-position: right 54%;
+  background-repeat: no-repeat;
+  background-size: auto 88%;
+}
+
+.luminous-hero-layout,
+.luminous-hero-layout > *,
+.luminous-hero .hero-copy {
+  min-width: 0;
+}
+
+.luminous-hero .proof-assembly {
+  position: absolute;
+  top: 54px;
+  left: 50%;
+  width: 560px;
+  height: 540px;
+  transform: translateX(-50%);
+}
+
+.luminous-hero .proof-assembly .origin-surface {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.luminous-hero .proof-assembly .engraved-origin {
+  inset: 135px auto auto 40px;
+  width: 230px;
+  height: 208px;
+}
+
+.luminous-hero .proof-assembly .origin-label {
+  left: 42px;
+  bottom: 44px;
+}
+
+.luminous-hero .proof-assembly .proof-link {
+  left: 152px;
+  top: 232px;
+  z-index: 1;
+  width: 148px;
+  height: 80px;
+}
+
+.luminous-hero .proof-assembly .proof-certificate {
+  top: 260px;
+  right: auto;
+  left: 298px;
+  z-index: 2;
+  width: 260px;
+}
+
+.stela-home-page .section-block {
+  overflow: hidden;
+  background-image:
+    linear-gradient(118deg, transparent 0 68%, rgba(255, 255, 255, 0.026) 68.15%, transparent 68.65%),
+    radial-gradient(ellipse at 88% 14%, rgba(217, 198, 160, 0.04), transparent 28rem);
+}
+
+.stela-home-page .section-block::after {
+  position: absolute;
+  content: "";
+  right: -8%;
+  bottom: 16%;
+  width: 48%;
+  height: 1px;
+  transform: rotate(-8deg);
+  background: linear-gradient(90deg, transparent, rgba(245, 240, 232, 0.13), transparent);
+  pointer-events: none;
+}
+
+.stela-home-page .section-block > div {
+  position: relative;
+  z-index: 1;
+}
+
+.stela-home-page .diagram-row {
+  padding: 0;
+}
+
+.stela-home-page .diagram-row span {
+  grid-template-columns: 34px minmax(0, 1fr);
+  place-items: center start;
+  gap: 14px;
+  min-height: 76px;
+  padding: 14px 18px;
+  background:
+    linear-gradient(132deg, rgba(255, 255, 255, 0.065), transparent 46%),
+    rgba(255, 255, 255, 0.018);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.055);
+}
+
+.stela-home-page .diagram-row span svg {
+  color: rgba(245, 240, 232, 0.58);
+}
+
+.stela-home-page .diagram-row.strong span {
+  border-color: rgba(217, 198, 160, 0.24);
+  background:
+    linear-gradient(132deg, rgba(217, 198, 160, 0.075), transparent 48%),
+    rgba(255, 255, 255, 0.026);
+}
+
+.stela-home-page .diagram-row.strong span svg {
+  color: rgba(217, 198, 160, 0.82);
+}
+
+.stela-home-page .sequence-track {
+  background: linear-gradient(116deg, rgba(255, 255, 255, 0.028), transparent 40%);
+}
+
+.stela-home-page .sequence-beam {
+  z-index: 0;
+  pointer-events: none;
+}
+
+.stela-home-page .sequence-step {
+  z-index: 1;
+}
+
+.stela-home-page .sequence-node {
+  position: relative;
+  z-index: 2;
+  background: #191b1a;
+  box-shadow: 0 0 0 12px #191b1a, inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.stela-home-page .lifecycle-timeline {
+  background:
+    linear-gradient(128deg, rgba(255, 255, 255, 0.045), transparent 24%),
+    rgba(255, 255, 255, 0.012);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
+}
+
+.stela-home-page .device-module {
+  min-height: 420px;
+  border-color: rgba(255, 255, 255, 0.18);
+  background:
+    linear-gradient(90deg, rgba(8, 9, 9, 0.1), transparent 58%, rgba(8, 9, 9, 0.22)),
+    url("/images/stela-controlled-marking.webp") center / cover no-repeat;
+  box-shadow:
+    0 28px 80px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+.stela-home-page .device-head,
+.stela-home-page .device-surface,
+.stela-home-page .device-trust-line {
+  display: none;
+}
+
+.stela-home-page .session-panel {
+  top: 26px;
+  right: 26px;
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(11, 12, 12, 0.68);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.stela-home-page .case-panel {
+  background:
+    linear-gradient(132deg, rgba(255, 255, 255, 0.045), transparent 42%),
+    rgba(255, 255, 255, 0.012);
+}
+
+.stela-home-page .case-panel > svg {
+  width: 42px;
+  height: 42px;
+  filter: drop-shadow(0 0 12px rgba(217, 198, 160, 0.1));
+}
+
+@media (min-width: 1025px) {
+  .luminous-hero-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr);
+  }
+
+  [lang="es"] .luminous-hero .hero-title { font-size: 3.7rem; }
+  [lang="pt"] .luminous-hero .hero-title { font-size: 4.05rem; }
+}
+
+@media (max-width: 1024px) {
+  .luminous-hero {
+    background-position: 54% center;
+    background-size: cover;
+  }
+
+  .luminous-hero .proof-assembly {
+    top: 0;
+  }
+
+  .luminous-hero .precision-wrap {
+    min-height: 580px;
+  }
+}
+
+@media (max-width: 760px) {
+  .luminous-hero .precision-wrap {
+    min-height: 520px;
+  }
+
+  .luminous-hero .proof-assembly {
+    top: 8px;
+    width: 100%;
+    height: 500px;
+  }
+
+  .luminous-hero .proof-assembly .engraved-origin {
+    inset: 45px auto auto 0;
+    width: 176px;
+    height: 176px;
+  }
+
+  .luminous-hero .proof-assembly .engraved-origin .stela-mark-hero {
+    left: 0;
+    width: 176px;
+    height: 176px;
+  }
+
+  .luminous-hero .proof-assembly .origin-label {
+    left: 10px;
+    bottom: 46px;
+  }
+
+  .luminous-hero .proof-assembly .proof-link {
+    left: 88px;
+    top: 126px;
+    width: 76px;
+    height: 62px;
+  }
+
+  .luminous-hero .proof-assembly .proof-certificate {
+    top: 137px;
+    right: 0;
+    left: auto;
+    width: min(64%, 236px);
+  }
+
+  .stela-home-page .diagram-row span {
+    grid-template-columns: 30px minmax(0, 1fr);
+  }
+
+  .stela-home-page .sequence-node {
+    box-shadow: 0 0 0 10px #191b1a, inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  .stela-home-page .device-module {
+    min-height: 420px;
+    background-position: 42% center;
+  }
+
+  .stela-home-page .session-panel {
+    right: 16px;
+    width: min(54%, 206px);
+  }
+}
+
+@media (max-width: 420px) {
+  .luminous-hero .proof-assembly .engraved-origin {
+    width: 152px;
+    height: 152px;
+  }
+
+  .luminous-hero .proof-assembly .engraved-origin .stela-mark-hero {
+    width: 152px;
+    height: 152px;
+  }
+
+  .luminous-hero .proof-assembly .proof-link {
+    left: 76px;
+    top: 115px;
+  }
+
+  .luminous-hero .proof-assembly .proof-certificate {
+    top: 126px;
+  }
+}
+
+@media (max-width: 760px) {
+  .luminous-hero .hero-proof-steps,
+  .luminous-hero .hero-actions {
+    margin-left: 0;
+  }
+
+  .luminous-hero .hero-proof-steps > div {
+    min-width: 0;
+  }
+
+  .stela-home-page .trust-gap-section .trust-path {
+    min-height: 520px;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 1fr 150px 1fr;
+    gap: 14px;
+  }
+
+  .stela-home-page .trust-gap-section .trust-path-line {
+    inset: 12% auto 12% 50%;
+    width: 1px;
+    height: auto;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(217, 198, 160, 0.82) 50%, rgba(255, 255, 255, 0.14));
+  }
+
+  .stela-home-page .trust-gap-section .trust-path-node {
+    width: min(100%, 320px);
+    justify-self: center;
+  }
+
+  .site-footer {
+    padding: 22px 20px;
+  }
+
+  .site-footer-inner {
+    min-height: 0;
+    gap: 20px;
+  }
+
+  .site-footer-inner > p {
+    white-space: normal;
+  }
+}
+
+/* Automotive identity hero and annotated homepage refinements */
+.luminous-hero {
+  background-image: url("/images/stela-hero-vehicle-identity.webp");
+  background-position: center;
+  background-size: cover;
+}
+
+.luminous-hero-shade {
+  background:
+    linear-gradient(90deg, rgba(4, 5, 5, 0.88) 0%, rgba(5, 6, 6, 0.69) 31%, rgba(6, 7, 7, 0.18) 53%, rgba(6, 7, 7, 0.02) 100%),
+    linear-gradient(180deg, rgba(5, 6, 6, 0.08), transparent 72%, rgba(5, 6, 6, 0.18));
+}
+
+.luminous-hero .glass-reflection,
+.luminous-hero .precision-wrap::before {
+  display: none;
+}
+
+.luminous-hero .proof-assembly {
+  top: 54px;
+  width: 760px;
+  height: 620px;
+}
+
+.luminous-hero .proof-assembly .proof-link {
+  z-index: 1;
+  left: 8px;
+  top: 330px;
+  width: 374px;
+  height: 108px;
+}
+
+.luminous-hero .proof-assembly .proof-link path {
+  stroke: rgba(232, 218, 190, 0.52);
+}
+
+.luminous-hero .proof-assembly .proof-certificate {
+  z-index: 2;
+  top: 320px;
+  left: 350px;
+  width: 310px;
+  padding: 18px;
+  background:
+    linear-gradient(132deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.018)),
+    rgba(10, 11, 11, 0.63);
+  box-shadow:
+    0 22px 54px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.11);
+}
+
+.luminous-hero .hero-actions {
+  margin-left: 0;
+}
+
+.hero-process-band {
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  background:
+    linear-gradient(118deg, rgba(255, 255, 255, 0.055), transparent 28%),
+    #0c0d0d;
+  color: white;
+}
+
+.hero-process-band-inner {
+  display: grid;
+  width: 100%;
+  max-width: 1680px;
+  min-height: 190px;
+  grid-template-columns: minmax(170px, 0.42fr) minmax(0, 1.58fr);
+  align-items: stretch;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.hero-process-band-inner > p {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  color: var(--stela-champagne);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.76rem;
+  font-weight: 560;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.hero-process-band-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.hero-process-band-steps > div {
+  display: grid;
+  min-width: 0;
+  min-height: 188px;
+  place-content: center;
+  justify-items: center;
+  gap: 18px;
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  text-align: center;
+}
+
+.hero-process-band-steps svg {
+  width: 56px;
+  height: 56px;
+  color: rgba(246, 235, 212, 0.96);
+  filter: drop-shadow(0 0 20px rgba(217, 198, 160, 0.18));
+}
+
+.hero-process-band-steps strong {
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.88rem;
+  font-weight: 560;
+}
+
+.luminous-standard {
+  min-height: 560px;
+  background-image:
+    linear-gradient(90deg, rgba(226, 226, 222, 0.98) 0 36%, rgba(226, 226, 222, 0.9) 49%, rgba(226, 226, 222, 0.12) 72%),
+    url("/images/stela-application-solar.webp");
+  background-position: center, 62% center;
+}
+
+.luminous-standard-inner {
+  min-height: 560px;
+}
+
+.stela-home-page .trust-gap-section {
+  background-image:
+    linear-gradient(90deg, rgba(7, 8, 8, 0.94) 0 34%, rgba(7, 8, 8, 0.66) 55%, rgba(7, 8, 8, 0.34)),
+    url("/images/stela-application-equipment.webp");
+  background-position: center;
+  background-size: cover;
+}
+
+.trust-comparison {
+  display: grid;
+  gap: 14px;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(12, 14, 13, 0.32);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 26px 70px rgba(0, 0, 0, 0.16);
+  backdrop-filter: blur(14px) saturate(0.76);
+}
+
+.trust-comparison-row {
+  display: grid;
+  min-height: 108px;
+  grid-template-columns: minmax(140px, 1fr) minmax(154px, 0.78fr) minmax(140px, 1fr);
+  align-items: center;
+  gap: 12px;
+}
+
+.trust-comparison-row + .trust-comparison-row {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 14px;
+}
+
+.trust-comparison-node {
+  display: grid;
+  min-height: 84px;
+  grid-template-columns: 32px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 18px;
+  background: rgba(15, 17, 16, 0.5);
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.86rem;
+  font-weight: 580;
+}
+
+.trust-comparison-row.weak {
+  opacity: 0.57;
+}
+
+.trust-comparison-row.strong .trust-comparison-node {
+  border-color: rgba(217, 198, 160, 0.38);
+  background:
+    linear-gradient(132deg, rgba(217, 198, 160, 0.09), transparent 54%),
+    rgba(17, 19, 18, 0.62);
+}
+
+.trust-comparison-link {
+  display: grid;
+  grid-template-columns: minmax(18px, 1fr) auto minmax(18px, 1fr);
+  align-items: center;
+  gap: 10px;
+}
+
+.trust-comparison-link i {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.trust-comparison-row.weak .trust-comparison-link i {
+  background: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.34) 0 8px, transparent 8px 15px);
+}
+
+.trust-comparison-row.strong .trust-comparison-link i {
+  background: linear-gradient(90deg, rgba(217, 198, 160, 0.25), rgba(217, 198, 160, 0.86), rgba(217, 198, 160, 0.25));
+}
+
+.trust-comparison-link em {
+  color: rgba(255, 255, 255, 0.66);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.64rem;
+  font-style: normal;
+  letter-spacing: 0.14em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.trust-anchor-label {
+  display: grid;
+  min-width: 116px;
+  justify-items: center;
+  gap: 8px;
+  color: var(--stela-champagne);
+}
+
+.trust-anchor-label .stela-mark {
+  transform: scale(0.8);
+}
+
+.stela-home-page .mechanism-section .sequence-track {
+  gap: 18px;
+  border: 0;
+  background: transparent;
+  backdrop-filter: none;
+}
+
+.stela-home-page .mechanism-section .sequence-beam {
+  display: none;
+}
+
+.stela-home-page .mechanism-section .sequence-step,
+.stela-home-page .mechanism-section .sequence-step:first-of-type {
+  display: grid;
+  min-height: 248px;
+  place-content: center;
+  justify-items: center;
+  gap: 24px;
+  border: 1px solid rgba(17, 19, 19, 0.18);
+  padding: 28px;
+  background: rgba(244, 244, 240, 0.38);
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+.stela-home-page .mechanism-section .sequence-node {
+  width: 76px;
+  height: 76px;
+  margin: 0;
+  border-radius: 2px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.stela-home-page .mechanism-section .sequence-node svg {
+  width: 40px;
+  height: 40px;
+}
+
+.stela-home-page .mechanism-section .sequence-label {
+  margin: 0;
+  text-align: center;
+}
+
+.device-stack {
+  display: grid;
+  min-width: 0;
+  gap: 12px;
+}
+
+.device-stack .device-module {
+  width: 100%;
+}
+
+.stela-home-page .marking-section .device-stack .session-panel {
+  position: static;
+  display: grid;
+  width: 100%;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 28px;
+  border-color: rgba(17, 19, 19, 0.18);
+  padding: 18px 20px;
+  background: rgba(11, 12, 12, 0.9);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.stela-home-page .marking-section .device-stack .session-panel p,
+.stela-home-page .marking-section .device-stack .session-panel strong,
+.stela-home-page .marking-section .device-stack .session-panel div {
+  margin: 0;
+}
+
+.stela-home-page .marking-section .device-stack .session-panel p {
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.stela-home-page .marking-section .device-stack .session-panel strong {
+  color: var(--stela-champagne);
+  font-size: 1.08rem;
+}
+
+.stela-home-page .marking-section .device-stack .session-panel div {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+@media (max-width: 1180px) {
+  .luminous-hero .proof-assembly {
+    transform: translateX(-50%) scale(0.86);
+    transform-origin: center top;
+  }
+
+  .hero-process-band-inner {
+    grid-template-columns: 150px minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .luminous-hero {
+    background-position: 58% center;
+  }
+
+  .luminous-hero .precision-wrap {
+    min-height: 520px;
+  }
+
+  .luminous-hero .proof-assembly {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) scale(0.86);
+  }
+
+  .luminous-standard {
+    background-position: center, 70% center;
+  }
+
+  .trust-comparison {
+    margin-top: 12px;
+  }
+
+  .stela-home-page .marking-section .device-stack .session-panel {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .stela-home-page .marking-section .device-stack .session-panel div {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 760px) {
+  .luminous-hero {
+    min-height: 960px;
+    background-position: 60% center;
+  }
+
+  .luminous-hero-shade {
+    background: linear-gradient(180deg, rgba(4, 5, 5, 0.9) 0 43%, rgba(5, 6, 6, 0.38) 70%, rgba(5, 6, 6, 0.13));
+  }
+
+  .luminous-hero .precision-wrap {
+    min-height: 440px;
+  }
+
+  .luminous-hero .proof-assembly {
+    top: 4px;
+    width: 600px;
+    height: 470px;
+    transform: translateX(-50%) scale(0.72);
+    transform-origin: center top;
+  }
+
+  .luminous-hero .proof-assembly .proof-link {
+    left: 8px;
+    top: 245px;
+    width: 306px;
+  }
+
+  .luminous-hero .proof-assembly .proof-certificate {
+    top: 232px;
+    left: 286px;
+    width: 296px;
+  }
+
+  .hero-process-band-inner {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 26px 20px 0;
+  }
+
+  .hero-process-band-inner > p {
+    padding-bottom: 22px;
+  }
+
+  .hero-process-band-steps > div {
+    min-height: 148px;
+  }
+
+  .hero-process-band-steps svg {
+    width: 46px;
+    height: 46px;
+  }
+
+  .luminous-standard {
+    min-height: 780px;
+    background-image:
+      linear-gradient(180deg, rgba(226, 226, 222, 0.98) 0 48%, rgba(226, 226, 222, 0.42) 70%, rgba(226, 226, 222, 0.08)),
+      url("/images/stela-application-solar.webp");
+    background-position: center, 58% center;
+  }
+
+  .trust-comparison-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .trust-comparison-link {
+    min-height: 42px;
+  }
+
+  .trust-comparison-node {
+    min-height: 72px;
+  }
+
+  .stela-home-page .mechanism-section .sequence-track {
+    gap: 12px;
+  }
+
+  .stela-home-page .mechanism-section .sequence-step,
+  .stela-home-page .mechanism-section .sequence-step:first-of-type {
+    min-height: 190px;
+  }
+
+  .stela-home-page .marking-section .device-stack .session-panel {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .stela-home-page .marking-section .device-stack .session-panel div {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero-process-band-inner {
+    padding-inline: 14px;
+  }
+
+  .hero-process-band-steps > div {
+    min-height: 132px;
+  }
+
+  .hero-process-band-steps svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .hero-process-band-steps strong {
+    font-size: 0.76rem;
+  }
+}
+
+/* Homepage concept convergence: one luminous architectural material system */
+.stela-home-page {
+  background: #c8c9c7;
+}
+
+.stela-home-page .site-header {
+  border-bottom-color: rgba(255, 255, 255, 0.14);
+  background: rgba(13, 14, 14, 0.52);
+  backdrop-filter: blur(20px) saturate(0.72);
+}
+
+.luminous-hero {
+  height: clamp(680px, 82svh, 1060px);
+  background-color: #242625;
+  background-image: url("/images/stela-hero-immersive.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.luminous-hero-shade {
+  background:
+    linear-gradient(90deg, rgba(4, 5, 5, 0.76) 0%, rgba(6, 7, 7, 0.5) 31%, rgba(8, 9, 9, 0.12) 58%, rgba(8, 9, 9, 0.01) 100%),
+    linear-gradient(180deg, rgba(6, 7, 7, 0.12), transparent 72%, rgba(7, 8, 8, 0.12));
+}
+
+.luminous-hero-layout {
+  width: 100%;
+  max-width: 1680px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 20px;
+}
+
+.luminous-hero .hero-copy {
+  max-width: 760px;
+}
+
+.luminous-hero .hero-title {
+  max-width: 760px;
+  font-size: clamp(4rem, 5.1vw, 5.45rem);
+  line-height: 0.98;
+}
+
+.luminous-hero-copy {
+  max-width: 36rem;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.luminous-hero .precision-wrap {
+  width: 100%;
+  max-width: 760px;
+  min-height: 700px;
+  justify-self: end;
+}
+
+.luminous-hero .proof-assembly {
+  top: 54px;
+  width: 680px;
+  height: 600px;
+}
+
+.luminous-hero .proof-assembly .engraved-origin {
+  inset: 150px auto auto 60px;
+  width: 248px;
+  height: 248px;
+}
+
+.luminous-hero .proof-assembly .engraved-origin .stela-mark-hero {
+  width: 248px;
+  height: 248px;
+}
+
+.luminous-hero .proof-assembly .proof-link {
+  left: 192px;
+  top: 266px;
+  width: 202px;
+  height: 82px;
+}
+
+.luminous-hero .proof-assembly .proof-certificate {
+  top: 296px;
+  left: 392px;
+  width: 270px;
+}
+
+.luminous-hero .proof-assembly .origin-label {
+  left: 116px;
+  bottom: 60px;
+}
+
+.hero-proof-steps > div {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.hero-proof-steps > div:not(:last-child)::after {
+  background: rgba(255, 255, 255, 0.34);
+}
+
+.luminous-hero .hero-proof-steps,
+.luminous-hero .hero-actions {
+  margin-left: clamp(28px, 3.2vw, 52px);
+}
+
+.luminous-hero .hero-proof-steps > div {
+  min-width: 128px;
+  color: rgba(255, 255, 255, 0.94);
+}
+
+.luminous-hero .hero-proof-steps svg {
+  width: 38px;
+  height: 38px;
+  color: rgba(247, 239, 222, 0.98);
+  filter: drop-shadow(0 0 14px rgba(217, 198, 160, 0.22));
+}
+
+.luminous-hero .hero-proof-steps > div:not(:last-child)::after {
+  left: 54px;
+  top: 19px;
+  background: linear-gradient(90deg, rgba(217, 198, 160, 0.72), rgba(255, 255, 255, 0.2));
+}
+
+.luminous-hero .hero-proof-steps span {
+  color: rgba(255, 255, 255, 0.82);
+  font-weight: 560;
+}
+
+.luminous-standard {
+  position: relative;
+  min-height: 520px;
+  border-color: rgba(16, 18, 18, 0.16);
+  padding: 0 !important;
+  background-color: #cacac7;
+  background-image:
+    linear-gradient(90deg, rgba(220, 220, 216, 0.98) 0 38%, rgba(220, 220, 216, 0.9) 50%, rgba(220, 220, 216, 0.08) 74%),
+    url("/images/stela-application-vehicle.webp");
+  background-position: center, 66% center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #141616;
+}
+
+.luminous-standard-inner {
+  display: grid;
+  min-height: 520px;
+  max-width: 1680px !important;
+  grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+  align-items: center;
+  padding: 76px 32px;
+}
+
+.luminous-standard-copy {
+  max-width: 680px;
+}
+
+.luminous-standard h2 {
+  max-width: 680px;
+  font-size: clamp(3rem, 4.2vw, 4.6rem);
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.luminous-standard-copyline {
+  max-width: 560px;
+  margin: 24px 0 0;
+  color: rgba(17, 19, 19, 0.68);
+  font-size: 1.16rem;
+  line-height: 1.65;
+}
+
+.luminous-principles {
+  max-width: 620px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 42px;
+  border-top: 1px solid rgba(17, 19, 19, 0.18);
+  border-bottom: 1px solid rgba(17, 19, 19, 0.18);
+  border-left: 0;
+}
+
+.luminous-principles > div {
+  min-height: 116px;
+  border-right-color: rgba(17, 19, 19, 0.16);
+  backdrop-filter: blur(8px);
+}
+
+.luminous-principles > div:first-child {
+  border-left: 1px solid rgba(17, 19, 19, 0.16);
+}
+
+.stela-home-page .section-block {
+  min-height: 680px;
+  border-top-color: rgba(255, 255, 255, 0.14);
+  background-color: #242625;
+  background-image:
+    linear-gradient(90deg, rgba(8, 9, 9, 0.62), rgba(8, 9, 9, 0.18) 58%, rgba(8, 9, 9, 0.04)),
+    url("/images/stela-material-depth.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.stela-home-page .section-block:nth-of-type(even) {
+  background-color: #242625;
+}
+
+.stela-home-page .section-block > div {
+  max-width: 1600px;
+}
+
+.stela-home-page .section-block h2 {
+  letter-spacing: 0;
+}
+
+.stela-home-page .section-block::after {
+  display: none;
+}
+
+.stela-home-page .trust-gap-section .diagram-row span {
+  border-color: rgba(255, 255, 255, 0.18);
+  background:
+    linear-gradient(132deg, rgba(255, 255, 255, 0.1), transparent 52%),
+    rgba(16, 18, 18, 0.34);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 22px 48px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(14px) saturate(0.76);
+}
+
+.stela-home-page .trust-gap-section .diagram-row.strong span {
+  border-color: rgba(217, 198, 160, 0.38);
+  background:
+    linear-gradient(132deg, rgba(217, 198, 160, 0.12), transparent 52%),
+    rgba(22, 24, 23, 0.4);
+}
+
+.stela-home-page .trust-gap-section .trust-path {
+  position: relative;
+  display: grid;
+  min-height: 310px;
+  grid-template-columns: minmax(150px, 1fr) 150px minmax(150px, 1fr);
+  align-items: center;
+  gap: 16px;
+}
+
+.stela-home-page .trust-gap-section .trust-path-line {
+  position: absolute;
+  z-index: 0;
+  left: 15%;
+  right: 15%;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.14), rgba(217, 198, 160, 0.82) 50%, rgba(255, 255, 255, 0.14));
+  box-shadow: 0 0 18px rgba(217, 198, 160, 0.08);
+}
+
+.stela-home-page .trust-gap-section .trust-path-node,
+.stela-home-page .trust-gap-section .trust-path-anchor {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+}
+
+.stela-home-page .trust-gap-section .trust-path-node {
+  min-height: 118px;
+  place-content: center;
+  gap: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background:
+    linear-gradient(132deg, rgba(255, 255, 255, 0.11), transparent 54%),
+    rgba(15, 17, 17, 0.5);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 24px 60px rgba(0, 0, 0, 0.13);
+  backdrop-filter: blur(14px) saturate(0.74);
+}
+
+.stela-home-page .trust-gap-section .trust-path-node svg {
+  color: rgba(238, 221, 184, 0.86);
+}
+
+.stela-home-page .trust-gap-section .trust-path-node span {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.stela-home-page .trust-gap-section .trust-path-anchor {
+  gap: 12px;
+  color: var(--stela-champagne);
+}
+
+.stela-home-page .trust-gap-section .trust-path-anchor::before {
+  position: absolute;
+  content: "";
+  left: 50%;
+  top: 50%;
+  width: 84px;
+  height: 84px;
+  transform: translate(-50%, -58%);
+  background: radial-gradient(circle, rgba(217, 198, 160, 0.1), transparent 68%);
+}
+
+.stela-home-page .trust-gap-section .trust-path-anchor .stela-mark {
+  transform: scale(0.82);
+}
+
+.stela-home-page .trust-gap-section .trust-path-anchor strong {
+  max-width: 9rem;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.7rem;
+  font-weight: 520;
+  letter-spacing: 0.16em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.stela-home-page .section-block.mechanism-section,
+.stela-home-page .section-block.marking-section {
+  border-top-color: rgba(15, 17, 17, 0.18);
+  background-color: #c9cac7;
+  background-image:
+    linear-gradient(90deg, rgba(231, 231, 227, 0.76), rgba(220, 220, 216, 0.56) 58%, rgba(215, 216, 213, 0.22)),
+    url("/images/stela-material-light.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #131515;
+}
+
+.stela-home-page .mechanism-section h2,
+.stela-home-page .mechanism-section p,
+.stela-home-page .marking-section h2,
+.stela-home-page .marking-section p {
+  color: #131515;
+}
+
+.stela-home-page .mechanism-section > div > p,
+.stela-home-page .marking-section > div > p {
+  color: rgba(19, 21, 21, 0.58);
+}
+
+.stela-home-page .mechanism-section .section-hairline {
+  background: linear-gradient(90deg, transparent, rgba(17, 19, 19, 0.32), transparent);
+}
+
+.stela-home-page .mechanism-section .sequence-track {
+  border-color: rgba(17, 19, 19, 0.2);
+  background: rgba(244, 244, 240, 0.26);
+  backdrop-filter: blur(12px);
+}
+
+.stela-home-page .mechanism-section .sequence-step {
+  border-left-color: rgba(17, 19, 19, 0.16);
+}
+
+.stela-home-page .mechanism-section .sequence-beam {
+  background: linear-gradient(90deg, rgba(17, 19, 19, 0.14), rgba(128, 105, 64, 0.72), rgba(17, 19, 19, 0.14));
+}
+
+.stela-home-page .mechanism-section .sequence-node {
+  border-color: rgba(108, 91, 59, 0.5);
+  background: #d6d6d2;
+  color: rgba(28, 28, 27, 0.82);
+  box-shadow: 0 0 0 12px #d6d6d2, inset 0 1px 0 rgba(255, 255, 255, 0.62);
+}
+
+.stela-home-page .mechanism-section .sequence-label {
+  color: rgba(17, 19, 19, 0.72);
+}
+
+.stela-home-page .permanence-section {
+  background-image:
+    linear-gradient(90deg, rgba(8, 9, 9, 0.9) 0 32%, rgba(8, 9, 9, 0.5) 58%, rgba(8, 9, 9, 0.12)),
+    url("/images/stela-application-solar.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.stela-home-page .permanence-section .lifecycle-timeline {
+  border-color: rgba(255, 255, 255, 0.16);
+  background:
+    linear-gradient(128deg, rgba(255, 255, 255, 0.1), transparent 28%),
+    rgba(14, 16, 15, 0.34);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 28px 70px rgba(0, 0, 0, 0.14);
+  backdrop-filter: blur(12px);
+}
+
+.stela-home-page .marking-section .device-module {
+  border-color: rgba(17, 19, 19, 0.28);
+  box-shadow: 0 36px 90px rgba(39, 39, 36, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.stela-home-page .marking-section .feature-rail {
+  border-color: rgba(17, 19, 19, 0.22);
+  background: rgba(242, 242, 238, 0.58);
+  backdrop-filter: blur(12px);
+}
+
+.stela-home-page .marking-section .feature-chip {
+  border-color: rgba(17, 19, 19, 0.15);
+  background: rgba(244, 244, 240, 0.58);
+  color: rgba(17, 19, 19, 0.8);
+}
+
+.stela-home-page .marking-section .feature-chip > svg {
+  color: rgba(112, 91, 54, 0.84);
+}
+
+.stela-home-page .applications-section {
+  min-height: 760px;
+  background-position: center;
+}
+
+.stela-home-page .applications-section .case-panel {
+  display: flex;
+  min-height: 360px;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(16, 18, 18, 0.34);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.09), 0 24px 60px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(12px);
+}
+
+.stela-home-page .applications-section .case-media {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+}
+
+.stela-home-page .applications-section .case-media::after {
+  position: absolute;
+  content: "";
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(7, 8, 8, 0.08) 0 34%, rgba(7, 8, 8, 0.82) 84%, rgba(7, 8, 8, 0.94)),
+    linear-gradient(120deg, rgba(7, 8, 8, 0.34), transparent 58%);
+}
+
+.stela-home-page .applications-section .case-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 400ms ease;
+}
+
+.stela-home-page .applications-section .case-panel:nth-child(1) .case-media img {
+  object-position: 62% center;
+}
+
+.stela-home-page .applications-section .case-panel:nth-child(2) .case-media img {
+  object-position: 46% center;
+}
+
+.stela-home-page .applications-section .case-panel:nth-child(3) .case-media img {
+  object-position: 50% center;
+}
+
+.stela-home-page .applications-section .case-panel:nth-child(4) .case-media img {
+  object-position: 54% center;
+}
+
+.stela-home-page .applications-section .case-panel:hover .case-media img {
+  transform: scale(1.025);
+}
+
+.stela-home-page .applications-section .case-panel > svg,
+.stela-home-page .applications-section .case-panel > p,
+.stela-home-page .applications-section .case-panel > h3 {
+  position: relative;
+  z-index: 1;
+}
+
+.stela-home-page .applications-section .case-panel > svg {
+  margin-bottom: auto;
+  color: rgba(238, 221, 184, 0.94);
+  filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.32));
+}
+
+.stela-home-page .applications-section .case-panel p {
+  margin-top: 88px;
+}
+
+.stela-home-page .applications-section .case-panel h3 {
+  max-width: 15rem;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.42);
+}
+
+.stela-home-page #contact {
+  background-color: #232524;
+  background-image:
+    linear-gradient(90deg, rgba(8, 9, 9, 0.68), rgba(8, 9, 9, 0.2)),
+    url("/images/stela-material-depth.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.stela-home-page .final-panel {
+  max-width: 1600px;
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(15, 17, 16, 0.36);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 36px 90px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(16px) saturate(0.78);
+}
+
+@media (min-width: 1025px) {
+  [lang="es"] .luminous-hero .hero-title { font-size: 4.45rem; }
+  [lang="fr"] .luminous-hero .hero-title { font-size: 4.65rem; }
+  [lang="it"] .luminous-hero .hero-title { font-size: 4.75rem; }
+  [lang="de"] .luminous-hero .hero-title { font-size: 4rem; }
+  [lang="pt"] .luminous-hero .hero-title { font-size: 4.55rem; }
+}
+
+@media (max-width: 1180px) {
+  .luminous-hero-layout {
+    max-width: 1080px;
+  }
+
+  .luminous-hero .hero-title {
+    font-size: clamp(3.7rem, 6vw, 4.7rem);
+  }
+
+  .luminous-hero .proof-assembly {
+    transform: translateX(-50%) scale(0.88);
+    transform-origin: top center;
+  }
+}
+
+@media (min-width: 1025px) and (max-height: 800px) {
+  .luminous-hero {
+    padding-top: 88px;
+  }
+
+  .luminous-hero-layout {
+    min-height: calc(100% - 5.5rem);
+    padding-bottom: 24px !important;
+  }
+
+  .luminous-hero .hero-title {
+    font-size: 3.72rem;
+  }
+
+  .luminous-hero-copy {
+    margin-top: 20px !important;
+    font-size: 1.15rem !important;
+    line-height: 1.55 !important;
+  }
+
+  .hero-proof-steps {
+    margin-top: 22px;
+  }
+
+  .hero-proof-steps + .mt-10 {
+    margin-top: 24px;
+  }
+
+  .luminous-hero .precision-wrap {
+    min-height: 560px;
+  }
+
+  .luminous-hero .proof-assembly {
+    top: 6px;
+    transform: translateX(-50%) scale(0.84);
+    transform-origin: top center;
+  }
+}
+
+@media (max-width: 1024px) {
+  .luminous-hero {
+    height: auto;
+    background-position: 48% center;
+    background-size: cover;
+  }
+
+  .luminous-hero-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .luminous-hero .precision-wrap {
+    max-width: 720px;
+    min-height: 600px;
+  }
+
+  .luminous-hero .proof-assembly {
+    top: 0;
+    transform: translateX(-50%) scale(0.9);
+  }
+
+  .luminous-standard-inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .luminous-standard-copy {
+    max-width: 620px;
+  }
+
+  .stela-home-page .section-block {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  .luminous-hero {
+    background-position: 45% center;
+  }
+
+  .luminous-hero-shade {
+    background: linear-gradient(180deg, rgba(5, 6, 6, 0.76), rgba(7, 8, 8, 0.48) 56%, rgba(7, 8, 8, 0.2));
+  }
+
+  .luminous-hero .hero-title {
+    font-size: 2.55rem;
+    line-height: 1.02;
+  }
+
+  .luminous-hero .precision-wrap {
+    min-height: 520px;
+  }
+
+  .luminous-hero .proof-assembly {
+    top: 8px;
+    width: 100%;
+    height: 500px;
+    transform: translateX(-50%);
+  }
+
+  .luminous-hero .proof-assembly .engraved-origin {
+    inset: 45px auto auto 0;
+    width: 176px;
+    height: 176px;
+  }
+
+  .luminous-hero .proof-assembly .engraved-origin .stela-mark-hero {
+    left: 0;
+    width: 176px;
+    height: 176px;
+  }
+
+  .luminous-hero .proof-assembly .proof-link {
+    left: 88px;
+    top: 126px;
+    width: 76px;
+    height: 62px;
+  }
+
+  .luminous-hero .proof-assembly .proof-certificate {
+    top: 137px;
+    right: 0;
+    left: auto;
+    width: min(64%, 236px);
+  }
+
+  .luminous-hero .proof-assembly .origin-label {
+    left: 10px;
+    bottom: 46px;
+  }
+
+  .luminous-standard {
+    min-height: 760px;
+    background-position: 62% center;
+  }
+
+  .luminous-standard-inner {
+    min-height: 760px;
+    align-items: start;
+    padding: 70px 20px;
+  }
+
+  .luminous-standard h2 {
+    max-width: 560px;
+    font-size: 2.7rem;
+  }
+
+  .luminous-principles {
+    grid-template-columns: 1fr;
+    max-width: 340px;
+    margin-top: 32px;
+  }
+
+  .luminous-principles > div,
+  .luminous-principles > div:first-child {
+    grid-template-columns: 38px 1fr;
+    min-height: 72px;
+    justify-items: start;
+    border-right: 0;
+    border-left: 0;
+    border-bottom: 1px solid rgba(17, 19, 19, 0.16);
+    padding-inline: 8px;
+  }
+
+  .stela-home-page .section-block {
+    background-position: 58% center;
+  }
+
+  .stela-home-page .mechanism-section .sequence-node {
+    box-shadow: 0 0 0 10px #d6d6d2, inset 0 1px 0 rgba(255, 255, 255, 0.62);
+  }
+}
+
+@media (max-width: 420px) {
+  .luminous-hero .hero-title {
+    font-size: 2.28rem;
+  }
+
+  [lang="es"] .luminous-hero .hero-title,
+  [lang="it"] .luminous-hero .hero-title {
+    font-size: 2rem;
+  }
+
+  [lang="fr"] .luminous-hero .hero-title,
+  [lang="de"] .luminous-hero .hero-title {
+    font-size: 1.82rem;
+  }
+
+  .luminous-hero .proof-assembly .engraved-origin {
+    width: 152px;
+    height: 152px;
+  }
+
+  .luminous-hero .proof-assembly .engraved-origin .stela-mark-hero {
+    width: 152px;
+    height: 152px;
+  }
+
+  .luminous-hero .proof-assembly .proof-link {
+    left: 76px;
+    top: 115px;
+  }
+
+  .luminous-hero .proof-assembly .proof-certificate {
+    top: 126px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .luminous-hero .hero-proof-steps,
+  .luminous-hero .hero-actions {
+    margin-left: 0;
+  }
+
+  .luminous-hero .hero-proof-steps > div {
+    min-width: 0;
+  }
+
+  .stela-home-page .trust-gap-section .trust-path {
+    min-height: 520px;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 1fr 150px 1fr;
+    gap: 14px;
+  }
+
+  .stela-home-page .trust-gap-section .trust-path-line {
+    inset: 12% auto 12% 50%;
+    width: 1px;
+    height: auto;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(217, 198, 160, 0.82) 50%, rgba(255, 255, 255, 0.14));
+  }
+
+  .stela-home-page .trust-gap-section .trust-path-node {
+    width: min(100%, 320px);
+    justify-self: center;
+  }
+
+  .site-footer {
+    padding: 22px 20px;
+  }
+
+  .site-footer-inner {
+    min-height: 0;
+    gap: 20px;
+  }
+
+  .site-footer-inner > p {
+    white-space: normal;
+  }
 }

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function PlatformPage() {
   return (
-    <ContentPage>
+    <ContentPage variant="platform">
       <PageHero
         eyebrow="The Stela platform"
         title="A trustworthy connection between the asset and its record."

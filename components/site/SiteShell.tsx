@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { StelaMark } from "@/components/brand/StelaMark";
 import {
@@ -20,7 +20,6 @@ const navigation: SupportingPageSlug[] = ["platform", "applications", "partners"
 
 export function SiteHeader() {
   const pathname = usePathname();
-  const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
   const locale = localeFromPathname(pathname);
   const messages = shellMessages[locale];
@@ -32,7 +31,8 @@ export function SiteHeader() {
 
   function changeLanguage(nextLocale: Locale) {
     const search = typeof window === "undefined" ? "" : window.location.search;
-    router.push(`${localizePath(pathname, nextLocale)}${search}`);
+    const nextPath = `${localizePath(pathname, nextLocale)}${search}`;
+    if (typeof window !== "undefined") window.location.assign(nextPath);
     setMenuOpen(false);
   }
 
@@ -61,12 +61,16 @@ export function SiteHeader() {
         </nav>
 
         <div className="site-header-actions">
-          <label className="desktop-language-select">
-            <span>{messages.language}</span>
-            <select value={locale} onChange={(event) => changeLanguage(event.target.value as Locale)} aria-label={messages.language}>
-              {locales.map((option) => <option key={option} value={option}>{localeNames[option]}</option>)}
-            </select>
-          </label>
+          <details className="desktop-language-menu">
+            <summary aria-label={messages.language}>{localeNames[locale]}</summary>
+            <div className="desktop-language-options">
+              {locales.map((option) => (
+                <Link key={option} href={localizePath(pathname, option)} aria-current={locale === option ? "page" : undefined}>
+                  {localeNames[option]}
+                </Link>
+              ))}
+            </div>
+          </details>
           <Link href={`${pagePath(locale, "contact")}?intent=brief`} className="header-cta">
             <span className="header-cta-full">{messages.requestBrief}</span>
             <span className="header-cta-short">{messages.briefShort}</span>
@@ -117,8 +121,8 @@ export function SiteFooter() {
     <footer className="site-footer">
       <div className="site-footer-inner">
         <Link href={pagePath(locale)} className="site-footer-lockup" aria-label={messages.homeLabel}>
-          <StelaMark variant="compact" size="small" />
-          <span>Stela</span>
+          <StelaMark variant="compact" size="nav" />
+          <span className="stela-wordmark">STELA</span>
         </Link>
         <nav aria-label={messages.footerNavigation}>
           {navigation.map((slug) => (

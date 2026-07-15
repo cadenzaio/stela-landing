@@ -20,6 +20,7 @@ export const en: Dictionary = {
     hero: {
       eyebrow: "Precision made permanent",
       title: ["Permanent marks.", "Verified records.", "Trusted assets."],
+      concise: "A lasting link between physical assets and digital proof.",
       copy: "Stela creates a lasting link between physical assets and digital proof - through precision marking, signed evidence events, and verifiable certificates.",
       note: "For assets that need to be identified, insured, maintained, recovered, transferred, and trusted across their lifecycle.",
       explore: "Explore Stela",
@@ -47,6 +48,7 @@ export const en: Dictionary = {
     },
     mechanism: {
       eyebrow: "Mechanism",
+      howItWorks: "How it works",
       title: "Mark. Record. Verify.",
       intro: "One controlled action creates the physical anchor, the signed event, and the certificate path.",
       steps: [
@@ -68,7 +70,7 @@ export const en: Dictionary = {
       title: "Built for controlled field marking.",
       productLine: "Not a generic engraver. A controlled marking system.",
       copy: "Stela's marking system is designed for authorized, auditable operation - combining precision physical marking with controlled workflows, operator identity, machine identity, and signed event records.",
-      visualAria: "Abstract controlled marking system visual",
+      visualAria: "Concept view of the portable Stela marking machine secured to glass",
       controlledSession: "Controlled session",
       authorized: "Authorized",
       machineActive: "Machine identity active",

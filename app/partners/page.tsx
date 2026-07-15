@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function PartnersPage() {
   return (
-    <ContentPage>
+    <ContentPage variant="partners">
       <PageHero
         eyebrow="Partners and pilots"
         title="Bring us a difficult asset-identity problem."

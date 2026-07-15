@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function InvestorsPage() {
   return (
-    <ContentPage>
+    <ContentPage variant="investors">
       <PageHero
         eyebrow="Investors"
         title="Trust infrastructure for physical assets."

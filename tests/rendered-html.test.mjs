@@ -81,11 +81,13 @@ test("keeps the starter preview removed from the finished site", async () => {
   assert.match(landing, /hero-variant-\$\{HERO_VARIANT\}/);
   assert.match(landing, /material-\$\{MATERIAL_TREATMENT\}/);
   assert.match(landing, /glass-reflection/);
-  assert.match(landing, /surface-depth/);
-  assert.match(landing, /<StelaMark variant="full" size="hero" tone="etched"/);
+  assert.doesNotMatch(landing, /surface-depth/);
+  assert.doesNotMatch(landing, /<StelaMark variant="full" size="hero" tone="etched"/);
   assert.doesNotMatch(landing, /diamond-cut|incision-core|mark-line-a/);
+  assert.match(landing, /proof-assembly-vehicle/);
+  assert.match(landing, /HowItWorksBand/);
   assert.match(landing, /proof-link/);
-  assert.match(landing, /<path d="M1 10 L241 107"/);
+  assert.match(landing, /<path d="M102 20 L241 34"/);
   assert.match(landing, /device-trust-line/);
   assert.match(landing, /final-trust-line/);
   assert.match(landing, /lifecycle-timeline/);
@@ -168,24 +170,26 @@ test("server-renders the Stela identity validation surface", async () => {
 
 test("server-renders each focused supporting page", async () => {
   const routes = [
-    ["/platform", /A trustworthy connection between the asset and its record\./],
-    ["/applications", /Where asset identity needs to hold\./],
-    ["/partners", /Bring us a difficult asset-identity problem\./],
-    ["/investors", /Trust infrastructure for physical assets\./],
-    ["/contact", /Where does asset identity become uncertain in your organization\?/],
+    ["/platform", /A trustworthy connection between the asset and its record\./, "platform"],
+    ["/applications", /Where asset identity needs to hold\./, "applications"],
+    ["/partners", /Bring us a difficult asset-identity problem\./, "partners"],
+    ["/investors", /Trust infrastructure for physical assets\./, "investors"],
+    ["/contact", /Where does asset identity become uncertain in your organization\?/, "contact"],
   ];
 
-  for (const [pathname, expectedCopy] of routes) {
+  for (const [pathname, expectedCopy, variant] of routes) {
     const response = await render(pathname);
     assert.equal(response.status, 200, pathname);
     const html = await response.text();
     assert.match(html, expectedCopy);
+    assert.match(html, new RegExp(`content-page-${variant}`));
     assert.match(html, /href="\/platform"/);
     assert.match(html, /href="\/applications"/);
     assert.match(html, /href="\/partners"/);
     assert.match(html, /href="\/investors"/);
     assert.match(html, /href="\/contact"/);
     assert.match(html, /Pre-commercial development and validation\./);
+    if (variant === "applications") assert.match(html, /editorial-media/);
   }
 });
 

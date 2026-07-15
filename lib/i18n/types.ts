@@ -7,7 +7,7 @@ export type ActionCopy = { primary: string; secondary: string };
 export type PageHeroCopy = { eyebrow: string; title: string; copy: string; note?: string; actions: ActionCopy };
 
 export type HomeMessages = {
-  hero: { eyebrow: string; title: [string, string, string]; copy: string; note: string; explore: string; investor: string };
+  hero: { eyebrow: string; title: [string, string, string]; concise: string; copy: string; note: string; explore: string; investor: string };
   visual: {
     aria: string;
     markLabel: string;
@@ -28,7 +28,7 @@ export type HomeMessages = {
     weakLink: string;
     trustAnchor: string;
   };
-  mechanism: { eyebrow: string; title: string; intro: string; steps: Array<{ label: string; body: string }> };
+  mechanism: { eyebrow: string; howItWorks: string; title: string; intro: string; steps: Array<{ label: string; body: string }> };
   permanence: { eyebrow: string; title: [string, string]; copy: string; emphasis: string; aria: string; stages: string[] };
   marking: {
     eyebrow: string;

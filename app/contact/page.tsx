@@ -19,7 +19,7 @@ export default async function ContactPage({
   const initialIntent = Array.isArray(params.intent) ? params.intent[0] : params.intent;
 
   return (
-    <ContentPage>
+    <ContentPage variant="contact">
       <section className="contact-hero">
         <div className="content-shell contact-hero-inner">
           <p className="content-eyebrow">Contact Stela</p>

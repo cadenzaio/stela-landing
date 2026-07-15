@@ -6,9 +6,9 @@ type Action = {
   href: string;
 };
 
-export function ContentPage({ children }: { children: React.ReactNode }) {
+export function ContentPage({ children, variant }: { children: React.ReactNode; variant?: "platform" | "applications" | "partners" | "investors" | "contact" }) {
   return (
-    <main className="stela-page content-page">
+    <main className={`stela-page content-page${variant ? ` content-page-${variant}` : ""}`}>
       <SiteHeader />
       {children}
       <SiteFooter />
@@ -129,6 +129,7 @@ export function EditorialEntries({
             {entry.note ? <p className="content-note">{entry.note}</p> : null}
             {entry.action ? <Link href={entry.action.href}>{entry.action.label}<span aria-hidden="true">&#8599;</span></Link> : null}
           </div>
+          <div className="editorial-media" aria-hidden="true" />
         </article>
       ))}
     </div>

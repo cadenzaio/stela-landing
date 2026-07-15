@@ -20,6 +20,7 @@ export const pt: Dictionary = {
     hero: {
       eyebrow: "Precisão tornada permanente",
       title: ["Marcas permanentes.", "Registos verificáveis.", "Ativos de confiança."],
+      concise: "Uma ligação duradoura entre ativos físicos e prova digital.",
       copy: "A Stela cria uma ligação duradoura entre ativos físicos e prova digital através de marcação de precisão, eventos de evidência assinados e certificados verificáveis.",
       note: "Para ativos que precisam de ser identificados, segurados, mantidos, recuperados, transferidos e considerados fiáveis ao longo de todo o ciclo de vida.",
       explore: "Descobrir a Stela",
@@ -47,6 +48,7 @@ export const pt: Dictionary = {
     },
     mechanism: {
       eyebrow: "Mecanismo",
+      howItWorks: "Como funciona",
       title: "Marcar. Registar. Verificar.",
       intro: "Uma ação controlada cria a âncora física, o evento assinado e o percurso do certificado.",
       steps: [
@@ -68,7 +70,7 @@ export const pt: Dictionary = {
       title: "Desenvolvido para marcação controlada no terreno.",
       productLine: "Não é um gravador genérico. É um sistema de marcação controlado.",
       copy: "O sistema de marcação Stela foi concebido para uma operação autorizada e auditável, combinando marcação física de precisão com fluxos controlados, identidade do operador, identidade da máquina e registos de eventos assinados.",
-      visualAria: "Representação abstrata do sistema de marcação controlado",
+      visualAria: "Vista conceptual da máquina de marcação portátil Stela fixada ao vidro",
       controlledSession: "Sessão controlada",
       authorized: "Autorizada",
       machineActive: "Identidade da máquina ativa",
