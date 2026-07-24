@@ -4,14 +4,14 @@ import test from "node:test";
 
 const projectRoot = new URL("../", import.meta.url);
 
-async function render(pathname = "/") {
+async function render(pathname = "/", headers = {}) {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
   workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
 
   return worker.fetch(
     new Request(`http://localhost${pathname}`, {
-      headers: { accept: "text/html" },
+      headers: { accept: "text/html", ...headers },
     }),
     {
       ASSETS: {
@@ -25,51 +25,82 @@ async function render(pathname = "/") {
   );
 }
 
+test("selects Spanish on first visit and preserves manual language choices", async () => {
+  const spanishFirstVisit = await render("/", { "accept-language": "es-ES,es;q=0.9,en;q=0.8" });
+  assert.equal(spanishFirstVisit.status, 307);
+  assert.equal(spanishFirstVisit.headers.get("location"), "http://localhost/es");
+  assert.match(spanishFirstVisit.headers.get("set-cookie") ?? "", /stela_locale=es/);
+  assert.match(spanishFirstVisit.headers.get("vary") ?? "", /Accept-Language/);
+
+  const englishFirstVisit = await render("/", { "accept-language": "en-GB,en;q=0.9,es;q=0.8" });
+  assert.equal(englishFirstVisit.status, 200);
+
+  const manualEnglishChoice = await render("/", {
+    "accept-language": "es-ES,es;q=0.9",
+    cookie: "stela_locale=en",
+  });
+  assert.equal(manualEnglishChoice.status, 200);
+
+  const manualSpanishChoice = await render("/", {
+    "accept-language": "en-GB,en;q=0.9",
+    cookie: "stela_locale=es",
+  });
+  assert.equal(manualSpanishChoice.status, 307);
+  assert.equal(manualSpanishChoice.headers.get("location"), "http://localhost/es");
+
+  const directSpanishRoute = await render("/es", { "accept-language": "en-GB,en;q=0.9" });
+  assert.equal(directSpanishRoute.status, 200);
+});
+
 test("server-renders the Stela landing page", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>Stela - Verifiable Physical Identity<\/title>/i);
-  assert.match(html, /Permanent marks\./);
-  assert.match(html, /Verified records\./);
-  assert.match(html, /Trusted assets\./);
-  assert.match(html, /Precision made permanent/);
+  assert.match(html, /<title>Stela - Permanent Asset Identification<\/title>/i);
+  assert.match(html, /Permanent identity for physical assets\./);
+  assert.match(html, /A digital record is only as reliable as its connection to the physical asset\./);
   assert.match(html, /Mark\. Record\. Verify\./);
-  assert.match(html, /Machine identity verified/);
-  assert.match(html, /Marked/);
-  assert.match(html, /Recovered/);
-  assert.match(html, /Stela gives the record a physical point of origin\./);
-  assert.match(html, /Identity should not depend on something temporary\./);
-  assert.match(html, /Where asset identity needs to hold\./);
-  assert.match(html, /Not a generic engraver\. A controlled marking system\./);
-  assert.match(html, /Built carefully\./);
-  assert.match(html, /Validated openly\./);
-  assert.match(html, /Build trust into the asset itself\./);
-  assert.match(html, /property="og:image" content="http:\/\/localhost(?::3000)?\/og\.png"/);
+  assert.match(html, /STLA A7K4 92X8 1847/);
+  assert.match(html, /permanent Stela identifier and QR code applied along the lower border of a vehicle windshield/);
+  assert.match(html, /Built for assets where trusted identity matters\./);
+  assert.match(html, /A permanent identity creates value throughout the asset lifecycle\./);
+  assert.match(html, /The mark identifies the asset\. The record proves its origin\./);
+  assert.match(html, /A permanent mark alone is not a complete identity system\./);
+  assert.match(html, /Built on decades of practical asset protection\./);
+  assert.match(html, /Building with the industries we serve\./);
+  assert.match(html, /property="og:image" content="https:\/\/stelamark\.com\/og\.png"/);
+  assert.match(html, /Stela is a brand of SafeSingleMark S\.L\./);
   assert.doesNotMatch(
     html,
-    /Verid|safeSingleMark|codex-preview|react-loading-skeleton|Every mark becomes part of an asset trust history|A physical anchor for digital confidence/i,
+    /Verid|codex-preview|react-loading-skeleton|Every mark becomes part of an asset trust history|A physical anchor for digital confidence/i,
   );
 });
 
 test("keeps the starter preview removed from the finished site", async () => {
-  const [page, layout, packageJson, landing, shell, brand, identity, favicon] = await Promise.all([
+  const [page, layout, packageJson, landing, prototype, shell, brand, favicon] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
     readFile(new URL("../package.json", import.meta.url), "utf8"),
     readFile(new URL("../components/landing/StelaLanding.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../components/landing/StelaHomepagePrototype.tsx", import.meta.url), "utf8"),
     readFile(new URL("../components/site/SiteShell.tsx", import.meta.url), "utf8"),
     readFile(new URL("../components/brand/StelaMark.tsx", import.meta.url), "utf8"),
-    readFile(new URL("../components/identity/StelaIdentity.tsx", import.meta.url), "utf8"),
     readFile(new URL("../public/favicon.svg", import.meta.url), "utf8"),
   ]);
 
   assert.match(page, /<StelaLanding \/>/);
-  assert.match(layout, /generateMetadata/);
+  assert.match(layout, /https:\/\/stelamark\.com/);
   assert.match(layout, /\/og\.png/);
   assert.match(landing, /PrecisionMarkVisual/);
+  assert.match(landing, /StelaHomepagePrototype/);
+  assert.match(prototype, /stela-home-hero-art-desktop-v7\.jpg/);
+  assert.match(prototype, /stela-home-hero-art-tablet-v7\.jpg/);
+  assert.match(prototype, /stela-home-hero-art-mobile-v7\.jpg/);
+  assert.match(prototype, /<picture className="prototype-hero-picture">/);
+  assert.match(prototype, /className="prototype-hero-certificate"/);
+  assert.doesNotMatch(prototype, /prototype-hero-connection/);
   assert.match(landing, /const HERO_VARIANT: HeroVariant = "etched-origin"/);
   assert.match(landing, /const MATERIAL_TREATMENT: MaterialTreatment = "optical-incision"/);
   assert.match(landing, /<h1 className="hero-title font-semibold text-white">/);
@@ -77,7 +108,7 @@ test("keeps the starter preview removed from the finished site", async () => {
   assert.doesNotMatch(landing, /hero-title text-balance|lg:text-8xl/);
   assert.match(landing, /import \{ StelaMark \}/);
   assert.match(landing, /<SiteHeader \/>/);
-  assert.match(shell, /<StelaMark variant="compact" size="nav" \/>/);
+  assert.match(shell, /src="\/brand\/stela-lockup\.svg"/);
   assert.match(landing, /hero-variant-\$\{HERO_VARIANT\}/);
   assert.match(landing, /material-\$\{MATERIAL_TREATMENT\}/);
   assert.match(landing, /glass-reflection/);
@@ -100,26 +131,18 @@ test("keeps the starter preview removed from the finished site", async () => {
   assert.doesNotMatch(page + layout + landing, /Verid|safeSingleMark|SkeletonPreview|codex-preview/i);
   assert.match(brand, /type StelaMarkVariant = "full" \| "compact"/);
   assert.match(brand, /stela-mark-\$\{variant\}/);
-  assert.match(brand, /stela-mark-glare/);
-  assert.doesNotMatch(brand, /stela-mark-trace/);
-  assert.match(identity, /Production masters/);
-  assert.match(identity, /Favicon scale/);
-  assert.match(identity, /Engraved material/);
-  assert.match(identity, /Balanced refinement/);
-  assert.match(identity, /Hero mark alignment/);
+  assert.match(brand, /M50 9L91 50L50 91L9 50Z/);
+  assert.match(brand, /stela-mark-origin-cutout/);
+  assert.doesNotMatch(brand, /stela-mark-glare|stela-mark-trace/);
   assert.match(favicon, /<circle cx="24" cy="24"/);
-  assert.doesNotMatch(brand + identity, /arrow|shield|monogram/i);
+  assert.doesNotMatch(brand, /arrow|shield|monogram/i);
 
   await assert.rejects(access(new URL("app/_sites-preview", projectRoot)));
 });
 
 test("server-renders every public page in all supported languages", async () => {
   const localeChecks = {
-    es: /Marcas permanentes\./,
-    fr: /Marques permanentes\./,
-    it: /Marcature permanenti\./,
-    de: /Dauerhafte Markierungen\./,
-    pt: /Marcas permanentes\./,
+    es: /Identidad permanente para activos físicos\./,
   };
   const slugs = ["platform", "applications", "partners", "investors", "contact"];
 
@@ -127,9 +150,10 @@ test("server-renders every public page in all supported languages", async () => 
     const homeResponse = await render(`/${locale}`);
     assert.equal(homeResponse.status, 200, `/${locale}`);
     const homeHtml = await homeResponse.text();
+    assert.match(homeHtml, new RegExp(`<html lang="${locale}">`));
     assert.match(homeHtml, expectedHomeCopy);
     assert.match(homeHtml, new RegExp(`href="/${locale}/platform"`));
-    assert.match(homeHtml, new RegExp(`hrefLang="${locale}" href="http://localhost(?::3000)?/${locale}"`));
+    assert.match(homeHtml, new RegExp(`hrefLang="${locale}" href="https://stelamark.com/${locale}"`));
 
     for (const slug of slugs) {
       const response = await render(`/${locale}/${slug}`);
@@ -142,7 +166,7 @@ test("server-renders every public page in all supported languages", async () => 
 });
 
 test("keeps the homepage headline at exactly three authored lines in every language", async () => {
-  const localeFiles = ["en", "es", "fr", "it", "de", "pt"];
+  const localeFiles = ["en", "es"];
 
   for (const locale of localeFiles) {
     const source = await readFile(new URL(`../lib/i18n/locales/${locale}.ts`, import.meta.url), "utf8");
@@ -152,29 +176,25 @@ test("keeps the homepage headline at exactly three authored lines in every langu
   }
 });
 
-test("server-renders the Stela identity validation surface", async () => {
-  const response = await render("/identity");
-  assert.equal(response.status, 200);
+test("keeps inactive languages out of the public site", async () => {
+  for (const locale of ["fr", "it", "de", "pt"]) {
+    const response = await render(`/${locale}`);
+    assert.equal(response.status, 404, `/${locale}`);
+  }
+});
 
-  const html = await response.text();
-  assert.match(html, /Origin\. Incision\. Provenance\./);
-  assert.match(html, /Full Mark/);
-  assert.match(html, /Compact Mark/);
-  assert.match(html, /16(?:<!-- -->)?px/);
-  assert.match(html, /Dark architectural glass/);
-  assert.match(html, /Selected concept/);
-  assert.match(html, /Refined master/);
-  assert.match(html, /Previous surface mark/);
-  assert.match(html, /Logo-derived surface mark/);
+test("keeps the internal identity review out of the public site", async () => {
+  const response = await render("/identity");
+  assert.equal(response.status, 404);
 });
 
 test("server-renders each focused supporting page", async () => {
   const routes = [
-    ["/platform", /A trustworthy connection between the asset and its record\./, "platform"],
-    ["/applications", /Where asset identity needs to hold\./, "applications"],
-    ["/partners", /Bring us a difficult asset-identity problem\./, "partners"],
-    ["/investors", /Trust infrastructure for physical assets\./, "investors"],
-    ["/contact", /Where does asset identity become uncertain in your organization\?/, "contact"],
+    ["/platform", /Permanent identification, recorded at its source\./, "platform"],
+    ["/applications", /Built for assets where trusted identity matters\./, "applications"],
+    ["/partners", /Build with the industries we serve\./, "partners"],
+    ["/investors", /A permanent identity layer for physical assets\./, "investors"],
+    ["/contact", /Could your assets benefit from permanent identity\?/, "contact"],
   ];
 
   for (const [pathname, expectedCopy, variant] of routes) {
@@ -193,7 +213,7 @@ test("server-renders each focused supporting page", async () => {
   }
 });
 
-test("preselects supported contact intents without claiming delivery", async () => {
+test("preselects supported contact intents and discloses delivery", async () => {
   const intents = ["use-case", "pilot", "investor", "brief", "technical-brief"];
 
   for (const intent of intents) {
@@ -204,20 +224,37 @@ test("preselects supported contact intents without claiming delivery", async () 
     const selectedInput = html.match(new RegExp(`<input[^>]*value="${expectedValue}"[^>]*>`, "i"))?.[0];
     assert.ok(selectedInput, `missing ${expectedValue} contact option`);
     assert.match(selectedInput, /checked/i);
-    assert.match(html, /No information is sent until a delivery service is connected and disclosed\./);
+    assert.match(html, /Your details are sent securely to Stela and used only to respond to this request\./);
     assert.doesNotMatch(html, /brief@stela\.example|pilot@stela\.example/);
   }
 });
 
 test("preselects contact intent on localized routes", async () => {
-  const response = await render("/de/contact?intent=pilot");
+  const response = await render("/es/contact?intent=pilot");
   assert.equal(response.status, 200);
   const html = await response.text();
   const selectedInput = html.match(/<input[^>]*value="pilot"[^>]*>/i)?.[0];
   assert.ok(selectedInput);
   assert.match(selectedInput, /checked/i);
-  assert.match(html, /Es werden keine Informationen gesendet/);
-  assert.match(html, /href="\/de\/contact\?intent=brief"/);
+  assert.match(html, /Sus datos se envían de forma segura a Stela y se utilizan únicamente para responder a esta solicitud\./);
+  assert.match(html, /href="\/es\/contact\?intent=pilot"/);
+});
+
+test("publishes production search-engine directives", async () => {
+  const [robotsResponse, sitemapResponse] = await Promise.all([
+    render("/robots.txt"),
+    render("/sitemap.xml"),
+  ]);
+  assert.equal(robotsResponse.status, 200);
+  assert.match(await robotsResponse.text(), /Sitemap: https:\/\/stelamark\.com\/sitemap\.xml/);
+
+  assert.equal(sitemapResponse.status, 200);
+  const sitemap = await sitemapResponse.text();
+  assert.match(sitemap, /<loc>https:\/\/stelamark\.com\/<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/stelamark\.com\/es<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/stelamark\.com\/applications<\/loc>/);
+  assert.match(sitemap, /hreflang="x-default"/);
+  assert.doesNotMatch(sitemap, /\/identity/);
 });
 
 test("documents the focused sitemap and conversion boundaries", async () => {

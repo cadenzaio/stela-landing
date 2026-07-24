@@ -26,11 +26,13 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
   background: var(--stela-black);
 }
 
 body {
   margin: 0;
+  overflow-x: clip;
   background:
     radial-gradient(circle at 18% 0%, rgba(216, 220, 224, 0.1), transparent 30rem),
     radial-gradient(circle at 80% 12%, rgba(217, 198, 160, 0.07), transparent 28rem),
@@ -120,6 +122,16 @@ body {
   position: absolute;
   display: block;
   pointer-events: none;
+}
+
+.stela-mark > svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.stela-mark-origin-cutout {
+  fill: var(--stela-mark-surface, transparent);
 }
 
 .stela-mark-outline,
@@ -329,13 +341,14 @@ body {
 }
 
 .stela-lockup {
-  gap: 0.68rem;
+  display: inline-flex;
+  align-items: center;
 }
 
-.stela-wordmark {
-  font-size: 0.78rem;
-  font-weight: 520;
-  letter-spacing: 0.27em;
+.stela-master-lockup {
+  width: 148px;
+  height: auto;
+  filter: invert(1);
 }
 
 .header-cta:hover {
@@ -501,11 +514,13 @@ body {
   font-size: 0.78rem;
 }
 
-.site-footer-lockup { display: flex; align-items: center; gap: 12px; color: rgba(255, 255, 255, 0.82); }
-.site-footer-lockup .stela-wordmark { font-size: 0.78rem; }
+.site-footer-lockup { display: flex; align-items: center; color: rgba(255, 255, 255, 0.82); }
+.site-footer-lockup .stela-master-lockup { width: 132px; opacity: 0.82; }
 .site-footer nav { display: flex; justify-content: center; gap: 32px; }
 .site-footer nav a { color: rgba(255, 255, 255, 0.58); }
 .site-footer p { margin: 0; white-space: nowrap; }
+.site-footer-status { display: grid; justify-items: end; gap: 4px; text-align: right; }
+.site-footer-status p:last-child { color: rgba(255, 255, 255, 0.34); font-size: 0.7rem; }
 .site-footer a { transition: color 180ms ease; }
 .site-footer a:hover { color: white; }
 
@@ -616,9 +631,9 @@ body {
 .content-sequence strong { color: rgba(255, 255, 255, 0.8); font-size: 0.86rem; font-weight: 520; line-height: 1.45; }
 
 .ruled-list { display: grid; margin: 0; padding: 0; list-style: none; }
-.ruled-list li { display: grid; grid-template-columns: 12px 1fr; align-items: center; gap: 18px; min-height: 54px; border-top: 1px solid rgba(255, 255, 255, 0.08); color: rgba(255, 255, 255, 0.7); line-height: 1.5; }
+.ruled-list li { display: grid; grid-template-columns: 28px 1fr; align-items: center; gap: 18px; min-height: 54px; border-top: 1px solid rgba(255, 255, 255, 0.08); color: rgba(255, 255, 255, 0.7); line-height: 1.5; }
 .ruled-list li:last-child { border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
-.ruled-list li > span { width: 6px; height: 6px; transform: rotate(45deg); border: 1px solid rgba(217, 198, 160, 0.64); }
+.ruled-list li > svg { color: rgba(217, 198, 160, 0.78); }
 
 .application-section { padding-top: 0; }
 .editorial-entries article { display: grid; grid-template-columns: 52px minmax(260px, 0.8fr) minmax(0, 1fr); gap: 42px; padding: 66px 0; border-top: 1px solid rgba(255, 255, 255, 0.09); }
@@ -642,6 +657,14 @@ body {
 .contact-layout aside { position: sticky; top: 112px; }
 .contact-layout aside h2 { margin-bottom: 26px; font-size: 2.2rem; }
 .contact-form { display: grid; gap: 38px; }
+.contact-honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
 .intent-fieldset { margin: 0; border: 0; padding: 0; }
 .intent-fieldset legend { margin-bottom: 18px; color: rgba(255, 255, 255, 0.76); font-size: 0.88rem; font-weight: 550; }
 .intent-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid rgba(255, 255, 255, 0.1); }
@@ -2880,7 +2903,7 @@ body {
   .editorial-entries article { grid-template-columns: 40px minmax(220px, 0.72fr) minmax(0, 1fr); gap: 28px; }
   .contact-layout aside { position: static; max-width: 680px; }
   .site-footer-inner { grid-template-columns: auto 1fr; }
-  .site-footer-inner > p { grid-column: 1 / -1; margin: 0; }
+  .site-footer-status { grid-column: 1 / -1; }
   .site-footer nav { justify-content: flex-end; }
 }
 
@@ -2956,7 +2979,7 @@ body {
   .form-submit-row .button-primary { width: 100%; }
   .site-footer-inner { grid-template-columns: 1fr; gap: 24px; }
   .site-footer nav { justify-content: flex-start; flex-wrap: wrap; gap: 12px 20px; }
-  .site-footer-inner > p { grid-column: auto; }
+  .site-footer-status { grid-column: auto; justify-items: start; text-align: left; }
 }
 
 @media (max-width: 420px) {
@@ -3512,7 +3535,7 @@ body {
   border-color: rgba(255, 255, 255, 0.18);
   background:
     linear-gradient(90deg, rgba(8, 9, 9, 0.1), transparent 58%, rgba(8, 9, 9, 0.22)),
-    url("/images/stela-controlled-marking.webp") center / cover no-repeat;
+    url("/images/stela-controlled-marking-v3.jpg") center / cover no-repeat;
   box-shadow:
     0 28px 80px rgba(0, 0, 0, 0.22),
     inset 0 1px 0 rgba(255, 255, 255, 0.18);
@@ -3688,7 +3711,7 @@ body {
     gap: 20px;
   }
 
-  .site-footer-inner > p {
+  .site-footer-status p {
     white-space: normal;
   }
 }

@@ -1,172 +1,232 @@
-import { StelaMark } from "@/components/brand/StelaMark";
-import Image from "next/image";
+import styles from "./StelaIdentity.module.css";
 
-function Lockup() {
+type SymbolId = "p02" | "p05";
+
+type Candidate = {
+  id: SymbolId;
+  code: string;
+  source: string;
+  name: string;
+  premise: string;
+};
+
+const candidates: Candidate[] = [
+  {
+    id: "p02",
+    code: "R2-A",
+    source: "P02 symbol",
+    name: "Diamond origin",
+    premise: "Complete diamond geometry with a quiet inner contour, origin point, and short trace.",
+  },
+  {
+    id: "p05",
+    code: "R2-B",
+    source: "P05 symbol",
+    name: "Incised plane",
+    premise: "An upright physical surface interrupted by one controlled incision and origin point.",
+  },
+];
+
+const inscriptionLetters = "STELA".split("");
+const inscriptionPositions = [12, 112, 212, 312, 410];
+
+function PrototypeSymbol({ id, label }: { id: SymbolId; label?: string }) {
   return (
-    <div className="identity-lockup" aria-label="Stela compact logo lockup">
-      <StelaMark variant="compact" size="nav" />
-      <span>STELA</span>
+    <svg
+      className={styles.symbol}
+      viewBox="0 0 100 100"
+      role={label ? "img" : undefined}
+      aria-label={label}
+      aria-hidden={label ? undefined : true}
+    >
+      {id === "p02" && (
+        <g fill="none" stroke="currentColor" strokeLinecap="square">
+          <path d="M50 9L91 50L50 91L9 50Z" strokeWidth="3" />
+          <path d="M50 28L72 50L50 72L28 50Z" strokeWidth="2" opacity="0.72" />
+          <path d="M43 53L68 46" strokeWidth="2" />
+          <circle cx="43" cy="53" r="4" fill="var(--prototype-surface)" strokeWidth="2.5" />
+          <circle cx="43" cy="53" r="1.5" fill="currentColor" stroke="none" />
+        </g>
+      )}
+      {id === "p05" && (
+        <g fill="none" stroke="currentColor" strokeLinecap="square" strokeWidth="3">
+          <path d="M28 14H72V39M72 61V86H28V14" />
+          <path d="M40 59L76 43" strokeWidth="2" />
+          <circle cx="40" cy="59" r="4" fill="var(--prototype-surface)" />
+          <circle cx="40" cy="59" r="2" fill="currentColor" stroke="none" />
+        </g>
+      )}
+    </svg>
+  );
+}
+
+function PrototypeInscription({ label }: { label?: string }) {
+  return (
+    <svg
+      className={styles.inscription}
+      viewBox="0 0 520 108"
+      role={label ? "img" : undefined}
+      aria-label={label}
+      aria-hidden={label ? undefined : true}
+    >
+      {inscriptionLetters.map((letter, index) => (
+        <text
+          key={`${letter}-${index}`}
+          x={inscriptionPositions[index]}
+          y="70"
+          fill="currentColor"
+          fontFamily="Arial, Helvetica, sans-serif"
+          fontSize="60"
+          fontWeight="400"
+        >
+          {letter}
+        </text>
+      ))}
+      <path d="M12 91H462" stroke="currentColor" strokeWidth="2" />
+      <circle cx="257" cy="91" r="4" fill="var(--prototype-surface)" stroke="currentColor" strokeWidth="2" />
+    </svg>
+  );
+}
+
+function PrototypeLockup({ candidate, compact = false }: { candidate: Candidate; compact?: boolean }) {
+  return (
+    <div className={compact ? styles.compactLockup : styles.lockup} aria-label={`${candidate.code} Stela lockup`}>
+      <PrototypeSymbol id={candidate.id} />
+      <PrototypeInscription />
     </div>
   );
 }
 
-function LegacyBalancedMark() {
+function QrSpecimen() {
   return (
-    <span className="legacy-balanced-mark" aria-label="Original selected Balanced mark" role="img">
-      <span className="legacy-outline" />
-      <span className="legacy-inner" />
-      <span className="legacy-trace" />
-      <span className="legacy-point" />
+    <span className={styles.qr} aria-hidden="true">
+      {Array.from({ length: 25 }, (_, index) => <i key={index} />)}
     </span>
   );
 }
 
-function LegacyHeroMark() {
+function CandidateCard({ candidate }: { candidate: Candidate }) {
   return (
-    <span className="legacy-hero-mark" aria-label="Previous atmospheric hero mark" role="img">
-      <span className="legacy-hero-outline" />
-      <span className="legacy-hero-inner" />
-      <span className="legacy-hero-trace" />
-      <span className="legacy-hero-point" />
-    </span>
+    <article id={candidate.code.toLowerCase()} className={styles.candidate} aria-labelledby={`${candidate.code}-title`}>
+      <header className={styles.candidateHeader}>
+        <h2 id={`${candidate.code}-title`}>{candidate.code}</h2>
+        <span>Shared inscription / symbol comparison</span>
+      </header>
+
+      <div className={styles.primaryLockup}>
+        <PrototypeLockup candidate={candidate} />
+      </div>
+
+      <div className={styles.partsGrid}>
+        <figure>
+          <div className={styles.symbolSpecimen}>
+            <PrototypeSymbol id={candidate.id} label={`${candidate.code} symbol`} />
+          </div>
+          <figcaption>Candidate symbol</figcaption>
+        </figure>
+        <figure>
+          <div className={styles.inscriptionSpecimen}>
+            <PrototypeInscription label="Corrected P01 inscription" />
+          </div>
+          <figcaption>Corrected P01 inscription</figcaption>
+        </figure>
+      </div>
+
+      <div className={styles.productionTests}>
+        <div className={styles.scaleTest}>
+          <span className={styles.testLabel}>Small scale</span>
+          {[16, 20, 24].map((size) => (
+            <figure key={size}>
+              <span style={{ width: size, height: size }}>
+                <PrototypeSymbol id={candidate.id} />
+              </span>
+              <figcaption>{size}px</figcaption>
+            </figure>
+          ))}
+        </div>
+
+        <div className={styles.navTest}>
+          <span className={styles.testLabel}>Navbar</span>
+          <PrototypeLockup candidate={candidate} compact />
+        </div>
+
+        <div className={styles.assetTest}>
+          <span className={styles.testLabel}>Physical identity system</span>
+          <div className={styles.identityLayers}>
+            <figure className={styles.engravingSpecimen}>
+              <figcaption>Permanent engraving</figcaption>
+              <span>STLA A7K4 92X8 1847</span>
+            </figure>
+            <figure className={styles.companionLabel}>
+              <figcaption>Transparent companion label</figcaption>
+              <div className={styles.companionLabelContent}>
+                <PrototypeSymbol id={candidate.id} />
+                <div>
+                  <PrototypeInscription />
+                  <span>VERIFY ASSET</span>
+                </div>
+                <QrSpecimen />
+              </div>
+            </figure>
+          </div>
+          <p className={styles.layerNote}>
+            The identifier is permanent. The branded label provides recognition and convenient access to its digital record.
+          </p>
+        </div>
+      </div>
+    </article>
   );
 }
 
 export function StelaIdentity() {
   return (
-    <main className="identity-page">
-      <header className="identity-header">
-        {/* vinext currently duplicates React when next/link hydrates this server-only sheet. */}
+    <main className={styles.page}>
+      <header className={styles.pageHeader}>
         {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-        <a href="/" aria-label="Back to Stela landing page">
-          <Lockup />
-        </a>
-        <span>Identity validation</span>
+        <a href="/" aria-label="Back to Stela homepage">STELA</a>
+        <span>Identity study / Round 2</span>
       </header>
 
-      <section className="identity-intro">
-        <p>Working identity</p>
-        <h1>Origin. Incision. Provenance.</h1>
-      </section>
-
-      <section className="identity-section" aria-labelledby="masters-title">
-        <div className="identity-section-heading">
-          <p>01</p>
-          <h2 id="masters-title">Production masters</h2>
-        </div>
-        <div className="master-grid">
-          <article className="master-specimen dark-specimen">
-            <StelaMark variant="full" size="display" label="Refined Full Stela mark" />
-            <div>
-              <strong>Full Mark</strong>
-              <span>Brand, certificates, machine UI, physical previews</span>
-            </div>
-          </article>
-          <article className="master-specimen dark-specimen">
-            <StelaMark variant="compact" size="display" label="Refined Compact Stela mark" />
-            <div>
-              <strong>Compact Mark</strong>
-              <span>Navbar, favicon, app icon, tiny engraving</span>
-            </div>
-          </article>
+      <section className={styles.intro}>
+        <p>Focused symbol comparison</p>
+        <h1>One inscription. Two symbols. One decision.</h1>
+        <div>
+          <p>The P01 inscription is now fixed across both candidates. Its baseline begins and ends with the inscription instead of extending beyond it.</p>
+          <p>Review only what changes: the accompanying symbol, its relationship to the inscription, and its performance on the transparent companion label.</p>
         </div>
       </section>
 
-      <section className="identity-section" aria-labelledby="lockup-title">
-        <div className="identity-section-heading">
-          <p>02</p>
-          <h2 id="lockup-title">Navbar lockup</h2>
-        </div>
-        <div className="lockup-test dark-specimen">
-          <Lockup />
-          <span>Compact optical master · 36px symbol</span>
-        </div>
+      <section className={styles.board} aria-label="Round two Stela symbol comparison">
+        {candidates.map((candidate) => <CandidateCard candidate={candidate} key={candidate.id} />)}
       </section>
 
-      <section className="identity-section" aria-labelledby="tiny-title">
-        <div className="identity-section-heading">
-          <p>03</p>
-          <h2 id="tiny-title">Favicon scale</h2>
+      <section className={styles.reviewGuide} aria-labelledby="review-title">
+        <div>
+          <p>Decision frame</p>
+          <h2 id="review-title">Choose the symbol that makes the inscription more Stela.</h2>
         </div>
-        <div className="favicon-row dark-specimen">
-          {[16, 24, 32].map((size) => (
-            <figure key={size}>
-              {/* The actual shipped favicon asset is tested at each target size. */}
-              <Image src="/favicon.svg" width={size} height={size} alt={`Stela favicon at ${size} pixels`} />
-              <figcaption>{size}px</figcaption>
-            </figure>
+        <ol>
+          <li>Which lockup feels more established and trustworthy?</li>
+          <li>Which symbol is more recognizably tied to physical inscription?</li>
+          <li>Which symbol remains clearer at 16 and 20 pixels?</li>
+          <li>Which companion label would be easier to recognize and trust?</li>
+          <li>What unwanted association does either symbol create?</li>
+        </ol>
+      </section>
+
+      <details className={styles.reveal}>
+        <summary>Reveal source concepts after selecting</summary>
+        <div className={styles.revealGrid}>
+          {candidates.map((candidate) => (
+            <article key={candidate.id}>
+              <span>{candidate.code}</span>
+              <p>{candidate.source}</p>
+              <h2>{candidate.name}</h2>
+              <p>{candidate.premise}</p>
+            </article>
           ))}
         </div>
-      </section>
-
-      <section className="identity-section" aria-labelledby="contrast-title">
-        <div className="identity-section-heading">
-          <p>04</p>
-          <h2 id="contrast-title">Monochrome</h2>
-        </div>
-        <div className="contrast-grid">
-          <article className="contrast-specimen dark-specimen">
-            <StelaMark variant="full" size="display" tone="light" label="Warm white Stela mark on black" />
-            <span>Warm white on black</span>
-          </article>
-          <article className="contrast-specimen light-specimen">
-            <StelaMark variant="full" size="display" tone="dark" label="Black Stela mark on warm white" />
-            <span>Black on warm white</span>
-          </article>
-        </div>
-      </section>
-
-      <section className="identity-section" aria-labelledby="material-title">
-        <div className="identity-section-heading">
-          <p>05</p>
-          <h2 id="material-title">Engraved material</h2>
-        </div>
-        <div className="material-grid">
-          <article className="material-specimen material-glass">
-            <StelaMark variant="full" size="display" tone="etched" label="Stela mark engraved in dark glass" />
-            <span>Dark architectural glass</span>
-          </article>
-          <article className="material-specimen material-metal">
-            <StelaMark variant="full" size="display" tone="etched" label="Stela mark engraved in dark metal" />
-            <span>Precision-finished metal</span>
-          </article>
-        </div>
-      </section>
-
-      <section className="identity-section" aria-labelledby="comparison-title">
-        <div className="identity-section-heading">
-          <p>06</p>
-          <h2 id="comparison-title">Balanced refinement</h2>
-        </div>
-        <div className="comparison-row dark-specimen">
-          <figure>
-            <LegacyBalancedMark />
-            <figcaption>Selected concept</figcaption>
-          </figure>
-          <span className="comparison-divider" aria-hidden="true" />
-          <figure>
-            <StelaMark variant="full" size="display" label="Refined Balanced Stela mark" />
-            <figcaption>Refined master</figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <section className="identity-section" aria-labelledby="hero-alignment-title">
-        <div className="identity-section-heading">
-          <p>07</p>
-          <h2 id="hero-alignment-title">Hero mark alignment</h2>
-        </div>
-        <div className="hero-mark-comparison">
-          <figure className="hero-mark-specimen">
-            <LegacyHeroMark />
-            <figcaption>Previous surface mark</figcaption>
-          </figure>
-          <figure className="hero-mark-specimen">
-            <StelaMark variant="full" size="hero" tone="etched" label="Refined hero-scale Stela mark" />
-            <figcaption>Logo-derived surface mark</figcaption>
-          </figure>
-        </div>
-      </section>
+      </details>
     </main>
   );
 }

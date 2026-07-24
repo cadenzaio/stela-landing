@@ -10,25 +10,38 @@ const knownIntents = new Set<string>(reasonValues);
 export function ContactForm({ initialIntent, messages }: { initialIntent?: string; messages: ContactMessages["form"] }) {
   const normalizedIntent = initialIntent === "technical-brief" ? "brief" : initialIntent;
   const [reason, setReason] = useState(knownIntents.has(normalizedIntent ?? "") ? normalizedIntent! : "use-case");
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const showWorkflowFields = useMemo(() => ["use-case", "pilot", "insurer"].includes(reason), [reason]);
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
     if (!form.reportValidity()) return;
-    setSubmitted(true);
+
+    setStatus("submitting");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(Object.fromEntries(new FormData(form).entries())),
+      });
+
+      if (!response.ok) throw new Error("Contact request failed");
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
   }
 
-  if (submitted) {
+  if (status === "success" || status === "error") {
     return (
-      <div className="form-status" role="status" aria-live="polite">
+      <div className="form-status" role={status === "error" ? "alert" : "status"} aria-live="polite">
         <span aria-hidden="true" />
-        <p className="content-eyebrow">{messages.validated}</p>
-        <h2>{messages.thanks}</h2>
-        <p>{messages.success}</p>
-        <p className="form-delivery-note">{messages.prototypeNotice}</p>
-        <button type="button" className="button-secondary" onClick={() => setSubmitted(false)}>
+        <p className="content-eyebrow">{status === "success" ? messages.validated : messages.prototypeNotice}</p>
+        <h2>{status === "success" ? messages.thanks : messages.edit}</h2>
+        <p>{status === "success" ? messages.success : messages.deliveryDisclosure}</p>
+        <button type="button" className="button-secondary" onClick={() => setStatus("idle")}>
           {messages.edit}
         </button>
       </div>
@@ -84,6 +97,11 @@ export function ContactForm({ initialIntent, messages }: { initialIntent?: strin
         />
       </label>
 
+      <label className="contact-honeypot" aria-hidden="true">
+        Website
+        <input name="website" type="text" tabIndex={-1} autoComplete="off" />
+      </label>
+
       {showWorkflowFields ? (
         <details className="optional-context">
           <summary>{messages.optionalSummary}</summary>
@@ -99,7 +117,7 @@ export function ContactForm({ initialIntent, messages }: { initialIntent?: strin
 
       <div className="form-submit-row">
         <p>{messages.deliveryDisclosure}</p>
-        <button type="submit" className="button-primary">
+        <button type="submit" className="button-primary" disabled={status === "submitting"}>
           {messages.review}
         </button>
       </div>

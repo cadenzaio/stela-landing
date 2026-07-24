@@ -1,14 +1,15 @@
-# Stela Landing Page
+# Stela Website
 
-First landing page prototype for Stela, a physical-digital trust infrastructure company creating verifiable physical identity for high-value assets.
+Production website for Stela, a permanent asset-identification system developed by SafeSingleMark S.L.
 
 ## What Is Included
 
-- Premium dark landing page with restrained graphite, platinum, and champagne styling
-- CSS-built precision mark and certificate hero visual
-- Sections for problem framing, permanence, workflow, platform, use cases, audiences, current stage, and final calls to action
-- Site-specific metadata, favicon, and Open Graph image
-- Rendered HTML tests that verify the public copy and removal of starter preview code
+- English and Spanish homepage and supporting pages
+- Permanent-identification platform, application, partner, investor, and contact content
+- Responsive brand system and production photography
+- Browser-language detection with a persistent manual language preference
+- Canonical metadata, bilingual sitemap, robots policy, favicon, and social preview
+- Rendered HTML tests for public routes, localization, metadata, and conversion intent
 
 ## Commands
 
@@ -20,6 +21,6 @@ npm run build
 npm test
 ```
 
-## Notes
+## Production
 
-The prototype is intentionally CSS-led. Product renders, photography, investor-request flows, and real contact endpoints can be added in later iterations.
+The canonical public origin is `https://stelamark.com`. Production deployment is managed through the Sites project declared in `.openai/hosting.json`.

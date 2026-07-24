@@ -20,10 +20,15 @@ export function StelaMark({
       aria-label={label}
       role={label ? "img" : undefined}
     >
-      <span className="stela-mark-outline" />
-      <span className="stela-mark-inner" />
-      <span className="stela-mark-glare" />
-      <span className="stela-mark-point" />
+      <svg viewBox="0 0 100 100" fill="none" aria-hidden="true">
+        <path d="M50 9L91 50L50 91L9 50Z" stroke="currentColor" strokeWidth="3" strokeLinecap="square" />
+        {variant === "full" && (
+          <path d="M50 28L72 50L50 72L28 50Z" stroke="currentColor" strokeWidth="2" strokeLinecap="square" opacity="0.72" />
+        )}
+        <path d="M43 53L68 46" stroke="currentColor" strokeWidth="2" strokeLinecap="square" />
+        <circle className="stela-mark-origin-cutout" cx="43" cy="53" r="4" stroke="currentColor" strokeWidth="2.5" />
+        <circle cx="43" cy="53" r="1.5" fill="currentColor" />
+      </svg>
     </span>
   );
 }

@@ -45,15 +45,27 @@ function LocalizedPlatform({ locale, dictionary }: { locale: Locale; dictionary:
       </ContentSection>
       <ContentSection eyebrow={page.event.eyebrow} title={page.event.title}>
         <p>{page.event.copy}</p>
-        <Sequence items={page.event.sequence} label={page.event.sequenceLabel} />
+        <Sequence
+          items={page.event.sequence}
+          icons={[IdentificationCard, UserCircleCheck, MapPin, Fingerprint]}
+          label={page.event.sequenceLabel}
+        />
       </ContentSection>
       <ContentSection eyebrow={page.proof.eyebrow} title={page.proof.title} aside={<p>{page.proof.note}</p>}>
         <p>{page.proof.copy}</p>
-        <Sequence items={page.proof.sequence} label={page.proof.sequenceLabel} />
+        <Sequence
+          items={page.proof.sequence}
+          icons={[PenNibStraight, Fingerprint, Certificate, SealCheck]}
+          label={page.proof.sequenceLabel}
+        />
       </ContentSection>
       <ContentSection eyebrow={page.lifecycle.eyebrow} title={page.lifecycle.title}>
         <p>{page.lifecycle.copy}</p>
-        <Sequence items={page.lifecycle.sequence} label={page.lifecycle.sequenceLabel} />
+        <Sequence
+          items={page.lifecycle.sequence}
+          icons={[PenNibStraight, IdentificationCard, ShieldCheck, Clock, Certificate, Fingerprint, SealCheck]}
+          label={page.lifecycle.sequenceLabel}
+        />
       </ContentSection>
       <ConversionSection
         eyebrow={dictionary.common.nextConversation}
@@ -79,7 +91,20 @@ function LocalizedApplications({ locale, dictionary }: { locale: Locale; diction
       <ContentSection title={page.criteriaTitle}><RuledList items={page.criteria} /></ContentSection>
       <section className="content-section application-section">
         <div className="content-shell">
-          <EditorialEntries entries={page.entries.map((entry, index) => ({ ...entry, action: { label: entry.action, href: contactPath(locale, intents[index]) } }))} />
+          <EditorialEntries
+            entries={page.entries.map((entry, index) => ({
+              ...entry,
+              action: { label: entry.action, href: contactPath(locale, intents[index]) },
+              image: [
+                "/images/stela-application-vehicle-inspection-v2.jpg",
+                "/images/stela-application-solar-sunrise-v4.jpg",
+                "/images/stela-application-equipment.webp",
+                "/images/stela-application-glass.webp",
+              ][index],
+              imageAlt: "",
+              icon: [CarProfile, SolarPanel, Factory, Buildings][index],
+            }))}
+          />
         </div>
       </section>
       <ConversionSection
@@ -104,7 +129,11 @@ function LocalizedPartners({ locale, dictionary }: { locale: Locale; dictionary:
       />
       <ContentSection title={page.audiencesTitle}><RuledList items={page.audiences} /></ContentSection>
       <ContentSection eyebrow={page.collaboration.eyebrow} title={page.collaboration.title} aside={<p>{page.collaboration.note}</p>}>
-        <Sequence items={page.collaboration.sequence} label={page.collaboration.sequenceLabel} />
+        <Sequence
+          items={page.collaboration.sequence}
+          icons={[Cube, FlowArrow, Target, Flask, ClipboardText, CheckCircle]}
+          label={page.collaboration.sequenceLabel}
+        />
         <RuledList items={page.collaboration.topics} />
       </ContentSection>
       <ContentSection eyebrow={page.value.eyebrow} title={page.value.title}>
@@ -136,10 +165,17 @@ function LocalizedInvestors({ locale, dictionary }: { locale: Locale; dictionary
         <p>{page.thesis.copy}</p><p className="content-emphasis">{page.thesis.emphasis}</p>
       </ContentSection>
       <ContentSection eyebrow={page.approach.eyebrow} title={page.approach.title}>
-        <Sequence items={page.approach.sequence} label={page.approach.sequenceLabel} /><p>{page.approach.copy}</p>
+        <Sequence
+          items={page.approach.sequence}
+          icons={[PenNibStraight, Fingerprint, Certificate, SealCheck, ShieldCheck]}
+          label={page.approach.sequenceLabel}
+        /><p>{page.approach.copy}</p>
       </ContentSection>
       <ContentSection eyebrow={page.model.eyebrow} title={page.model.title}>
         <RuledList items={page.model.items} /><p className="content-note">{page.model.note}</p>
+      </ContentSection>
+      <ContentSection eyebrow={page.difference.eyebrow} title={page.difference.title}>
+        <p>{page.difference.copy}</p><RuledList items={page.difference.items} />
       </ContentSection>
       <ContentSection eyebrow={page.stage.eyebrow} title={page.stage.title}><RuledList items={page.stage.items} /></ContentSection>
       <ContentSection eyebrow={page.private.eyebrow} title={page.private.title}><RuledList items={page.private.items} /></ContentSection>
@@ -178,3 +214,24 @@ function LocalizedContact({ dictionary, intent }: { dictionary: Dictionary; inte
     </ContentPage>
   );
 }
+import {
+  Buildings,
+  CarProfile,
+  Certificate,
+  CheckCircle,
+  ClipboardText,
+  Clock,
+  Cube,
+  Factory,
+  Fingerprint,
+  Flask,
+  FlowArrow,
+  IdentificationCard,
+  MapPin,
+  PenNibStraight,
+  SealCheck,
+  ShieldCheck,
+  SolarPanel,
+  Target,
+  UserCircleCheck,
+} from "@phosphor-icons/react/dist/ssr";

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { headers } from "next/headers";
 import "./globals.css";
 import "./homepage-annotations.css";
+import "./homepage-prototype.css";
 import "./content-pages.css";
 
 const geistSans = Geist({
@@ -15,47 +15,40 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export async function generateMetadata(): Promise<Metadata> {
-  const headerStore = await headers();
-  const host = headerStore.get("x-forwarded-host") ?? headerStore.get("host");
-  const protocol =
-    headerStore.get("x-forwarded-proto") ??
-    (host?.startsWith("localhost") ? "http" : "https");
-  const metadataBase = host
-    ? new URL(`${protocol}://${host}`)
-    : new URL("http://localhost:3000");
-
-  return {
-    title: "Stela - Verifiable Physical Identity",
+export const metadata: Metadata = {
+  title: "Stela - Permanent Asset Identification",
+  description:
+    "Stela is developing permanent identification for vehicles and solar panels by linking an on-asset identifier to a digital record.",
+  metadataBase: new URL("https://stelamark.com"),
+  applicationName: "Stela",
+  category: "technology",
+  openGraph: {
+    type: "website",
+    siteName: "Stela",
+    title: "Stela - Permanent Asset Identification",
     description:
-      "Stela creates verifiable physical identity for high-value assets through permanent marking, signed evidence events, and digital certificates.",
-    metadataBase,
-    openGraph: {
-      title: "Stela - Permanent marks. Verified records. Trusted assets.",
-      description:
-        "Physical-digital trust infrastructure for assets that need identity to remain verifiable across time.",
-      images: [
-        {
-          url: "/og.png",
-          width: 1200,
-          height: 630,
-          alt: "Stela social preview with permanent marks, verified records, and trusted assets.",
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: "Stela - Permanent marks. Verified records. Trusted assets.",
-      description:
-        "Physical-digital trust infrastructure for assets that need identity to remain verifiable across time.",
-      images: ["/og.png"],
-    },
-    icons: {
-      icon: "/favicon.svg",
-      shortcut: "/favicon.svg",
-    },
-  };
-}
+      "A unique identifier placed directly on the asset and connected to a digital record that can be checked later.",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Stela permanent asset identification for vehicles and solar panels.",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Stela - Permanent Asset Identification",
+    description:
+      "A unique identifier placed directly on the asset and connected to a digital record that can be checked later.",
+    images: ["/og.png"],
+  },
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+  },
+};
 
 export default function RootLayout({
   children,
@@ -63,7 +56,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

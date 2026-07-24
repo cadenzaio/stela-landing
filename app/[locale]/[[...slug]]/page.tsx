@@ -3,12 +3,12 @@ import { notFound } from "next/navigation";
 import { LocalizedPage } from "@/components/i18n/LocalizedPages";
 import {
   isLocale,
-  languageAlternates,
   locales,
   localizedSlugs,
   type SupportingPageSlug,
 } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
+import { pageMetadata } from "@/lib/metadata";
 
 type PageParams = { locale: string; slug?: string[] };
 
@@ -32,14 +32,12 @@ export async function generateMetadata({ params }: { params: Promise<PageParams>
   const title = page && "metaTitle" in page ? page.metaTitle : `Stela - ${dictionary.home.hero.title.join(" ")}`;
   const description = page && "metaDescription" in page ? page.metaDescription : dictionary.home.hero.copy;
 
-  return {
+  return pageMetadata({
     title,
     description,
-    alternates: {
-      canonical: languageAlternates(slug)[localeParam],
-      languages: languageAlternates(slug),
-    },
-  };
+    locale: localeParam,
+    slug,
+  });
 }
 
 export default async function LocalePage({

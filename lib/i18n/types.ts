@@ -1,4 +1,4 @@
-export const locales = ["en", "es", "fr", "it", "de", "pt"] as const;
+export const locales = ["en", "es"] as const;
 
 export type Locale = (typeof locales)[number];
 export type SupportingPageSlug = "platform" | "applications" | "partners" | "investors" | "contact";
@@ -101,6 +101,7 @@ export type InvestorsMessages = {
   thesis: { eyebrow: string; title: string; copy: string; emphasis: string };
   approach: { eyebrow: string; title: string; sequence: string[]; sequenceLabel: string; copy: string };
   model: { eyebrow: string; title: string; items: string[]; note: string };
+  difference: { eyebrow: string; title: string; copy: string; items: string[] };
   stage: { eyebrow: string; title: string; items: string[] };
   private: { eyebrow: string; title: string; items: string[] };
   conversion: { title: string; copy: string; actions: ActionCopy };
@@ -151,6 +152,7 @@ export type Dictionary = {
     footerNavigation: string;
     homeLabel: string;
     footerStage: string;
+    legalEntity: string;
     language: string;
   };
   common: { nextConversation: string };

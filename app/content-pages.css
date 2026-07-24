@@ -11,30 +11,30 @@
 
 .content-page-platform .content-hero {
   background-image:
-    linear-gradient(90deg, rgba(5, 6, 6, 0.96) 0 34%, rgba(5, 6, 6, 0.7) 54%, rgba(5, 6, 6, 0.13)),
-    url("/images/stela-controlled-marking.webp");
-  background-position: center, 64% center;
+    linear-gradient(90deg, rgba(5, 6, 6, 0.94) 0 34%, rgba(5, 6, 6, 0.62) 56%, rgba(5, 6, 6, 0.1)),
+    url("/images/stela-process-record-v1.jpg");
+  background-position: center, 66% center;
 }
 
 .content-page-applications .content-hero {
   background-image:
     linear-gradient(90deg, rgba(5, 6, 6, 0.94) 0 35%, rgba(5, 6, 6, 0.62) 56%, rgba(5, 6, 6, 0.08)),
-    url("/images/stela-application-vehicle.webp");
-  background-position: center, 60% center;
+    url("/images/stela-application-vehicle-inspection-v2.jpg");
+  background-position: center, 64% center;
 }
 
 .content-page-partners .content-hero {
   background-image:
-    linear-gradient(90deg, rgba(5, 6, 6, 0.94) 0 35%, rgba(5, 6, 6, 0.58) 56%, rgba(5, 6, 6, 0.1)),
-    url("/images/stela-application-solar.webp");
-  background-position: center, 60% center;
+    linear-gradient(90deg, rgba(5, 6, 6, 0.92) 0 35%, rgba(5, 6, 6, 0.54) 58%, rgba(5, 6, 6, 0.08)),
+    url("/images/stela-process-mark-v2.jpg");
+  background-position: center, 64% center;
 }
 
 .content-page-investors .content-hero {
   background-image:
-    linear-gradient(90deg, rgba(5, 6, 6, 0.94) 0 36%, rgba(5, 6, 6, 0.52) 58%, rgba(5, 6, 6, 0.05)),
-    url("/images/stela-luminous-atrium.webp");
-  background-position: center;
+    linear-gradient(90deg, rgba(5, 6, 6, 0.92) 0 35%, rgba(5, 6, 6, 0.5) 59%, rgba(5, 6, 6, 0.06)),
+    url("/images/stela-application-solar-sunrise-v4.jpg");
+  background-position: center, 62% center;
 }
 
 .content-page .content-hero-grid {
@@ -51,9 +51,9 @@
 }
 
 .content-page .content-hero-inner {
-  grid-template-columns: minmax(0, 1.18fr) minmax(340px, 0.7fr);
+  grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr);
   align-items: end;
-  gap: 76px;
+  gap: clamp(42px, 6vw, 92px);
 }
 
 .content-page .content-hero h1 {
@@ -64,25 +64,21 @@
 
 .content-page .content-hero-copy {
   position: relative;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  padding: 30px;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.025)),
-    rgba(9, 10, 10, 0.62);
-  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(18px);
+  max-width: 440px;
+  padding: 0 0 5px 25px;
+  border-left: 1px solid rgba(217, 198, 160, 0.6);
 }
 
 .content-page .content-hero-copy::before {
   position: absolute;
   content: "";
-  left: -9px;
-  top: 30px;
-  width: 16px;
-  height: 16px;
+  left: -5px;
+  top: 1px;
+  width: 9px;
+  height: 9px;
   transform: rotate(45deg);
-  border: 1px solid rgba(217, 198, 160, 0.65);
-  background: #111313;
+  border: 1px solid rgba(217, 198, 160, 0.82);
+  background: rgba(217, 198, 160, 0.18);
 }
 
 .content-page > .content-section {
@@ -147,7 +143,7 @@
 }
 
 .content-page .content-sequence li {
-  min-height: 148px;
+  min-height: 174px;
   align-content: space-between;
   border: 1px solid rgba(255, 255, 255, 0.11);
   padding: 22px;
@@ -164,6 +160,29 @@
   padding: 0;
 }
 
+.content-sequence-icon {
+  color: var(--stela-champagne);
+}
+
+.content-page .content-sequence li:has(.content-sequence-icon) {
+  grid-template-rows: auto 1fr auto;
+}
+
+.content-page .content-sequence li:has(.content-sequence-icon) strong {
+  min-height: 2.9em;
+}
+
+.content-page .ruled-list li {
+  grid-template-columns: 32px 1fr;
+  min-height: 66px;
+  gap: 16px;
+  font-size: 1rem;
+}
+
+.content-page .ruled-list li > svg {
+  color: var(--stela-champagne);
+}
+
 .content-page > .content-section:nth-of-type(even) .content-sequence li {
   border-color: rgba(17, 19, 19, 0.16);
   background: rgba(255, 255, 255, 0.32);
@@ -174,42 +193,64 @@
   background: rgba(239, 239, 235, 0.94);
 }
 
+.content-page > .content-section:nth-of-type(even) .content-sequence-icon,
+.content-page > .content-section:nth-of-type(even) .ruled-list li > svg {
+  color: #706145;
+}
+
 .content-page-applications .application-section {
   background: #101212;
 }
 
 .content-page-applications .editorial-entries article {
-  grid-template-columns: 44px minmax(230px, 0.72fr) minmax(260px, 1fr) minmax(260px, 0.8fr);
+  grid-template-columns: 40px minmax(220px, 0.78fr) minmax(270px, 1fr) minmax(300px, 0.95fr);
   align-items: center;
+  min-height: 390px;
+  padding: 58px 0;
 }
 
 .editorial-media {
-  min-height: 230px;
+  position: relative;
+  overflow: hidden;
+  min-height: 270px;
   border: 1px solid rgba(255, 255, 255, 0.14);
   background-position: center;
   background-size: cover;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
 }
 
-.editorial-entries article:nth-child(1) .editorial-media { background-image: url("/images/stela-application-vehicle.webp"); }
-.editorial-entries article:nth-child(2) .editorial-media { background-image: url("/images/stela-application-solar.webp"); }
-.editorial-entries article:nth-child(3) .editorial-media { background-image: url("/images/stela-application-equipment.webp"); }
-.editorial-entries article:nth-child(4) .editorial-media { background-image: url("/images/stela-application-glass.webp"); }
+.editorial-media img {
+  object-fit: cover;
+  transition: transform 500ms ease;
+}
+
+.editorial-entries article:nth-child(1) .editorial-media:not(:has(img)) { background-image: url("/images/stela-application-vehicle-inspection-v2.jpg"); }
+.editorial-entries article:nth-child(2) .editorial-media:not(:has(img)) { background-image: url("/images/stela-application-solar-sunrise-v4.jpg"); }
+.editorial-entries article:nth-child(3) .editorial-media:not(:has(img)) { background-image: url("/images/stela-application-equipment.webp"); }
+.editorial-entries article:nth-child(4) .editorial-media:not(:has(img)) { background-image: url("/images/stela-application-glass.webp"); }
+
+.editorial-entries article:hover .editorial-media img {
+  transform: scale(1.025);
+}
+
+.editorial-icon {
+  display: block;
+  margin-bottom: 28px;
+  color: var(--stela-champagne);
+}
 
 .content-page .conversion-section {
   min-height: 520px;
   display: flex;
   align-items: center;
   background:
-    linear-gradient(90deg, rgba(6, 7, 7, 0.95), rgba(6, 7, 7, 0.55) 58%, rgba(6, 7, 7, 0.15)),
-    url("/images/stela-luminous-atrium.webp") center / cover;
+    linear-gradient(90deg, rgba(6, 7, 7, 0.95), rgba(6, 7, 7, 0.58) 58%, rgba(6, 7, 7, 0.12)),
+    url("/images/stela-home-hero-art-desktop-v7.jpg") center / cover;
 }
 
 .content-page .conversion-inner > div:last-child {
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  padding: 28px;
-  background: rgba(10, 11, 11, 0.6);
-  backdrop-filter: blur(16px);
+  padding-left: 26px;
+  border-left: 1px solid rgba(217, 198, 160, 0.5);
 }
 
 .content-page-contact .contact-hero {
@@ -217,8 +258,8 @@
   display: flex;
   align-items: end;
   background:
-    linear-gradient(90deg, rgba(5, 6, 6, 0.95) 0 38%, rgba(5, 6, 6, 0.5) 65%, rgba(5, 6, 6, 0.08)),
-    url("/images/stela-material-light.webp") center / cover;
+    linear-gradient(90deg, rgba(5, 6, 6, 0.93) 0 42%, rgba(5, 6, 6, 0.52) 66%, rgba(5, 6, 6, 0.12)),
+    url("/images/stela-home-hero-art-desktop-v7.jpg") center / cover;
 }
 
 .content-page-contact .contact-section {
@@ -271,6 +312,7 @@
 
   .content-page .content-hero-copy {
     max-width: 620px;
+    padding-left: 22px;
   }
 
   .content-page .content-section-grid,
@@ -306,8 +348,8 @@
   }
 
   .content-page .content-sequence li {
-    min-height: 104px;
-    grid-template-columns: 42px 1fr;
+    min-height: 118px;
+    grid-template-columns: 42px 52px 1fr;
     align-items: center;
     gap: 12px;
     padding: 18px 20px;
@@ -319,6 +361,18 @@
 
   .content-page .content-sequence strong {
     padding: 0 22px 0 0;
+  }
+
+  .content-page .content-sequence li:not(:has(.content-sequence-icon)) {
+    grid-template-columns: 42px 1fr;
+  }
+
+  .content-page .content-sequence li:has(.content-sequence-icon) {
+    grid-template-rows: auto;
+  }
+
+  .content-page .content-sequence li:has(.content-sequence-icon) strong {
+    min-height: 0;
   }
 
   .content-page-applications .editorial-entries article {

@@ -1,5 +1,11 @@
-import type { Metadata } from "next";
-import { languageAlternates } from "@/lib/i18n/config";
+import {
+  Certificate,
+  Fingerprint,
+  PenNibStraight,
+  SealCheck,
+  ShieldCheck,
+} from "@phosphor-icons/react/dist/ssr";
+import { pageMetadata } from "@/lib/metadata";
 import {
   ContentPage,
   ContentSection,
@@ -9,21 +15,22 @@ import {
   Sequence,
 } from "@/components/site/ContentPage";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Investors | Stela",
   description: "The Stela investment thesis, intended platform model, current development stage, and private brief path.",
-  alternates: { canonical: "/investors", languages: languageAlternates("investors") },
-};
+  slug: "investors",
+});
 
 export default function InvestorsPage() {
   return (
     <ContentPage variant="investors">
       <PageHero
         eyebrow="Investors"
-        title="Trust infrastructure for physical assets."
-        copy="Stela is developing a hardware-enabled identity and evidence platform intended to strengthen the connection between physical assets and the digital records used to manage, insure, maintain, transfer, and recover them."
+        title="A permanent identity layer for physical assets."
+        copy="Stela combines direct asset marking with secure evidence and later verification, beginning with vehicles and solar panels."
+        note="The opportunity is a hardware-enabled platform whose value can continue through insurance, maintenance, transfer, recovery, and other lifecycle events."
         primary={{ label: "Request investor brief", href: "/contact?intent=investor" }}
-        secondary={{ label: "Speak with the founders", href: "/contact?intent=investor" }}
+        secondary={{ label: "Discuss the investment thesis", href: "/contact?intent=investor" }}
       />
 
       <ContentSection eyebrow="The thesis" title="The asset is physical. The decision is digital.">
@@ -38,6 +45,7 @@ export default function InvestorsPage() {
       <ContentSection eyebrow="The approach" title="A physical anchor connected to digital proof.">
         <Sequence
           items={["Permanent mark", "Controlled evidence event", "Signed record", "Verifiable certificate", "Lifecycle trust history"]}
+          icons={[PenNibStraight, Fingerprint, Certificate, SealCheck, ShieldCheck]}
           label="Intended Stela platform approach"
         />
         <p>
@@ -60,6 +68,23 @@ export default function InvestorsPage() {
         <p className="content-note">
           The commercial model remains under validation and may differ by market, workflow, and partner structure.
         </p>
+      </ContentSection>
+
+      <ContentSection eyebrow="Why Stela is different" title="The defensibility is in the complete system.">
+        <p>
+          Labels can be removed, records can drift away from the object, and permanent marking methods often stop at
+          the mark itself. Stela combines the physical identifier, the controlled creation event, and the record used
+          for later verification.
+        </p>
+        <RuledList
+          items={[
+            "A direct identifier on the physical asset",
+            "A controlled and attributable marking process",
+            "Evidence captured when the identity is created",
+            "A record designed for later verification",
+            "Industry workflows that create recurring lifecycle value",
+          ]}
+        />
       </ContentSection>
 
       <ContentSection eyebrow="Current stage" title="Built carefully. Validated openly.">
@@ -85,7 +110,7 @@ export default function InvestorsPage() {
             "Business model",
             "Current risks",
             "Development milestones",
-            "Founder and operating plan",
+            "Team experience and operating plan",
           ]}
         />
       </ContentSection>
@@ -94,7 +119,7 @@ export default function InvestorsPage() {
         title="Request the Stela investor brief."
         copy="We share further information directly with investors and strategic partners who want to understand the thesis, current stage, risks, and validation plan in more detail."
         primary={{ label: "Request investor brief", href: "/contact?intent=investor" }}
-        secondary={{ label: "Speak with the founders", href: "/contact?intent=investor" }}
+        secondary={{ label: "Discuss the investment thesis", href: "/contact?intent=investor" }}
       />
     </ContentPage>
   );

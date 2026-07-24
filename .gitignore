@@ -12,6 +12,26 @@
 
 # testing
 /coverage
+/.playwright-cli/
+/output/
+/tmp/
+/exports/
+/scripts/
+/public/images/options/
+/public/images/source/
+/public/images/stela-application-solar-sunrise.jpg
+/public/images/stela-application-solar-sunrise-v2.jpg
+/public/images/stela-application-solar-sunrise-v3.jpg
+/public/images/stela-application-vehicle-contemporary-v1.*
+/public/images/stela-application-vehicle-rear.jpg
+/public/images/stela-controlled-marking-v*.jpg
+/public/images/stela-hero-vehicle-identity-v*.jpg
+/public/images/stela-home-hero-art-*-v[1-6].jpg
+/public/images/stela-home-hero-identifier-v1.png
+/public/images/stela-process-mark-v1.*
+/public/images/stela-process-record-v1.png
+/public/images/stela-process-verify-v1.*
+/public/images/stela-trust-gap-glass-v2.jpg
 
 # next.js
 /.next/
@@ -39,5 +59,4 @@ next-env.d.ts
 /dist/
 /.wrangler/
 /outputs/
-/output/
 /work/

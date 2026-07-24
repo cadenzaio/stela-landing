@@ -1,14 +1,13 @@
-import type { Metadata } from "next";
-import { languageAlternates } from "@/lib/i18n/config";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { ContentPage } from "@/components/site/ContentPage";
 import { en } from "@/lib/i18n/locales/en";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Contact | Stela",
   description: "Start a focused conversation with Stela about a use case, pilot, partnership, or investor brief.",
-  alternates: { canonical: "/contact", languages: languageAlternates("contact") },
-};
+  slug: "contact",
+});
 
 export default async function ContactPage({
   searchParams,
@@ -23,10 +22,10 @@ export default async function ContactPage({
       <section className="contact-hero">
         <div className="content-shell contact-hero-inner">
           <p className="content-eyebrow">Contact Stela</p>
-          <h1>Where does asset identity become uncertain in your organization?</h1>
+          <h1>Could your assets benefit from permanent identity?</h1>
           <p>
-            Tell us what kind of asset is involved, which workflow depends on its identity, and what decision becomes
-            difficult when the physical asset cannot be confidently matched to the record.
+            Tell us what the asset is, where its identity becomes uncertain, and which decision or workflow would
+            improve if the physical object could be matched confidently to its record.
           </p>
         </div>
       </section>
@@ -34,7 +33,7 @@ export default async function ContactPage({
         <div className="content-shell contact-layout">
           <aside>
             <p className="content-eyebrow">Start with context</p>
-            <h2>The right conversation begins with the trust gap.</h2>
+            <h2>Start with the asset and the decision that depends on it.</h2>
             <p>
               A concise description is enough. Detailed architecture, commercial material, and validation planning
               can remain private until there is a relevant reason to continue.

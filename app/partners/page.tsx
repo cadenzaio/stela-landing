@@ -1,5 +1,12 @@
-import type { Metadata } from "next";
-import { languageAlternates } from "@/lib/i18n/config";
+import {
+  CheckCircle,
+  ClipboardText,
+  Cube,
+  Flask,
+  FlowArrow,
+  Target,
+} from "@phosphor-icons/react/dist/ssr";
+import { pageMetadata } from "@/lib/metadata";
 import {
   ContentPage,
   ContentSection,
@@ -9,19 +16,20 @@ import {
   Sequence,
 } from "@/components/site/ContentPage";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Partners and Pilots | Stela",
   description: "Explore pre-commercial Stela pilot, validation, technical, and market collaboration.",
-  alternates: { canonical: "/partners", languages: languageAlternates("partners") },
-};
+  slug: "partners",
+});
 
 export default function PartnersPage() {
   return (
     <ContentPage variant="partners">
       <PageHero
         eyebrow="Partners and pilots"
-        title="Bring us a difficult asset-identity problem."
-        copy="Stela is looking for organizations with real workflows where confidence in physical asset identity affects operational, financial, insurance, maintenance, compliance, or recovery decisions."
+        title="Build with the industries we serve."
+        copy="We work with organizations that face a real asset-identity problem and can help test whether permanent identification improves a decision, workflow, or commercial outcome."
+        note="The strongest pilot starts with a specific asset, a specific point of uncertainty, and a result that can be measured."
         primary={{ label: "Discuss a pilot", href: "/contact?intent=pilot" }}
         secondary={{ label: "Become a validation partner", href: "/contact?intent=partner" }}
       />
@@ -56,6 +64,7 @@ export default function PartnersPage() {
             "Define evidence requirements",
             "Design validation",
           ]}
+          icons={[Cube, FlowArrow, Target, Flask, ClipboardText, CheckCircle]}
           label="Potential validation collaboration"
         />
         <RuledList
@@ -99,7 +108,7 @@ export default function PartnersPage() {
         title="Where does asset identity become uncertain in your organization?"
         copy="Describe the asset, the workflow, and the decision that depends on it. We will review whether it is relevant to Stela's current validation program."
         primary={{ label: "Start a pilot conversation", href: "/contact?intent=pilot" }}
-        secondary={{ label: "Contact the founders", href: "/contact?intent=partner" }}
+        secondary={{ label: "Discuss a partnership", href: "/contact?intent=partner" }}
       />
     </ContentPage>
   );

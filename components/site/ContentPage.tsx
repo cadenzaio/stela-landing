@@ -1,3 +1,5 @@
+import { CheckCircle } from "@phosphor-icons/react/dist/ssr";
+import Image from "next/image";
 import Link from "next/link";
 import { SiteFooter, SiteHeader } from "@/components/site/SiteShell";
 
@@ -5,6 +7,13 @@ type Action = {
   label: string;
   href: string;
 };
+
+type ContentIcon = React.ComponentType<{
+  "aria-hidden"?: boolean;
+  className?: string;
+  size?: number | string;
+  weight?: "thin" | "light" | "regular" | "bold" | "fill" | "duotone";
+}>;
 
 export function ContentPage({ children, variant }: { children: React.ReactNode; variant?: "platform" | "applications" | "partners" | "investors" | "contact" }) {
   return (
@@ -78,15 +87,27 @@ export function ContentSection({
   );
 }
 
-export function Sequence({ items, label }: { items: string[]; label: string }) {
+export function Sequence({
+  items,
+  label,
+  icons,
+}: {
+  items: string[];
+  label: string;
+  icons?: ContentIcon[];
+}) {
   return (
     <ol className="content-sequence" aria-label={label}>
-      {items.map((item, index) => (
-        <li key={item}>
-          <span>{String(index + 1).padStart(2, "0")}</span>
-          <strong>{item}</strong>
-        </li>
-      ))}
+      {items.map((item, index) => {
+        const Icon = icons?.[index];
+        return (
+          <li key={item}>
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            {Icon ? <Icon className="content-sequence-icon" size={38} weight="light" aria-hidden /> : null}
+            <strong>{item}</strong>
+          </li>
+        );
+      })}
     </ol>
   );
 }
@@ -96,7 +117,7 @@ export function RuledList({ items }: { items: string[] }) {
     <ul className="ruled-list">
       {items.map((item) => (
         <li key={item}>
-          <span aria-hidden="true" />
+          <CheckCircle size={24} weight="light" aria-hidden />
           {item}
         </li>
       ))}
@@ -113,6 +134,9 @@ export function EditorialEntries({
     copy: string;
     note?: string;
     action?: Action;
+    image?: string;
+    imageAlt?: string;
+    icon?: ContentIcon;
   }>;
 }) {
   return (
@@ -121,6 +145,7 @@ export function EditorialEntries({
         <article key={entry.title}>
           <div className="editorial-index">{String(index + 1).padStart(2, "0")}</div>
           <div>
+            {entry.icon ? <entry.icon className="editorial-icon" size={44} weight="light" aria-hidden /> : null}
             <p className="content-eyebrow">{entry.label}</p>
             <h2>{entry.title}</h2>
           </div>
@@ -129,7 +154,17 @@ export function EditorialEntries({
             {entry.note ? <p className="content-note">{entry.note}</p> : null}
             {entry.action ? <Link href={entry.action.href}>{entry.action.label}<span aria-hidden="true">&#8599;</span></Link> : null}
           </div>
-          <div className="editorial-media" aria-hidden="true" />
+          <div className="editorial-media">
+            {entry.image ? (
+              <Image
+                src={entry.image}
+                alt={entry.imageAlt ?? ""}
+                fill
+                sizes="(max-width: 760px) calc(100vw - 92px), (max-width: 1180px) 60vw, 320px"
+                unoptimized
+              />
+            ) : null}
+          </div>
         </article>
       ))}
     </div>

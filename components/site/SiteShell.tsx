@@ -1,9 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { StelaMark } from "@/components/brand/StelaMark";
 import {
   localeFromPathname,
   localeNames,
@@ -17,6 +17,12 @@ import {
 } from "@/lib/i18n/config";
 
 const navigation: SupportingPageSlug[] = ["platform", "applications", "partners", "investors", "contact"];
+const LOCALE_COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
+
+function persistLocale(locale: Locale) {
+  const secure = window.location.protocol === "https:" ? "; Secure" : "";
+  document.cookie = `stela_locale=${locale}; Path=/; Max-Age=${LOCALE_COOKIE_MAX_AGE}; SameSite=Lax${secure}`;
+}
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -32,7 +38,10 @@ export function SiteHeader() {
   function changeLanguage(nextLocale: Locale) {
     const search = typeof window === "undefined" ? "" : window.location.search;
     const nextPath = `${localizePath(pathname, nextLocale)}${search}`;
-    if (typeof window !== "undefined") window.location.assign(nextPath);
+    if (typeof window !== "undefined") {
+      persistLocale(nextLocale);
+      window.location.assign(nextPath);
+    }
     setMenuOpen(false);
   }
 
@@ -40,8 +49,7 @@ export function SiteHeader() {
     <header className="site-header">
       <div className="site-header-inner">
         <Link href={pagePath(locale)} className="stela-lockup group flex items-center" aria-label={messages.homeLabel}>
-          <StelaMark variant="compact" size="nav" />
-          <span className="stela-wordmark text-white">STELA</span>
+          <Image className="stela-master-lockup" src="/brand/stela-lockup.svg" alt="" width={650} height={108} unoptimized priority />
         </Link>
 
         <nav className="site-desktop-nav" aria-label={messages.mainNavigation}>
@@ -65,13 +73,18 @@ export function SiteHeader() {
             <summary aria-label={messages.language}>{localeNames[locale]}</summary>
             <div className="desktop-language-options">
               {locales.map((option) => (
-                <Link key={option} href={localizePath(pathname, option)} aria-current={locale === option ? "page" : undefined}>
+                <Link
+                  key={option}
+                  href={localizePath(pathname, option)}
+                  aria-current={locale === option ? "page" : undefined}
+                  onClick={() => persistLocale(option)}
+                >
                   {localeNames[option]}
                 </Link>
               ))}
             </div>
           </details>
-          <Link href={`${pagePath(locale, "contact")}?intent=brief`} className="header-cta">
+          <Link href={`${pagePath(locale, "contact")}?intent=pilot`} className="header-cta">
             <span className="header-cta-full">{messages.requestBrief}</span>
             <span className="header-cta-short">{messages.briefShort}</span>
           </Link>
@@ -121,8 +134,7 @@ export function SiteFooter() {
     <footer className="site-footer">
       <div className="site-footer-inner">
         <Link href={pagePath(locale)} className="site-footer-lockup" aria-label={messages.homeLabel}>
-          <StelaMark variant="compact" size="nav" />
-          <span className="stela-wordmark">STELA</span>
+          <Image className="stela-master-lockup" src="/brand/stela-lockup.svg" alt="" width={650} height={108} unoptimized />
         </Link>
         <nav aria-label={messages.footerNavigation}>
           {navigation.map((slug) => (
@@ -131,7 +143,10 @@ export function SiteFooter() {
             </Link>
           ))}
         </nav>
-        <p>{messages.footerStage}</p>
+        <div className="site-footer-status">
+          <p>{messages.footerStage}</p>
+          <p>{messages.legalEntity}</p>
+        </div>
       </div>
     </footer>
   );

@@ -10,6 +10,7 @@ import { ShieldCheck } from "@phosphor-icons/react/dist/ssr/ShieldCheck";
 import { Sun } from "@phosphor-icons/react/dist/ssr/Sun";
 import Image from "next/image";
 import { StelaMark } from "@/components/brand/StelaMark";
+import { StelaHomepagePrototype } from "@/components/landing/StelaHomepagePrototype";
 import { SiteFooter, SiteHeader } from "@/components/site/SiteShell";
 import { contactPath, pagePath, type Locale } from "@/lib/i18n/config";
 import { en } from "@/lib/i18n/locales/en";
@@ -23,6 +24,11 @@ const HERO_VARIANT: HeroVariant = "etched-origin";
 const MATERIAL_TREATMENT: MaterialTreatment = "optical-incision";
 
 export function StelaLanding({ messages = en.home, locale = "en" }: { messages?: HomeMessages; locale?: Locale }) {
+  if (locale === "en" || locale === "es") return <StelaHomepagePrototype locale={locale} />;
+  return <LegacyStelaLanding messages={messages} locale={locale} />;
+}
+
+function LegacyStelaLanding({ messages, locale }: { messages: HomeMessages; locale: Locale }) {
   return (
     <main className="stela-page stela-home-page min-h-screen overflow-hidden bg-[var(--stela-black)] text-[var(--stela-ivory)]">
       <SiteHeader />
@@ -319,8 +325,8 @@ function MarkingSystem({ messages }: { messages: HomeMessages["marking"] }) {
 function UseCases({ messages }: { messages: HomeMessages["applications"] }) {
   const applicationIcons = [ShieldCheck, Sun, Factory, Buildings];
   const applicationImages = [
-    "/images/stela-application-vehicle.webp",
-    "/images/stela-application-solar.webp",
+    "/images/stela-application-vehicle-rear.jpg",
+    "/images/stela-application-solar-sunrise-v2.jpg",
     "/images/stela-application-equipment.webp",
     "/images/stela-application-glass.webp",
   ];

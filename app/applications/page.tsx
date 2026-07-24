@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
-import { languageAlternates } from "@/lib/i18n/config";
+import { Buildings, CarProfile, Factory, SolarPanel } from "@phosphor-icons/react/dist/ssr";
+import { pageMetadata } from "@/lib/metadata";
 import {
   ContentPage,
   ContentSection,
@@ -9,11 +9,11 @@ import {
   RuledList,
 } from "@/components/site/ContentPage";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Applications | Stela",
   description: "Potential Stela applications where physical asset identity must remain connected to the correct record.",
-  alternates: { canonical: "/applications", languages: languageAlternates("applications") },
-};
+  slug: "applications",
+});
 
 const relevanceCriteria = [
   "Assets are distributed across many sites",
@@ -28,30 +28,42 @@ const relevanceCriteria = [
 const applications = [
   {
     label: "Vehicles and insurance",
-    title: "Identity that can support claims, ownership, recovery, and fraud prevention.",
-    copy: "Potential applications include theft deterrence, recovery identification, ownership verification, component identity, claims evidence, and fraud reduction.",
-    note: "The underlying permanent-marking principle has historical use in vehicle-related anti-theft applications. The new Stela evidence and platform model is being rebuilt and validated for modern workflows.",
+    title: "Permanent identity for vehicle glass.",
+    copy: "A visible identifier on the vehicle can support theft deterrence, recovery, ownership checks, claims handling, and fraud investigation.",
+    note: "The permanent-marking principle has decades of practical use in vehicle protection. Stela is rebuilding it around modern evidence and verification workflows.",
     action: { label: "Discuss an insurance or vehicle use case", href: "/contact?intent=insurer" },
+    image: "/images/stela-application-vehicle-inspection-v2.jpg",
+    imageAlt: "A contemporary vehicle being inspected",
+    icon: CarProfile,
   },
   {
     label: "Renewable energy",
-    title: "Physical identity for distributed energy assets.",
-    copy: "Potential applications include linking panels, inverters, batteries, transformers, turbine components, and field equipment to maintenance, inspection, warranty, contractor, theft, and recovery records.",
-    note: "Stela is researching where renewable-energy asset owners, O&M teams, insurers, and service providers experience costly asset-to-record uncertainty.",
+    title: "Identity attached to the panel itself.",
+    copy: "Permanent identification can keep panels and other distributed energy assets connected to installation, maintenance, warranty, insurance, theft, and recovery records.",
+    note: "The initial focus is on workflows where owners, installers, O&M teams, insurers, and financiers need to know which physical panel a record describes.",
     action: { label: "Contribute operational insight", href: "/contact?intent=use-case" },
+    image: "/images/stela-application-solar-sunrise-v4.jpg",
+    imageAlt: "Solar panels at sunrise",
+    icon: SolarPanel,
   },
   {
     label: "Industrial equipment",
     title: "Durable identity for equipment that moves through operations, service, and ownership.",
-    copy: "Potential applications include equipment identity, tool and component traceability, maintenance history, inspection, custody, contractor-issued assets, ownership transfer, and theft recovery.",
+    copy: "Equipment identity can remain connected to maintenance, inspection, custody, ownership transfer, and recovery records even as the asset moves between sites and operators.",
     action: { label: "Discuss an equipment workflow", href: "/contact?intent=use-case" },
+    image: "/images/stela-application-equipment.webp",
+    imageAlt: "Industrial equipment in operation",
+    icon: Factory,
   },
   {
     label: "Glass and architectural assets",
     title: "Permanent identification for surfaces where temporary labels are not enough.",
-    copy: "Potential applications include installation identity, manufacturer and installer evidence, warranty history, facade and panel traceability, inspection, replacement matching, and project handover.",
-    note: "This application reflects the historical strengths of the physical marking principle and remains subject to technical and market-specific validation.",
+    copy: "A direct identifier can connect installed glass to manufacturer, installer, warranty, inspection, replacement, and project handover records.",
+    note: "Material suitability and the right evidence model must be validated for each application.",
     action: { label: "Discuss a marking application", href: "/contact?intent=use-case" },
+    image: "/images/stela-application-glass.webp",
+    imageAlt: "Architectural glass installed in a modern building",
+    icon: Buildings,
   },
 ];
 
@@ -60,9 +72,9 @@ export default function ApplicationsPage() {
     <ContentPage variant="applications">
       <PageHero
         eyebrow="Applications"
-        title="Where asset identity needs to hold."
-        copy="Stela is being developed for environments where important decisions depend on confidently matching a physical asset to the correct digital record and evidence history."
-        note="The value and evidence requirements differ by industry. Current applications are being investigated through research, technical validation, and partner conversations."
+        title="Built for assets where trusted identity matters."
+        copy="Stela is designed for physical assets that are distributed, valuable, long-lived, and difficult to match confidently to the right record."
+        note="Vehicles and solar panels are the first focus. Other applications follow the same test: does uncertainty about the physical asset create real operational or financial cost?"
         primary={{ label: "Discuss an application", href: "/contact?intent=use-case" }}
         secondary={{ label: "Join a validation conversation", href: "/contact?intent=partner" }}
       />

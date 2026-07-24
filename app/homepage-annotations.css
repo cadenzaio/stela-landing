@@ -1,14 +1,14 @@
 /* Final homepage annotation layer. Keep after globals.css. */
 .luminous-hero {
-  background-image: url("/images/stela-hero-vehicle-identity.webp");
+  background-image: url("/images/stela-hero-vehicle-identity-v9.jpg");
   background-position: center;
   background-size: cover;
 }
 
 .luminous-hero-shade {
   background:
-    linear-gradient(90deg, rgba(4, 5, 5, 0.88) 0%, rgba(5, 6, 6, 0.69) 31%, rgba(6, 7, 7, 0.18) 53%, rgba(6, 7, 7, 0.02) 100%),
-    linear-gradient(180deg, rgba(5, 6, 6, 0.08), transparent 72%, rgba(5, 6, 6, 0.18));
+    linear-gradient(90deg, rgba(4, 5, 5, 0.66) 0%, rgba(5, 6, 6, 0.44) 31%, rgba(6, 7, 7, 0.1) 53%, rgba(6, 7, 7, 0.01) 100%),
+    linear-gradient(180deg, rgba(5, 6, 6, 0.03), transparent 72%, rgba(5, 6, 6, 0.1));
 }
 
 .luminous-hero .glass-reflection,
@@ -26,7 +26,7 @@
   z-index: 1;
   left: 8px;
   top: 285px;
-  width: 374px;
+  width: 502px;
   height: 108px;
 }
 
@@ -37,8 +37,8 @@
 .luminous-hero .proof-assembly .proof-certificate {
   z-index: 2;
   top: 275px;
-  left: 350px;
-  width: 310px;
+  left: 478px;
+  width: 270px;
   padding: 18px;
   background:
     linear-gradient(132deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.018)),
@@ -52,8 +52,8 @@
   min-height: 560px;
   background-image:
     linear-gradient(90deg, rgba(226, 226, 222, 0.98) 0 36%, rgba(226, 226, 222, 0.9) 49%, rgba(226, 226, 222, 0.12) 72%),
-    url("/images/stela-application-solar.webp");
-  background-position: center, 62% center;
+    url("/images/stela-application-solar-sunrise-v4.jpg");
+  background-position: center, 60% center;
 }
 
 .luminous-standard-inner {
@@ -62,10 +62,27 @@
 
 .stela-home-page .section-block.trust-gap-section {
   background-image:
-    linear-gradient(90deg, rgba(7, 8, 8, 0.9) 0 34%, rgba(7, 8, 8, 0.56) 55%, rgba(7, 8, 8, 0.22)),
-    url("/images/stela-application-equipment.webp");
+    linear-gradient(90deg, rgba(7, 8, 8, 0.92) 0 34%, rgba(7, 8, 8, 0.48) 55%, rgba(7, 8, 8, 0.18)),
+    url("/images/stela-trust-gap-glass-v2.jpg");
   background-position: center;
   background-size: cover;
+}
+
+.stela-home-page .trust-comparison-row.strong .trust-comparison-link i {
+  background: linear-gradient(90deg, rgba(217, 198, 160, 0.38), rgba(235, 218, 184, 0.98), rgba(217, 198, 160, 0.38));
+  box-shadow: 0 0 10px rgba(217, 198, 160, 0.12);
+}
+
+.stela-home-page .trust-comparison-row.strong .trust-anchor-label {
+  color: #ead8b3;
+  font-size: 0.7rem;
+  font-weight: 650;
+  text-shadow: 0 0 14px rgba(217, 198, 160, 0.2);
+}
+
+.stela-home-page .trust-comparison-row.strong .trust-anchor-label .stela-mark {
+  filter: drop-shadow(0 0 6px rgba(217, 198, 160, 0.2));
+  transform: scale(0.94);
 }
 
 .stela-home-page .mechanism-section .sequence-track {
@@ -94,16 +111,16 @@
 }
 
 .stela-home-page .mechanism-section .sequence-node {
-  width: 76px;
-  height: 76px;
+  width: 88px;
+  height: 88px;
   margin: 0;
   border-radius: 2px;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
 }
 
 .stela-home-page .mechanism-section .sequence-node svg {
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
 }
 
 .stela-home-page .mechanism-section .sequence-label {
@@ -122,6 +139,12 @@
   padding: 18px 20px;
   background: rgba(11, 12, 12, 0.9);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.stela-home-page .marking-section .device-module {
+  background:
+    linear-gradient(90deg, rgba(8, 9, 9, 0.04), transparent 58%, rgba(8, 9, 9, 0.12)),
+    url("/images/stela-controlled-marking-v4.jpg") center / cover no-repeat;
 }
 
 .stela-home-page .marking-section .device-stack .session-panel p,
@@ -178,7 +201,7 @@
 
 @media (max-width: 1024px) {
   .luminous-hero {
-    background-position: 64% bottom;
+    background-position: 70% bottom;
   }
 
   .luminous-hero-layout {
@@ -217,10 +240,16 @@
   }
 }
 
+@media (min-width: 761px) and (max-width: 1024px) {
+  .luminous-hero .proof-assembly {
+    left: 60%;
+  }
+}
+
 @media (max-width: 760px) {
   .luminous-hero {
     min-height: 960px;
-    background-position: 62% bottom;
+    background-position: 78% bottom;
   }
 
   .luminous-hero .hero-title {
@@ -242,7 +271,7 @@
   }
 
   .luminous-hero-shade {
-    background: linear-gradient(180deg, rgba(4, 5, 5, 0.9) 0 43%, rgba(5, 6, 6, 0.38) 70%, rgba(5, 6, 6, 0.13));
+    background: linear-gradient(180deg, rgba(4, 5, 5, 0.78) 0 43%, rgba(5, 6, 6, 0.27) 70%, rgba(5, 6, 6, 0.07));
   }
 
   .luminous-hero .precision-wrap {
@@ -259,12 +288,12 @@
 
   .luminous-hero .proof-assembly .proof-link {
     left: 8px;
-    top: 245px;
+    top: 340px;
     width: 306px;
   }
 
   .luminous-hero .proof-assembly .proof-certificate {
-    top: 232px;
+    top: 326px;
     left: 286px;
     width: 296px;
   }
@@ -273,7 +302,7 @@
     min-height: 840px;
     background-image:
       linear-gradient(180deg, rgba(232, 232, 228, 0.99) 0 42%, rgba(232, 232, 228, 0.78) 54%, rgba(232, 232, 228, 0.08) 72%),
-      url("/images/stela-application-solar.webp");
+      url("/images/stela-application-solar-sunrise-v4.jpg");
     background-position: center, 62% bottom;
     background-size: 100% 100%, auto 58%;
     background-repeat: no-repeat;

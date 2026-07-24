@@ -6,19 +6,11 @@ export type { Locale, SupportingPageSlug };
 export const localeNames: Record<Locale, string> = {
   en: "English",
   es: "Español",
-  fr: "Français",
-  it: "Italiano",
-  de: "Deutsch",
-  pt: "Português",
 };
 
 export const shellMessages: Record<Locale, Dictionary["shell"]> = {
-  en: { nav: { platform: "Platform", applications: "Applications", partners: "Partners", investors: "Investors", contact: "Contact" }, requestBrief: "Request brief", briefShort: "Brief", openNavigation: "Open navigation", closeNavigation: "Close navigation", mainNavigation: "Main navigation", mobileNavigation: "Mobile navigation", footerNavigation: "Footer navigation", homeLabel: "Stela home", footerStage: "Pre-commercial development and validation.", language: "Language" },
-  es: { nav: { platform: "Plataforma", applications: "Aplicaciones", partners: "Socios", investors: "Inversores", contact: "Contacto" }, requestBrief: "Solicitar dossier", briefShort: "Dossier", openNavigation: "Abrir navegación", closeNavigation: "Cerrar navegación", mainNavigation: "Navegación principal", mobileNavigation: "Navegación móvil", footerNavigation: "Navegación del pie", homeLabel: "Inicio de Stela", footerStage: "Desarrollo y validación precomercial.", language: "Idioma" },
-  fr: { nav: { platform: "Plateforme", applications: "Applications", partners: "Partenaires", investors: "Investisseurs", contact: "Contact" }, requestBrief: "Demander le dossier", briefShort: "Dossier", openNavigation: "Ouvrir la navigation", closeNavigation: "Fermer la navigation", mainNavigation: "Navigation principale", mobileNavigation: "Navigation mobile", footerNavigation: "Navigation de pied de page", homeLabel: "Accueil Stela", footerStage: "Développement et validation précommerciale.", language: "Langue" },
-  it: { nav: { platform: "Piattaforma", applications: "Applicazioni", partners: "Partner", investors: "Investitori", contact: "Contatti" }, requestBrief: "Richiedi il dossier", briefShort: "Dossier", openNavigation: "Apri navigazione", closeNavigation: "Chiudi navigazione", mainNavigation: "Navigazione principale", mobileNavigation: "Navigazione mobile", footerNavigation: "Navigazione a piè di pagina", homeLabel: "Home Stela", footerStage: "Sviluppo e validazione precommerciale.", language: "Lingua" },
-  de: { nav: { platform: "Plattform", applications: "Anwendungen", partners: "Partner", investors: "Investoren", contact: "Kontakt" }, requestBrief: "Dossier anfordern", briefShort: "Dossier", openNavigation: "Navigation öffnen", closeNavigation: "Navigation schließen", mainNavigation: "Hauptnavigation", mobileNavigation: "Mobile Navigation", footerNavigation: "Fußnavigation", homeLabel: "Stela Startseite", footerStage: "Vorkommerzielle Entwicklung und Validierung.", language: "Sprache" },
-  pt: { nav: { platform: "Plataforma", applications: "Aplicações", partners: "Parceiros", investors: "Investidores", contact: "Contacto" }, requestBrief: "Pedir dossier", briefShort: "Dossier", openNavigation: "Abrir navegação", closeNavigation: "Fechar navegação", mainNavigation: "Navegação principal", mobileNavigation: "Navegação móvel", footerNavigation: "Navegação do rodapé", homeLabel: "Início Stela", footerStage: "Desenvolvimento e validação pré-comercial.", language: "Idioma" },
+  en: { nav: { platform: "Platform", applications: "Applications", partners: "Partners", investors: "Investors", contact: "Contact" }, requestBrief: "Discuss a pilot", briefShort: "Pilot", openNavigation: "Open navigation", closeNavigation: "Close navigation", mainNavigation: "Main navigation", mobileNavigation: "Mobile navigation", footerNavigation: "Footer navigation", homeLabel: "Stela home", footerStage: "Pre-commercial development and validation.", legalEntity: "Stela is a brand of SafeSingleMark S.L.", language: "Language" },
+  es: { nav: { platform: "Plataforma", applications: "Aplicaciones", partners: "Socios", investors: "Inversores", contact: "Contacto" }, requestBrief: "Comentar un piloto", briefShort: "Piloto", openNavigation: "Abrir navegación", closeNavigation: "Cerrar navegación", mainNavigation: "Navegación principal", mobileNavigation: "Navegación móvil", footerNavigation: "Navegación del pie", homeLabel: "Inicio de Stela", footerStage: "Desarrollo y validación precomercial.", legalEntity: "Stela es una marca de SafeSingleMark S.L.", language: "Idioma" },
 };
 
 export const localizedSlugs: SupportingPageSlug[] = ["platform", "applications", "partners", "investors", "contact"];
@@ -53,5 +45,8 @@ export function contactPath(locale: Locale, intent: string): string {
 }
 
 export function languageAlternates(slug?: SupportingPageSlug) {
-  return Object.fromEntries(locales.map((locale) => [locale, pagePath(locale, slug)]));
+  return {
+    ...Object.fromEntries(locales.map((locale) => [locale, pagePath(locale, slug)])),
+    "x-default": pagePath("en", slug),
+  };
 }

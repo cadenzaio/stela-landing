@@ -1,5 +1,15 @@
-import type { Metadata } from "next";
-import { languageAlternates } from "@/lib/i18n/config";
+import {
+  Certificate,
+  Clock,
+  Fingerprint,
+  IdentificationCard,
+  MapPin,
+  PenNibStraight,
+  SealCheck,
+  ShieldCheck,
+  UserCircleCheck,
+} from "@phosphor-icons/react/dist/ssr";
+import { pageMetadata } from "@/lib/metadata";
 import {
   ContentPage,
   ContentSection,
@@ -8,20 +18,20 @@ import {
   Sequence,
 } from "@/components/site/ContentPage";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Platform | Stela",
   description: "How Stela connects a permanent physical mark to controlled evidence and a verifiable digital record.",
-  alternates: { canonical: "/platform", languages: languageAlternates("platform") },
-};
+  slug: "platform",
+});
 
 export default function PlatformPage() {
   return (
     <ContentPage variant="platform">
       <PageHero
         eyebrow="The Stela platform"
-        title="A trustworthy connection between the asset and its record."
-        copy="Stela combines permanent physical marking, controlled evidence capture, and verifiable digital records to strengthen confidence that the physical asset is the asset the system says it is."
-        note="It is designed to complement existing asset, insurance, maintenance, and operational systems - not replace them."
+        title="Permanent identification, recorded at its source."
+        copy="Stela places a durable identifier on the asset, records the authorized marking event, and creates a digital record that can be checked later."
+        note="It strengthens the physical identity layer beneath existing asset, insurance, maintenance, and operational systems."
         primary={{ label: "Discuss your use case", href: "/contact?intent=use-case" }}
         secondary={{ label: "Request technical brief", href: "/contact?intent=technical-brief" }}
       />
@@ -33,18 +43,22 @@ export default function PlatformPage() {
         aside={<p>The physical mark is an anchor. Confidence also depends on how, when, where, and by whom it was created.</p>}
       >
         <p>
-          A permanent precision mark creates a durable point of reference on the physical asset. Unlike a detached
-          document or removable label, the identifier is intended to remain part of the asset over time.
+          A controlled diamond-marking process places a unique identifier directly on an approved area of the asset.
+          Unlike a detached document or removable label, that identifier is intended to remain with the physical
+          object throughout its useful life.
         </p>
       </ContentSection>
 
       <ContentSection eyebrow="Evidence at creation" title="The marking action becomes an evidence event.">
         <p>
-          The Stela system is designed to associate the physical marking action with relevant context such as the
-          asset, authorized operator, machine identity, timestamp, location, marking session, and supporting evidence.
-          The exact evidence model remains subject to technical and workflow validation.
+          The marking session records the people, equipment, place, time, and supporting evidence involved. That
+          context makes the origin of the identifier explainable rather than simply asserting that a mark exists.
         </p>
-        <Sequence items={["Asset", "Authorized session", "Permanent mark", "Evidence event"]} label="Controlled marking event" />
+        <Sequence
+          items={["Asset identified", "Operator authorized", "Location and time recorded", "Evidence captured"]}
+          icons={[IdentificationCard, UserCircleCheck, MapPin, Fingerprint]}
+          label="Controlled marking event"
+        />
       </ContentSection>
 
       <ContentSection
@@ -53,11 +67,14 @@ export default function PlatformPage() {
         aside={<p>Certificate access can depend on the organization, user role, and purpose of verification.</p>}
       >
         <p>
-          A signed record and certificate are intended to allow authorized parties to verify the asset identity and
-          inspect the evidence connected to the marking event. The certificate is not intended to expose every asset
-          record publicly.
+          A signed Stela record connects the on-asset identifier to the evidence captured at origin. Authorized users
+          can later check that identifier and confirm the asset matches the record presented to them.
         </p>
-        <Sequence items={["Physical mark", "Signed evidence", "Certificate", "Verification"]} label="Digital proof path" />
+        <Sequence
+          items={["Physical identifier", "Signed evidence", "Stela record", "Later verification"]}
+          icons={[PenNibStraight, Fingerprint, Certificate, SealCheck]}
+          label="Digital proof path"
+        />
       </ContentSection>
 
       <ContentSection eyebrow="Beyond registration" title="Identity should remain useful across the lifecycle.">
@@ -67,6 +84,7 @@ export default function PlatformPage() {
         </p>
         <Sequence
           items={["Marked", "Registered", "Insured", "Maintained", "Transferred", "Recovered", "Verified"]}
+          icons={[PenNibStraight, IdentificationCard, ShieldCheck, Clock, Certificate, Fingerprint, SealCheck]}
           label="Potential asset identity lifecycle"
         />
       </ContentSection>
