@@ -32,6 +32,10 @@
 /public/images/stela-process-record-v1.png
 /public/images/stela-process-verify-v1.*
 /public/images/stela-trust-gap-glass-v2.jpg
+!/public/images/stela-controlled-marking-v3.jpg
+!/public/images/stela-controlled-marking-v4.jpg
+!/public/images/stela-hero-vehicle-identity-v9.jpg
+!/public/images/stela-trust-gap-glass-v2.jpg
 
 # next.js
 /.next/
