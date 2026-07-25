@@ -97,7 +97,7 @@ test("keeps the starter preview removed from the finished site", async () => {
   assert.match(landing, /StelaHomepagePrototype/);
   assert.match(prototype, /stela-home-hero-art-desktop-v7\.jpg/);
   assert.match(prototype, /stela-home-hero-art-tablet-v7\.jpg/);
-  assert.match(prototype, /stela-home-hero-art-mobile-v7\.jpg/);
+  assert.match(prototype, /stela-home-hero-art-mobile-v8\.jpg/);
   assert.match(prototype, /<picture className="prototype-hero-picture">/);
   assert.match(prototype, /className="prototype-hero-certificate"/);
   assert.doesNotMatch(prototype, /prototype-hero-connection/);

@@ -65,6 +65,7 @@ function LocalizedPlatform({ locale, dictionary }: { locale: Locale; dictionary:
           items={page.lifecycle.sequence}
           icons={[PenNibStraight, IdentificationCard, ShieldCheck, Clock, Certificate, Fingerprint, SealCheck]}
           label={page.lifecycle.sequenceLabel}
+          variant="timeline"
         />
       </ContentSection>
       <ConversionSection

@@ -322,9 +322,9 @@ export function StelaHomepagePrototype({ locale = "en" }: { locale?: Locale }) {
     <main className="stela-prototype">
       <SiteHeader />
       <Hero locale={locale} />
+      <Applications locale={locale} />
       <IdentityProblem locale={locale} />
       <Process locale={locale} />
-      <Applications locale={locale} />
       <Value locale={locale} />
       <CompleteSystem locale={locale} />
       <Comparison locale={locale} />
@@ -341,7 +341,7 @@ function Hero({ locale }: { locale: Locale }) {
   return (
     <section id="top" className="prototype-hero">
       <picture className="prototype-hero-picture">
-        <source media="(max-width: 560px)" srcSet="/images/stela-home-hero-art-mobile-v7.jpg" />
+        <source media="(max-width: 560px)" srcSet="/images/stela-home-hero-art-mobile-v8.jpg" />
         <source media="(max-width: 1100px)" srcSet="/images/stela-home-hero-art-tablet-v7.jpg" />
         <img
           src="/images/stela-home-hero-art-desktop-v7.jpg"
@@ -413,29 +413,6 @@ function IdentityProblem({ locale }: { locale: Locale }) {
         <div className="prototype-problem-copy">
           {t.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
           <strong>{t.emphasis}</strong>
-        </div>
-      </div>
-      <div className="prototype-shell identity-failure" aria-label={t.flowAria}>
-        <div className="identity-failure-asset">
-          <Image src="/images/stela-application-solar-sunrise-v4.jpg" alt="Installed solar panels" fill unoptimized sizes="60vw" />
-          <span><SolarPanel aria-hidden="true" /> {t.asset}</span>
-        </div>
-        <div className="identity-failure-flow">
-          <div className="identity-failure-label">
-            <span>{t.removable}</span>
-            <strong>SN 74-AX-1903</strong>
-            <small>{t.lost}</small>
-          </div>
-          <div className="identity-failure-gap">
-            <ArrowRight aria-hidden="true" />
-            <span>{t.gap}</span>
-            <strong>{t.unknown}</strong>
-          </div>
-          <div className="identity-failure-record">
-            <StelaMark size="small" tone="light" />
-            <span>{t.permanent}</span>
-            <strong>{t.linked}</strong>
-          </div>
         </div>
       </div>
     </section>
@@ -629,12 +606,12 @@ function Comparison({ locale }: { locale: Locale }) {
               {methods.map((item, index) => (
                 <tr key={item.method} data-featured={item.featured || undefined}>
                   <th scope="row">{item.featured && <StelaMark size="small" tone="dark" />} {t.methods[index]}</th>
-                  <FeatureCell value={item.permanent} labels={t} />
-                  <FeatureCell value={item.field} labels={t} />
-                  <FeatureCell value={item.controlled} labels={t} />
-                  <FeatureCell value={item.evidence} labels={t} />
-                  <FeatureCell value={item.linked} labels={t} />
-                  <FeatureCell value={item.later} labels={t} />
+                  <FeatureCell value={item.permanent} label={t.headings[1]} labels={t} />
+                  <FeatureCell value={item.field} label={t.headings[2]} labels={t} />
+                  <FeatureCell value={item.controlled} label={t.headings[3]} labels={t} />
+                  <FeatureCell value={item.evidence} label={t.headings[4]} labels={t} />
+                  <FeatureCell value={item.linked} label={t.headings[5]} labels={t} />
+                  <FeatureCell value={item.later} label={t.headings[6]} labels={t} />
                 </tr>
               ))}
             </tbody>
@@ -648,20 +625,22 @@ function Comparison({ locale }: { locale: Locale }) {
 
 function FeatureCell({
   value,
+  label,
   labels,
 }: {
   value: boolean | "partial";
+  label: string;
   labels: { supported: string; varies: string; excluded: string };
 }) {
   if (value === true) {
-    return <td className="feature-cell feature-cell-yes"><Check weight="bold" aria-hidden="true" /><span>{labels.supported}</span></td>;
+    return <td className="feature-cell feature-cell-yes" data-label={label}><Check weight="bold" aria-hidden="true" /><span>{labels.supported}</span></td>;
   }
 
   if (value === "partial") {
-    return <td className="feature-cell feature-cell-partial"><Minus weight="bold" aria-hidden="true" /><span>{labels.varies}</span></td>;
+    return <td className="feature-cell feature-cell-partial" data-label={label}><Minus weight="bold" aria-hidden="true" /><span>{labels.varies}</span></td>;
   }
 
-  return <td className="feature-cell feature-cell-no"><X weight="bold" aria-hidden="true" /><span>{labels.excluded}</span></td>;
+  return <td className="feature-cell feature-cell-no" data-label={label}><X weight="bold" aria-hidden="true" /><span>{labels.excluded}</span></td>;
 }
 
 function Experience({ locale }: { locale: Locale }) {

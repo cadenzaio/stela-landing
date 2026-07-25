@@ -86,6 +86,7 @@ export default function PlatformPage() {
           items={["Marked", "Registered", "Insured", "Maintained", "Transferred", "Recovered", "Verified"]}
           icons={[PenNibStraight, IdentificationCard, ShieldCheck, Clock, Certificate, Fingerprint, SealCheck]}
           label="Potential asset identity lifecycle"
+          variant="timeline"
         />
       </ContentSection>
 

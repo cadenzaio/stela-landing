@@ -91,13 +91,15 @@ export function Sequence({
   items,
   label,
   icons,
+  variant = "cards",
 }: {
   items: string[];
   label: string;
   icons?: ContentIcon[];
+  variant?: "cards" | "timeline";
 }) {
   return (
-    <ol className="content-sequence" aria-label={label}>
+    <ol className={`content-sequence content-sequence-${variant}`} aria-label={label}>
       {items.map((item, index) => {
         const Icon = icons?.[index];
         return (
