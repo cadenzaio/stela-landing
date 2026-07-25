@@ -134,7 +134,8 @@ test("keeps the starter preview removed from the finished site", async () => {
   assert.match(brand, /M50 9L91 50L50 91L9 50Z/);
   assert.match(brand, /stela-mark-origin-cutout/);
   assert.doesNotMatch(brand, /stela-mark-glare|stela-mark-trace/);
-  assert.match(favicon, /<circle cx="24" cy="24"/);
+  assert.match(favicon, /M50 9L91 50L50 91L9 50L50 9Z/);
+  assert.match(favicon, /<circle cx="43" cy="53"/);
   assert.doesNotMatch(brand, /arrow|shield|monogram/i);
 
   await assert.rejects(access(new URL("app/_sites-preview", projectRoot)));
