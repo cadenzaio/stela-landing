@@ -58,7 +58,16 @@ test("server-renders the Stela landing page", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>Stela - Permanent Asset Identification<\/title>/i);
+  assert.match(html, /<title>Stela \| Permanent Asset Identification<\/title>/i);
+  assert.match(
+    html,
+    /Stela combines permanent diamond marking with secure digital records to identify and verify vehicle glass and solar panels throughout the asset lifecycle\./,
+  );
+  assert.match(html, /href="https:\/\/stelamark\.com\/favicon-48\.png" sizes="48x48" type="image\/png"/);
+  assert.match(html, /rel="apple-touch-icon" href="https:\/\/stelamark\.com\/apple-touch-icon\.png"/);
+  assert.match(html, /type="application\/ld\+json"/);
+  assert.match(html, /"@type":"Organization"/);
+  assert.match(html, /"@type":"WebSite"/);
   assert.match(html, /Permanent identity for physical assets\./);
   assert.match(html, /A digital record is only as reliable as its connection to the physical asset\./);
   assert.match(html, /Mark\. Record\. Verify\./);
@@ -88,6 +97,10 @@ test("keeps the starter preview removed from the finished site", async () => {
     readFile(new URL("../components/site/SiteShell.tsx", import.meta.url), "utf8"),
     readFile(new URL("../components/brand/StelaMark.tsx", import.meta.url), "utf8"),
     readFile(new URL("../public/favicon.svg", import.meta.url), "utf8"),
+    access(new URL("../public/favicon-48.png", import.meta.url)),
+    access(new URL("../public/favicon-192.png", import.meta.url)),
+    access(new URL("../public/favicon-512.png", import.meta.url)),
+    access(new URL("../public/apple-touch-icon.png", import.meta.url)),
   ]);
 
   assert.match(page, /<StelaLanding \/>/);

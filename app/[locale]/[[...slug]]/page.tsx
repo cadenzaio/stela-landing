@@ -29,8 +29,14 @@ export async function generateMetadata({ params }: { params: Promise<PageParams>
   if (slug && !localizedSlugs.includes(slug)) return {};
   const dictionary = getDictionary(localeParam);
   const page = slug ? dictionary[slug] : null;
-  const title = page && "metaTitle" in page ? page.metaTitle : `Stela - ${dictionary.home.hero.title.join(" ")}`;
-  const description = page && "metaDescription" in page ? page.metaDescription : dictionary.home.hero.copy;
+  const title =
+    page && "metaTitle" in page
+      ? page.metaTitle
+      : "Stela | Identificación permanente de activos";
+  const description =
+    page && "metaDescription" in page
+      ? page.metaDescription
+      : "Stela combina marcado permanente con diamante y registros digitales seguros para identificar y verificar vehículos y paneles solares durante todo su ciclo de vida.";
 
   return pageMetadata({
     title,
