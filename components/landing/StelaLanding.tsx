@@ -24,7 +24,7 @@ const HERO_VARIANT: HeroVariant = "etched-origin";
 const MATERIAL_TREATMENT: MaterialTreatment = "optical-incision";
 
 export function StelaLanding({ messages = en.home, locale = "en" }: { messages?: HomeMessages; locale?: Locale }) {
-  if (locale === "en" || locale === "es") return <StelaHomepagePrototype locale={locale} />;
+  if (locale === "en" || locale === "es" || locale === "pl") return <StelaHomepagePrototype locale={locale} />;
   return <LegacyStelaLanding messages={messages} locale={locale} />;
 }
 

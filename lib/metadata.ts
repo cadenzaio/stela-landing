@@ -35,7 +35,7 @@ export function pageMetadata({
       title,
       description,
       url: path,
-      locale: locale === "es" ? "es_ES" : "en_US",
+      locale: locale === "es" ? "es_ES" : locale === "pl" ? "pl_PL" : "en_US",
       images: [socialImage],
     },
     twitter: {

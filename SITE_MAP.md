@@ -19,12 +19,9 @@ The internal `/identity` route remains a design-validation surface and is not in
 
 ## Languages and URL Structure
 
-English remains at the unprefixed canonical routes above. Spanish, French, Italian, German, and Portuguese use stable locale prefixes while retaining the same page slugs:
+English remains at the unprefixed canonical routes above. Spanish and Polish are currently active and use stable locale prefixes while retaining the same page slugs:
 
 - Spanish: `/es`, `/es/platform`, `/es/applications`, `/es/partners`, `/es/investors`, `/es/contact`
-- French: `/fr`, `/fr/platform`, `/fr/applications`, `/fr/partners`, `/fr/investors`, `/fr/contact`
-- Italian: `/it`, `/it/platform`, `/it/applications`, `/it/partners`, `/it/investors`, `/it/contact`
-- German: `/de`, `/de/platform`, `/de/applications`, `/de/partners`, `/de/investors`, `/de/contact`
-- Portuguese: `/pt`, `/pt/platform`, `/pt/applications`, `/pt/partners`, `/pt/investors`, `/pt/contact`
+- Polish: `/pl`, `/pl/platform`, `/pl/applications`, `/pl/partners`, `/pl/investors`, `/pl/contact`
 
-Every public route publishes canonical and language-alternate metadata. Language switching preserves the current page and query string. Portuguese currently uses European Portuguese and Spanish uses neutral international Spanish.
+German, French, and Italian are planned for later translation passes. Every active public route publishes canonical and language-alternate metadata. Language switching preserves the current page and query string. Spanish uses neutral international Spanish.

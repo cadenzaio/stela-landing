@@ -97,7 +97,7 @@ async function handleContactRequest(request: Request): Promise<Response> {
   return jsonResponse({ ok: true }, 200);
 }
 
-function preferredLocale(request: Request): "en" | "es" {
+function preferredLocale(request: Request): "en" | "es" | "pl" {
   const cookie = request.headers.get("cookie") ?? "";
   const savedLocale = cookie
     .split(";")
@@ -105,7 +105,7 @@ function preferredLocale(request: Request): "en" | "es" {
     .find((part) => part.startsWith(`${LOCALE_COOKIE}=`))
     ?.split("=")[1];
 
-  if (savedLocale === "en" || savedLocale === "es") return savedLocale;
+  if (savedLocale === "en" || savedLocale === "es" || savedLocale === "pl") return savedLocale;
 
   const acceptedLanguages = (request.headers.get("accept-language") ?? "")
     .split(",")
@@ -120,6 +120,7 @@ function preferredLocale(request: Request): "en" | "es" {
 
   for (const { language } of acceptedLanguages) {
     if (language === "es" || language.startsWith("es-")) return "es";
+    if (language === "pl" || language.startsWith("pl-")) return "pl";
     if (language === "en" || language.startsWith("en-")) return "en";
   }
 
@@ -129,16 +130,17 @@ function preferredLocale(request: Request): "en" | "es" {
 function languageRedirect(request: Request): Response | undefined {
   const url = new URL(request.url);
   if (url.pathname !== "/" || !["GET", "HEAD"].includes(request.method)) return undefined;
-  if (preferredLocale(request) !== "es") return undefined;
+  const locale = preferredLocale(request);
+  if (locale === "en") return undefined;
 
-  const destination = new URL(`/es${url.search}`, url);
+  const destination = new URL(`/${locale}${url.search}`, url);
   const secure = destination.protocol === "https:" ? "; Secure" : "";
 
   return new Response(null, {
     status: 307,
     headers: {
       Location: destination.toString(),
-      "Set-Cookie": `${LOCALE_COOKIE}=es; Path=/; Max-Age=${LOCALE_COOKIE_MAX_AGE}; SameSite=Lax${secure}`,
+      "Set-Cookie": `${LOCALE_COOKIE}=${locale}; Path=/; Max-Age=${LOCALE_COOKIE_MAX_AGE}; SameSite=Lax${secure}`,
       "Cache-Control": "private, no-store",
       Vary: "Accept-Language, Cookie",
     },
@@ -148,13 +150,14 @@ function languageRedirect(request: Request): Response | undefined {
 async function localizeDocumentLanguage(request: Request, response: Response): Promise<Response> {
   const pathname = new URL(request.url).pathname;
   const contentType = response.headers.get("content-type") ?? "";
-  if (!pathname.startsWith("/es") || !contentType.startsWith("text/html")) return response;
+  const locale = pathname.split("/").filter(Boolean)[0];
+  if (!["es", "pl"].includes(locale) || !contentType.startsWith("text/html")) return response;
 
   const html = await response.text();
   const headers = new Headers(response.headers);
   headers.delete("content-length");
 
-  return new Response(html.replace("<html lang=\"en\">", "<html lang=\"es\">"), {
+  return new Response(html.replace("<html lang=\"en\">", `<html lang="${locale}">`), {
     status: response.status,
     statusText: response.statusText,
     headers,

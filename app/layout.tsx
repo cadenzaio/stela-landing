@@ -87,7 +87,7 @@ export default function RootLayout({
       name: "Stela",
       description: siteDescription,
       publisher: { "@id": `${siteUrl}/#organization` },
-      inLanguage: ["en", "es"],
+      inLanguage: ["en", "es", "pl"],
     },
   ];
 

@@ -29,14 +29,24 @@ export async function generateMetadata({ params }: { params: Promise<PageParams>
   if (slug && !localizedSlugs.includes(slug)) return {};
   const dictionary = getDictionary(localeParam);
   const page = slug ? dictionary[slug] : null;
+  const homepageMetadata = {
+    es: {
+      title: "Stela | Identificación permanente de activos",
+      description: "Stela combina marcado permanente con diamante y registros digitales seguros para identificar y verificar vehículos y paneles solares durante todo su ciclo de vida.",
+    },
+    pl: {
+      title: "Stela | Trwała identyfikacja aktywów",
+      description: "Stela łączy trwałe znakowanie diamentowe z bezpiecznymi rejestrami cyfrowymi, aby identyfikować i weryfikować pojazdy oraz panele słoneczne przez cały cykl ich życia.",
+    },
+  }[localeParam];
   const title =
     page && "metaTitle" in page
       ? page.metaTitle
-      : "Stela | Identificación permanente de activos";
+      : homepageMetadata.title;
   const description =
     page && "metaDescription" in page
       ? page.metaDescription
-      : "Stela combina marcado permanente con diamante y registros digitales seguros para identificar y verificar vehículos y paneles solares durante todo su ciclo de vida.";
+      : homepageMetadata.description;
 
   return pageMetadata({
     title,

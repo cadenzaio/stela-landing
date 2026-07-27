@@ -48,8 +48,8 @@ Concrete claims about historical permanent-marking applications, completed miles
 ## Translation Standard
 
 - English is the source language for substantive content changes.
-- Spanish should remain neutral and internationally understandable; Portuguese should use European Portuguese unless the market strategy changes.
+- Spanish should remain neutral and internationally understandable. Polish should use natural contemporary business language and preserve precise technical meaning.
 - Preserve claim maturity, caveats, CTA intent, and technical meaning rather than translating word for word.
-- Keep the homepage headline as three authored lines in every language.
-- New public content is incomplete until all six language dictionaries have matching entries.
+- Preserve the authored homepage headline structure in every active language.
+- New public content is incomplete until all active language dictionaries have matching entries.
 - Founder or native-speaker review is required before public launch, especially for technical, legal, investor, and insurance terminology.

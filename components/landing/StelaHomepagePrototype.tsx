@@ -143,10 +143,12 @@ const homepageCopy = {
       eyebrow: "Where Stela starts",
       title: "Built for assets where trusted identity matters.",
       vehicleLabel: "Vehicle glass",
+      vehicleImageAlt: "A contemporary vehicle being reviewed at a professional insurance assessment facility",
       vehicleTitle: "Permanent identity for vehicle glass.",
       vehicleCopy: "For vehicle owners, insurers, fleet operators, lenders, and recovery authorities.",
       vehicleAction: "Explore vehicle applications",
       solarLabel: "Solar energy",
+      solarImageAlt: "Rows of installed solar panels in early daylight",
       solarTitle: "Permanent identity for every panel.",
       solarCopy: "For manufacturers, installers, owners, financiers, insurers, and maintenance providers.",
       solarAction: "Explore solar applications",
@@ -255,10 +257,12 @@ const homepageCopy = {
       eyebrow: "Dónde empieza Stela",
       title: "Diseñado para activos donde la identidad de confianza importa.",
       vehicleLabel: "Vidrio de vehículos",
+      vehicleImageAlt: "Vehículo contemporáneo inspeccionado en un centro profesional de evaluación de seguros",
       vehicleTitle: "Identidad permanente para el vidrio del vehículo.",
       vehicleCopy: "Para propietarios, aseguradoras, operadores de flotas, financiadores y autoridades de recuperación.",
       vehicleAction: "Explorar aplicaciones para vehículos",
       solarLabel: "Energía solar",
+      solarImageAlt: "Filas de paneles solares instalados a primera hora del día",
       solarTitle: "Identidad permanente para cada panel.",
       solarCopy: "Para fabricantes, instaladores, propietarios, financiadores, aseguradoras y proveedores de mantenimiento.",
       solarAction: "Explorar aplicaciones solares",
@@ -313,6 +317,120 @@ const homepageCopy = {
       cta: "¿Podrían sus activos beneficiarse de una identidad permanente?",
       ctaCopy: "Cuéntenos qué activo es, cómo se identifica hoy y qué se vuelve difícil cuando esa identidad se pierde, se elimina o se disputa.",
       action: "Comentar su caso de uso",
+    },
+  },
+  pl: {
+    hero: {
+      eyebrow: "Trwała identyfikacja aktywów",
+      title: "Trwała tożsamość dla fizycznych aktywów.",
+      lede: "Stela wykorzystuje kontrolowane znakowanie diamentowe, aby umieścić trwały identyfikator bezpośrednio na szybie pojazdu lub panelu słonecznym, a następnie łączy go z bezpiecznym rejestrem cyfrowym, który można weryfikować przez cały cykl życia aktywa.",
+      see: "Zobacz, jak to działa",
+      pilot: "Porozmawiajmy o pilotażu",
+      status: "Obecnie w fazie rozwoju, walidacji technicznej i przygotowania pilotaży.",
+      imageAlt: "Trwały identyfikator Stela i kod QR umieszczone wzdłuż dolnej krawędzi szyby pojazdu",
+      certificateAria: "Przykładowa weryfikacja pojazdu Stela",
+      verification: "Weryfikacja Stela",
+      verified: "Tożsamość pojazdu zweryfikowana",
+      identifier: "Identyfikator",
+      identifierStatus: "Status identyfikatora",
+      confirmed: "Potwierdzony",
+      session: "Sesja znakowania",
+      authorized: "Upoważniona",
+      evidence: "Dowody",
+      evidenceValue: "Czas · Lokalizacja · Zdjęcia",
+    },
+    problem: {
+      eyebrow: "Problem tożsamości",
+      title: "Rejestr cyfrowy jest wiarygodny tylko wtedy, gdy pozostaje połączony z fizycznym aktywem.",
+      paragraphs: [
+        "Fizyczne identyfikatory mogą ulec zniszczeniu, zostać usunięte lub zastąpione. Dokumentacja może być niekompletna, a rejestry cyfrowe mogą stracić związek z aktywem, które opisują.",
+        "Wtedy właściciele, ubezpieczyciele, kupujący i organy publiczne mogą mieć informacje, ale nie mają pewnego sposobu, by potwierdzić, że dotyczą one aktywa znajdującego się przed nimi.",
+      ],
+      emphasis: "Stela tworzy trwałe połączenie między fizycznym aktywem a jego weryfikowalną tożsamością cyfrową.",
+      flowAria: "Usuwalny identyfikator tworzy lukę tożsamości, którą Stela zastępuje trwałą, powiązaną tożsamością",
+      asset: "Fizyczne aktywo",
+      removable: "Usuwalny identyfikator",
+      lost: "Może zaginąć lub zostać zastąpiony",
+      gap: "Luka tożsamości",
+      unknown: "Nieznane aktywo",
+      permanent: "Trwała tożsamość Stela",
+      linked: "Identyfikator + powiązany rejestr",
+    },
+    process: {
+      eyebrow: "Jak to działa",
+      title: "Oznacz. Zarejestruj. Zweryfikuj.",
+      intro: "Jeden kontrolowany proces tworzy trwały identyfikator fizyczny, rejestruje jego pochodzenie i umożliwia przyszłą weryfikację przez cały cykl życia aktywa.",
+      steps: [
+        { label: "Oznacz", descriptor: "Trwały identyfikator fizyczny.", title: "Utwórz trwały identyfikator.", copy: "Przeszkolony operator nanosi unikalny identyfikator bezpośrednio na zatwierdzony obszar fizycznego aktywa." },
+        { label: "Zarejestruj", descriptor: "Bezpiecznie zebrane dowody.", title: "Zarejestruj jego pochodzenie.", copy: "Sesja znakowania bezpiecznie zapisuje aktywo, operatora, urządzenie, lokalizację, czas i materiał dowodowy w jednym zweryfikowanym rejestrze." },
+        { label: "Zweryfikuj", descriptor: "Potwierdzona, wiarygodna tożsamość.", title: "Zweryfikuj w dowolnym momencie.", copy: "Upoważnieni użytkownicy mogą potwierdzić tożsamość aktywa przy szkodach ubezpieczeniowych, inspekcjach, zmianach własności, serwisie, odzyskaniu lub wycofaniu." },
+      ],
+      qualification: "Każdy materiał i zastosowanie zostaną zwalidowane technicznie przed wdrożeniem komercyjnym.",
+    },
+    applications: {
+      eyebrow: "Od czego zaczyna Stela",
+      title: "Dla aktywów, których wiarygodna tożsamość ma znaczenie.",
+      vehicleLabel: "Szyby pojazdów",
+      vehicleImageAlt: "Współczesny pojazd podczas profesjonalnej oceny ubezpieczeniowej",
+      vehicleTitle: "Trwała tożsamość szyb pojazdów.",
+      vehicleCopy: "Dla właścicieli pojazdów, ubezpieczycieli, operatorów flot, kredytodawców i służb zajmujących się odzyskiwaniem mienia.",
+      vehicleAction: "Poznaj zastosowania dla pojazdów",
+      solarLabel: "Energia słoneczna",
+      solarImageAlt: "Rzędy zainstalowanych paneli słonecznych o poranku",
+      solarTitle: "Trwała tożsamość każdego panelu.",
+      solarCopy: "Dla producentów, instalatorów, właścicieli, finansujących, ubezpieczycieli i dostawców usług utrzymania.",
+      solarAction: "Poznaj zastosowania solarne",
+    },
+    value: {
+      eyebrow: "Wartość w czasie",
+      title: "Trwała tożsamość tworzy wartość przez cały cykl życia aktywa.",
+      intro: "Identyfikator zachowuje wartość, gdy zmieniają się właściciel, lokalizacja, stan lub status operacyjny aktywa.",
+      outcomes: ["Spraw, aby manipulacja była natychmiast widoczna.", "Przyspiesz odzyskiwanie skradzionych aktywów.", "Wzmocnij weryfikację ubezpieczeniową.", "Zachowaj wiarygodną tożsamość przez cały cykl życia aktywa."],
+      qualification: "Stela powstaje, aby dostarczać te korzyści. Zostaną one sprawdzone podczas walidacji technicznej i programów pilotażowych.",
+    },
+    system: {
+      eyebrow: "Więcej niż oznaczenie",
+      title: "Oznaczenie identyfikuje aktywo. Rejestr potwierdza jego pochodzenie.",
+      copy: "Fizyczny identyfikator jednoznacznie wskazuje aktywo. Rejestr Stela dokumentuje, kto go utworzył, kiedy, gdzie i na podstawie jakiego upoważnienia. Gdy potrzebna jest weryfikacja, dowody pochodzenia można odtworzyć i potwierdzić.",
+      action: "Poznaj pełną platformę Stela",
+      origin: "Pochodzenie zarejestrowane",
+      evidence: [["Operator", "Upoważniony"], ["Dowody", "Zebrane"], ["Lokalizacja", "Zarejestrowana"], ["Czas", "Podpisany"]],
+      record: "Rejestr Stela",
+      linked: "Tożsamość aktywa powiązana",
+      questionsLabel: "Stela pomaga odpowiedzieć na pytania:",
+      questions: ["Do którego fizycznego aktywa należy ten identyfikator?", "Kto je oznaczył i na podstawie jakiego upoważnienia?", "Kiedy i gdzie je oznaczono?", "Jakie dowody zebrano?", "Czy zmieniły się jego własność, stan lub status?"],
+    },
+    comparison: {
+      eyebrow: "Metody identyfikacji",
+      title: "Samo trwałe oznaczenie nie tworzy kompletnego systemu tożsamości.",
+      intro: "Trwałość to tylko jeden element wiarygodnej identyfikacji. Kompletny system rejestruje także pochodzenie identyfikatora i umożliwia rzetelną weryfikację przez cały cykl życia aktywa.",
+      aria: "Porównanie metod fizycznej identyfikacji",
+      headings: ["Metoda", "Trwała", "Przenośna", "Upoważniona", "Dowody pochodzenia", "Powiązany rejestr", "Weryfikacja"],
+      methods: ["Etykiety i drukowane kody", "Trawienie kwasem", "Piaskowanie", "Laser przemysłowy", "Stela"],
+      supported: "Obsługiwane",
+      varies: "Zależy",
+      excluded: "Brak",
+      qualification: "Skuteczność zostanie sprawdzona w kontrolowanych warunkach, zanim przedstawimy twierdzenia dotyczące konkretnych materiałów lub metod znakowania.",
+    },
+    experience: {
+      eyebrow: "Oparte na doświadczeniu",
+      title: "Zbudowane na dekadach praktycznej ochrony aktywów.",
+      copy: "Stela czerpie z wieloletniego doświadczenia w ochronie pojazdów poprzez trwałe znakowanie diamentowe. Ta praktyczna wiedza kształtuje nowoczesny system łączący kontrolowane działania terenowe, bezpieczne rejestry cyfrowe i weryfikację w całym cyklu życia.",
+      principles: ["Kontrolowane znakowanie", "Upoważnione działania", "Późniejsza weryfikacja"],
+    },
+    development: {
+      eyebrow: "Budujemy z partnerami",
+      title: "Budujemy wspólnie z branżami, którym służymy.",
+      copy: "Stela znajduje się w fazie rozwoju przedkomercyjnego. Współpracujemy z partnerami, aby testować system znakowania, dopracować proces dla każdego materiału, ukształtować obieg dowodów i przygotować platformę do zastosowań regulowanych.",
+      partners: [
+        ["Partnerzy pilotażowi", "Ubezpieczyciele, właściciele aktywów, floty, operatorzy solarni i organizacje branżowe pomagające testować realne zastosowania."],
+        ["Partnerzy walidacyjni", "Specjaliści od szkła, pojazdów, energetyki słonecznej, laboratoriów i technologii pomagający potwierdzić, co działa."],
+        ["Partnerzy strategiczni", "Organizacje wspierające rozwój, dostęp do rynku i drogę do wdrożenia regulowanego."],
+      ],
+      identity: "Trwała identyfikacja aktywów",
+      cta: "Czy Twoje aktywa mogłyby skorzystać z trwałej tożsamości?",
+      ctaCopy: "Opowiedz nam, czym jest aktywo, jak jest dziś identyfikowane i co staje się trudne, gdy jego tożsamość zostaje utracona, usunięta lub zakwestionowana.",
+      action: "Omów swój przypadek",
     },
   },
 } as const;
@@ -476,7 +594,7 @@ function Applications({ locale }: { locale: Locale }) {
       </div>
         <div className="prototype-application-grid">
           <article>
-          <Image src="/images/stela-application-vehicle-inspection-v2.jpg" alt="A contemporary vehicle being reviewed at a professional insurance assessment facility" fill unoptimized sizes="(max-width: 800px) 100vw, 50vw" />
+          <Image src="/images/stela-application-vehicle-inspection-v2.jpg" alt={t.vehicleImageAlt} fill unoptimized sizes="(max-width: 800px) 100vw, 50vw" />
           <div className="application-shade" aria-hidden="true" />
           <div>
             <CarProfile weight="duotone" aria-hidden="true" />
@@ -487,7 +605,7 @@ function Applications({ locale }: { locale: Locale }) {
           </div>
         </article>
         <article>
-          <Image src="/images/stela-application-solar-sunrise-v4.jpg" alt="Rows of installed solar panels in early daylight" fill unoptimized sizes="(max-width: 800px) 100vw, 50vw" />
+          <Image src="/images/stela-application-solar-sunrise-v4.jpg" alt={t.solarImageAlt} fill unoptimized sizes="(max-width: 800px) 100vw, 50vw" />
           <div className="application-shade" aria-hidden="true" />
           <div>
             <SolarPanel weight="duotone" aria-hidden="true" />

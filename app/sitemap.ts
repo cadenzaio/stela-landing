@@ -1,8 +1,7 @@
 import type { MetadataRoute } from "next";
-import { localizedSlugs, pagePath, type Locale } from "@/lib/i18n/config";
+import { locales, localizedSlugs, pagePath } from "@/lib/i18n/config";
 
 const siteUrl = "https://stelamark.com";
-const locales: Locale[] = ["en", "es"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return locales.flatMap((locale) =>
@@ -14,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         languages: {
           en: `${siteUrl}${pagePath("en", slug)}`,
           es: `${siteUrl}${pagePath("es", slug)}`,
+          pl: `${siteUrl}${pagePath("pl", slug)}`,
           "x-default": `${siteUrl}${pagePath("en", slug)}`,
         },
       },

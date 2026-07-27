@@ -25,7 +25,7 @@ async function render(pathname = "/", headers = {}) {
   );
 }
 
-test("selects Spanish on first visit and preserves manual language choices", async () => {
+test("selects a supported language on first visit and preserves manual language choices", async () => {
   const spanishFirstVisit = await render("/", { "accept-language": "es-ES,es;q=0.9,en;q=0.8" });
   assert.equal(spanishFirstVisit.status, 307);
   assert.equal(spanishFirstVisit.headers.get("location"), "http://localhost/es");
@@ -34,6 +34,11 @@ test("selects Spanish on first visit and preserves manual language choices", asy
 
   const englishFirstVisit = await render("/", { "accept-language": "en-GB,en;q=0.9,es;q=0.8" });
   assert.equal(englishFirstVisit.status, 200);
+
+  const polishFirstVisit = await render("/", { "accept-language": "pl-PL,pl;q=0.9,en;q=0.8" });
+  assert.equal(polishFirstVisit.status, 307);
+  assert.equal(polishFirstVisit.headers.get("location"), "http://localhost/pl");
+  assert.match(polishFirstVisit.headers.get("set-cookie") ?? "", /stela_locale=pl/);
 
   const manualEnglishChoice = await render("/", {
     "accept-language": "es-ES,es;q=0.9",
@@ -50,6 +55,9 @@ test("selects Spanish on first visit and preserves manual language choices", asy
 
   const directSpanishRoute = await render("/es", { "accept-language": "en-GB,en;q=0.9" });
   assert.equal(directSpanishRoute.status, 200);
+
+  const directPolishRoute = await render("/pl", { "accept-language": "en-GB,en;q=0.9" });
+  assert.equal(directPolishRoute.status, 200);
 });
 
 test("server-renders the Stela landing page", async () => {
@@ -157,6 +165,7 @@ test("keeps the starter preview removed from the finished site", async () => {
 test("server-renders every public page in all supported languages", async () => {
   const localeChecks = {
     es: /Identidad permanente para activos físicos\./,
+    pl: /Trwała tożsamość dla fizycznych aktywów\./,
   };
   const slugs = ["platform", "applications", "partners", "investors", "contact"];
 
@@ -266,7 +275,9 @@ test("publishes production search-engine directives", async () => {
   const sitemap = await sitemapResponse.text();
   assert.match(sitemap, /<loc>https:\/\/stelamark\.com\/<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/stelamark\.com\/es<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/stelamark\.com\/pl<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/stelamark\.com\/applications<\/loc>/);
+  assert.match(sitemap, /hreflang="pl"/);
   assert.match(sitemap, /hreflang="x-default"/);
   assert.doesNotMatch(sitemap, /\/identity/);
 });
@@ -283,7 +294,9 @@ test("documents the focused sitemap and conversion boundaries", async () => {
   assert.match(siteMap, /\/partners/);
   assert.match(siteMap, /\/investors/);
   assert.match(siteMap, /\/es\/platform/);
-  assert.match(siteMap, /Portuguese/);
+  assert.match(siteMap, /\/pl\/platform/);
+  assert.match(siteMap, /Polish/);
+  assert.doesNotMatch(siteMap, /Portuguese/);
   assert.match(contentStrategy, /Pre-commercial Claim Rules/);
   assert.match(contentStrategy, /Private Information/);
   assert.match(contentStrategy, /Translation Standard/);
