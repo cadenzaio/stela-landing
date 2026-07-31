@@ -22,6 +22,7 @@ interface ExecutionContext {
 const LOCALE_COOKIE = "stela_locale";
 const LOCALE_COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
 const CONTACT_RECIPIENT = "info@stelamark.com";
+const CONTACT_ORIGIN = "https://stelamark.com";
 const CONTACT_FIELDS = [
   "name",
   "organization",
@@ -86,14 +87,39 @@ async function handleContactRequest(request: Request): Promise<Response> {
   delivery.append("_subject", `Stela website inquiry: ${values.reason}`);
   delivery.append("_template", "table");
   delivery.append("_captcha", "false");
+  delivery.append("_replyto", values.email.slice(0, 300));
 
-  const response = await fetch(`https://formsubmit.co/ajax/${CONTACT_RECIPIENT}`, {
-    method: "POST",
-    headers: { Accept: "application/json" },
-    body: delivery,
-  });
+  try {
+    const response = await fetch(`https://formsubmit.co/ajax/${CONTACT_RECIPIENT}`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        Origin: CONTACT_ORIGIN,
+        Referer: `${CONTACT_ORIGIN}/contact`,
+        "X-Requested-With": "XMLHttpRequest",
+      },
+      body: delivery,
+    });
 
-  if (!response.ok) return jsonResponse({ ok: false }, 502);
+    const result = await response.json().catch(() => undefined) as
+      | { success?: boolean | string; message?: string }
+      | undefined;
+    const delivered = result?.success === true || result?.success === "true";
+
+    if (!response.ok || !delivered) {
+      console.error("Contact delivery rejected", {
+        providerStatus: response.status,
+        providerMessage: result?.message ?? "Invalid response from FormSubmit",
+      });
+      return jsonResponse({ ok: false, code: "delivery_unavailable" }, 502);
+    }
+  } catch (error) {
+    console.error("Contact delivery failed", {
+      error: error instanceof Error ? error.message : "Unknown delivery error",
+    });
+    return jsonResponse({ ok: false, code: "delivery_unavailable" }, 502);
+  }
+
   return jsonResponse({ ok: true }, 200);
 }
 
